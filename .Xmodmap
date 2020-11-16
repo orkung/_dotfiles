@@ -1,0 +1,8 @@
+! Swap caps lock and escape
+!keysym Return = Alt_R Return
+keycode 108 = Return NoSymbol Return
+!keycode 36 = Return NoSymbol Return
+keycode 94 = backslash bar brokenbar bar less greater
+keycode 51 =  Up u Up u
+!keycode 31 = i XF86AudioLowerVolume i XF86AudioLowerVolume idotless Iabovedot idotless Iabovedot
+!keycode 30 = Up u Up u 
