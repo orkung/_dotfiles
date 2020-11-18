@@ -99,7 +99,6 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lh='ls -ld .?*'
 
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -164,7 +163,7 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/.pyenv/bin:$HOME/.rvm/bin:$PATH"
+export PATH="$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
@@ -174,3 +173,6 @@ HISTTIMEFORMAT='%F %T '
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
