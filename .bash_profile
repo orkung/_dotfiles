@@ -7,9 +7,6 @@ export EDITOR="vim"
 export TERMINAL="gnome-terminal"
 export BROWSER="chromium-browser"
 export READER="zathura"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 if [ -r ~/.profile ]; then . ~/.profile; fi
