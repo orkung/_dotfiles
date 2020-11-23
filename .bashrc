@@ -176,6 +176,31 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# https://zork.net/~st/jottings/How_to_limit_the_length_of_your_bash_prompt.html
+# shell and we should not mess with it.
+if [ -n "$PS1" ]; then
+    # A temporary variable to contain our prompt command
+    NEW_PROMPT_COMMAND='
+        TRIMMED_PWD=${PWD: -20};
+        TRIMMED_PWD=${TRIMMED_PWD:-$PWD}
+    '
+
+    # If there's an existing prompt command, let's not 
+    # clobber it
+    if [ -n "$PROMPT_COMMAND" ]; then
+        PROMPT_COMMAND="$PROMPT_COMMAND;$NEW_PROMPT_COMMAND"
+    else
+        PROMPT_COMMAND="$NEW_PROMPT_COMMAND"
+    fi
+
+    # We're done with our temporary variable
+    unset NEW_PROMPT_COMMAND
+
+    # Set PS1 with our new variable
+    # \h - hostname, \u - username
+    PS1='\u@\h:$TRIMMED_PWD\$ '
+fi
+
 # https://zork.net/~st/jottings/Per-Host_Prompt_Colouring.html
 # hosthash might be negative on 32-bit machines, and that would mess
 # things up.
@@ -209,6 +234,8 @@ COLOR=${BRIGHT_COLORS[$(( 0x$HOSTHASH % ${#BRIGHT_COLORS[@]} ))]}
 C="\[$(tput setaf $COLOR)\]" # color
 B="\[$(tput bold)\]" # bold
 N="\[$(tput sgr0)\]" # normal
-PS1="$C$B[$N$C\\u@\\h$B\$TMP_DELIM$N$C\$TMP_PWD_VALUE$B]\\\$$N"
+#PS1="$C$B[$N$C\\u@\\h$B\$\w$N$C\$\W$B]\\\$$N"
+#PS1="$C$B[$N$C\\u@\\h$B\$TMP_DELIM$N$C\$TMP_PWD_VALUE$B]\\\$$N"
+PS1="$C$B[$N$C\\u@\\h$B:\$TRIMMED_PWD$N$C\$TMP_PWD_VALUE$B]\\\$$N"
 unset HOSTHASH BRIGHT_COLORS COLOR C B N          # cleanup
 export PS1="$PS1\n"
