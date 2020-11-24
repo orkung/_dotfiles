@@ -239,3 +239,12 @@ N="\[$(tput sgr0)\]" # normal
 PS1="$C$B[$N$C\\u@\\h$B:\$TRIMMED_PWD$N$C\$TMP_PWD_VALUE$B]\\\$$N"
 unset HOSTHASH BRIGHT_COLORS COLOR C B N          # cleanup
 export PS1="$PS1\n"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/cavitg/google-cloud-sdk/path.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/cavitg/google-cloud-sdk/completion.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/completion.bash.inc'; fi
+export CLOUDSDK_COMPUTE_REGION=us-central1
+￼￼
+export CLOUDSDK_COMPUTE_ZONE=us-central1-f
