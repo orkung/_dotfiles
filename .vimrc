@@ -1,5 +1,6 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
 Plug 'gcmt/taboo.vim'
@@ -102,6 +103,10 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
+
+" Yankstack ile registers yonetimi
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " Taboo ile tab yonetimi
 nnoremap <C-w>e :TabooOpen
