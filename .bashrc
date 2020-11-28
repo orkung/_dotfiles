@@ -162,7 +162,8 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/google-cloud-sdk/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
+#export PATH="$HOME/google-cloud-sdk/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
@@ -178,66 +179,66 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # https://zork.net/~st/jottings/How_to_limit_the_length_of_your_bash_prompt.html
 # shell and we should not mess with it.
-if [ -n "$PS1" ]; then
-    # A temporary variable to contain our prompt command
-    NEW_PROMPT_COMMAND='
-        TRIMMED_PWD=${PWD: -20};
-        TRIMMED_PWD=${TRIMMED_PWD:-$PWD}
-    '
-
-    # If there's an existing prompt command, let's not 
-    # clobber it
-    if [ -n "$PROMPT_COMMAND" ]; then
-        PROMPT_COMMAND="$PROMPT_COMMAND;$NEW_PROMPT_COMMAND"
-    else
-        PROMPT_COMMAND="$NEW_PROMPT_COMMAND"
-    fi
-
-    # We're done with our temporary variable
-    unset NEW_PROMPT_COMMAND
-
-    # Set PS1 with our new variable
-    # \h - hostname, \u - username
-    PS1='\u@\h:$TRIMMED_PWD\$ '
-fi
-
-# https://zork.net/~st/jottings/Per-Host_Prompt_Colouring.html
-# hosthash might be negative on 32-bit machines, and that would mess
-# things up.
-HOSTHASH=$(hostname | md5sum)
-HOSTHASH=${HOSTHASH:0:7}
-
-# Map into the range of available colours
-if [ $(tput colors) -ge 256 ]; then
-    # All the colours with brightness > 25% in the default xterm
-    # palette
-    BRIGHT_COLORS=(2 3 4 5 6 7 8 9 10 11 12 13 14 15 22 23 24 25 26 27
-    28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
-    50 51 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77
-    78 79 80 81 82 83 84 85 86 87 94 95 96 97 98 99 100 101 102 103 104
-    105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
-    122 123 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
-    145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 165 166
-    167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183
-    184 185 186 187 188 189 190 191 192 193 194 195 198 199 200 201 202
-    203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219
-    220 221 222 223 224 225 226 227 228 229 230 231 238 239 240 241 242
-    243 244 245 246 247 248 249 250 251 252 253 254 255)
-elif [ $(tput colors) -ge 16 ]; then
-    BRIGHT_COLORS=(2 3 4 5 6 7 8 9 10 11 12 13 14 15)
-else
-    BRIGHT_COLORS=(2 3 4 5 6 7)
-fi
-
-COLOR=${BRIGHT_COLORS[$(( 0x$HOSTHASH % ${#BRIGHT_COLORS[@]} ))]}
-
-C="\[$(tput setaf $COLOR)\]" # color
-B="\[$(tput bold)\]" # bold
-N="\[$(tput sgr0)\]" # normal
-#PS1="$C$B[$N$C\\u@\\h$B\$\w$N$C\$\W$B]\\\$$N"
-#PS1="$C$B[$N$C\\u@\\h$B\$TMP_DELIM$N$C\$TMP_PWD_VALUE$B]\\\$$N"
-PS1="$C$B[$N$C\\u@\\h$B:\$TRIMMED_PWD$N$C\$TMP_PWD_VALUE$B]\\\$$N"
-unset HOSTHASH BRIGHT_COLORS COLOR C B N          # cleanup
+#if [ -n "$PS1" ]; then
+#    # A temporary variable to contain our prompt command
+#    NEW_PROMPT_COMMAND='
+#        TRIMMED_PWD=${PWD: -20};
+#        TRIMMED_PWD=${TRIMMED_PWD:-$PWD}
+#    '
+#
+#    # If there's an existing prompt command, let's not 
+#    # clobber it
+#    if [ -n "$PROMPT_COMMAND" ]; then
+#        PROMPT_COMMAND="$PROMPT_COMMAND;$NEW_PROMPT_COMMAND"
+#    else
+#        PROMPT_COMMAND="$NEW_PROMPT_COMMAND"
+#    fi
+#
+#    # We're done with our temporary variable
+#    unset NEW_PROMPT_COMMAND
+#
+#    # Set PS1 with our new variable
+#    # \h - hostname, \u - username
+#    PS1='\u@\h:$TRIMMED_PWD\$ '
+#fi
+#
+## https://zork.net/~st/jottings/Per-Host_Prompt_Colouring.html
+## hosthash might be negative on 32-bit machines, and that would mess
+## things up.
+#HOSTHASH=$(hostname | md5sum)
+#HOSTHASH=${HOSTHASH:0:7}
+#
+## Map into the range of available colours
+#if [ $(tput colors) -ge 256 ]; then
+#    # All the colours with brightness > 25% in the default xterm
+#    # palette
+#    BRIGHT_COLORS=(2 3 4 5 6 7 8 9 10 11 12 13 14 15 22 23 24 25 26 27
+#    28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
+#    50 51 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77
+#    78 79 80 81 82 83 84 85 86 87 94 95 96 97 98 99 100 101 102 103 104
+#    105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121
+#    122 123 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
+#    145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 165 166
+#    167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183
+#    184 185 186 187 188 189 190 191 192 193 194 195 198 199 200 201 202
+#    203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219
+#    220 221 222 223 224 225 226 227 228 229 230 231 238 239 240 241 242
+#    243 244 245 246 247 248 249 250 251 252 253 254 255)
+#elif [ $(tput colors) -ge 16 ]; then
+#    BRIGHT_COLORS=(2 3 4 5 6 7 8 9 10 11 12 13 14 15)
+#else
+#    BRIGHT_COLORS=(2 3 4 5 6 7)
+#fi
+#
+#COLOR=${BRIGHT_COLORS[$(( 0x$HOSTHASH % ${#BRIGHT_COLORS[@]} ))]}
+#
+#C="\[$(tput setaf $COLOR)\]" # color
+#B="\[$(tput bold)\]" # bold
+#N="\[$(tput sgr0)\]" # normal
+##PS1="$C$B[$N$C\\u@\\h$B\$\w$N$C\$\W$B]\\\$$N"
+##PS1="$C$B[$N$C\\u@\\h$B\$TMP_DELIM$N$C\$TMP_PWD_VALUE$B]\\\$$N"
+#PS1="$C$B[$N$C\\u@\\h$B:\$TRIMMED_PWD$N$C\$TMP_PWD_VALUE$B]\\\$$N"
+#unset HOSTHASH BRIGHT_COLORS COLOR C B N          # cleanup
 export PS1="$PS1\n"
 
 # The next line updates PATH for the Google Cloud SDK.
