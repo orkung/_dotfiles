@@ -107,6 +107,7 @@ endif
 " Yankstack ile registers yonetimi
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
+nnoremap <leader>y :Yanks<CR>
 
 " Taboo ile tab yonetimi
 nnoremap <C-w>e :TabooOpen
@@ -172,4 +173,3 @@ endif
 let g:session_autosave= 'no'
 let g:session_autoload = 'yes' 
 "set sessionoptions=buffers
-
