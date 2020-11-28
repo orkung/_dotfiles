@@ -65,7 +65,7 @@ nnoremap <Leader>b :BuffergatorToggle<CR> " acik buffer'lari listele
 vmap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
 vmap <Leader>rt :<c-u>call Turkish_Asciify()<CR>
 let g:turkish_deasciifier_path = '~/Public/turkish-deasciify'
-#let g:turkish_deasciifier_path = '~/Git_Repolari/diger/turkish-deasciifier/turkish-deasciify'
+"let g:turkish_deasciifier_path = '~/Git_Repolari/diger/turkish-deasciifier/turkish-deasciify'
 
 """ Nerdtree dizin/dosya paneli
 " Leader key ile acma
