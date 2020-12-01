@@ -1,5 +1,6 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'arcticicestudio/nord-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/limelight.vim'
@@ -185,3 +186,5 @@ endif
 let g:session_autosave= 'no'
 let g:session_autoload = 'yes' 
 "set sessionoptions=buffers
+
+au! BufNewFile,BufRead * so %
