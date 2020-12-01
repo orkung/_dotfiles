@@ -14,6 +14,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 set rtp+=~/.fzf
@@ -26,8 +27,8 @@ filetype plugin indent on
 filetype indent on
 
 set shell=bash\ --login
-syntax on
 set background=dark
+syntax on
 set nocompatible        " don't bother with vi compatibility
 set autoread            " reload files when changed on disk, i.e. via `git checkout`
 set tabstop=2           " tab uzunluğu
@@ -37,8 +38,7 @@ set expandtab           " tab'a basıldığında boşluk karakterlerinden oluşa
 set lbr                 " linebreak; satir sonunda alt satira hecelemeyle gecisi saglar
 set tw=79               " bir satırın alabileceği karakter sayısı
 set magic               " For regular expressions turn magic on
-noremap <Leader>s :update<CR>
-" mevcbut buffer'i diske kayededer
+noremap <Leader>s :update<CR> " mevcbut buffer'i diske kayededer
 let $PAGER='' " man page icin 
 set clipboard=unnamedplus
 set term=tmux-256color
@@ -53,9 +53,15 @@ au InsertLeave * set nopaste
                                 " this is independent of equalalways, which works only when creating new splits or
                                 " closing windows. But not when resizing the surrounding window.
 " set noequalalways
-                                
+
+" YAML editor
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 
 """ Eklenti yapilandirma
+" indenLine
+let g:indentLine_char = '⦙'
+
 " Buffergator; buffer'lar arasi gezinme
 nnoremap <C-n> :BuffergatorMruCycleNext<cr>
 nnoremap <C-p> :BuffergatorMruCyclePrev<cr>
@@ -162,7 +168,7 @@ noremap <S-w> :wqall!<CR>
 noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
-colorscheme OceanicNext
+colorscheme solarized8
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
