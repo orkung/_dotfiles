@@ -1,11 +1,11 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'flazz/vim-colorschemes'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
 Plug 'gcmt/taboo.vim'
 Plug 'lifepillar/vim-solarized8'
-Plug 'skielbasa/vim-material-monokai'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -135,21 +135,21 @@ let g:limelight_conceal_guifg = '#777777'
 let g:limelight_default_coefficient = 1
 
 """ Görünüm
-hi Normal guifg=#93a1a1 " metin gorunum rengi
-hi StatusLine cterm=none gui=none
-hi StatusLineNC cterm=none gui=none
-hi VertSplit ctermfg=00
-hi SignColumn ctermbg=none
-
-hi Search ctermfg=25 ctermbg=16
-hi Folded ctermfg=25 ctermbg=16
-hi NonText ctermfg=00
-hi clear SignColumn
-hi TabLineFill cterm=none gui=none
-hi TabLine ctermfg=none ctermbg=none
-hi TabLineSel ctermfg=none ctermbg=none
-set statusline=%t\ %=\ %l:%c
-set fillchars+=vert:│
+"hi Normal guifg=#93a1a1 " metin gorunum rengi
+"hi StatusLine cterm=none gui=none
+"hi StatusLineNC cterm=none gui=none
+"hi VertSplit ctermfg=00
+"hi SignColumn ctermbg=none
+"
+"hi Search ctermfg=25 ctermbg=16
+"hi Folded ctermfg=25 ctermbg=16
+"hi NonText ctermfg=00
+"hi clear SignColumn
+"hi TabLineFill cterm=none gui=none
+"hi TabLine ctermfg=none ctermbg=none
+"hi TabLineSel ctermfg=none ctermbg=none
+"set statusline=%t\ %=\ %l:%c
+"set fillchars+=vert:│
 
 """" Window'u acik tut, buffer yonet
 " buffer'i kaydet
@@ -168,7 +168,12 @@ noremap <S-w> :wqall!<CR>
 noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * hi Comment guifg=#002b36 guibg=#586e75 guisp=NONE gui=italic cterm=italic
+augroup END
 colorscheme solarized8
+"colorscheme OceanicNext
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
