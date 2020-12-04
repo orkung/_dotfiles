@@ -249,3 +249,12 @@ if [ -f '/home/cavitg/google-cloud-sdk/completion.bash.inc' ]; then . '/home/cav
 export CLOUDSDK_COMPUTE_REGION=us-central1
 ￼￼
 export CLOUDSDK_COMPUTE_ZONE=us-central1-f
+if [ -s "$HOME/.rvmrc" ]; then
+    source "$HOME/.rvmrc"
+fi # to have $rvm_path defined if set
+if [ -s "${rvm_path-$HOME/.rvm}/scripts/rvm" ]; then
+    source "${rvm_path-$HOME/.rvm}/scripts/rvm"
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin/bin"

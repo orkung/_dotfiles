@@ -1,7 +1,11 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
-Plug 'arcticicestudio/nord-vim'
-Plug 'flazz/vim-colorschemes'
+Plug 'vim-syntastic/syntastic'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'flazz/vim-colorschemes'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
@@ -19,7 +23,6 @@ Plug 'Yggdroot/indentLine'
 call plug#end()
 
 set rtp+=~/.fzf
-
 
 """ Ayarlar
 filetype on
@@ -187,4 +190,7 @@ let g:session_autosave= 'no'
 let g:session_autoload = 'yes' 
 "set sessionoptions=buffers
 
-au! BufNewFile,BufRead * so %
+"let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='base16_solarized'
+au! BufNewFile,BufRead * source ~/.vimrc 
+

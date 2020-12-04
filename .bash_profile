@@ -3,6 +3,7 @@ if [ -f "$HOME/.bashrc" ] ; then
 fi
 eval "$(pyenv virtualenv-init -)"
 
+export GNOME_TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
 export EDITOR="vim"
 export TERMINAL="gnome-terminal"
 export BROWSER="chromium-browser"
