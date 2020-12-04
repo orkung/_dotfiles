@@ -1,0 +1,14 @@
+[user]
+	email = orkungunayx@gmail.com
+	name = Cavit Gunay
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = input
+	editor = vim
+[commit]
+  template = ~/.gitmessage
+[url "https://"]
+	insteadOf = git://
