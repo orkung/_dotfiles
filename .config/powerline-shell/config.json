@@ -6,8 +6,19 @@
     "ssh",
     "cwd",
     "git",
+    "git_stash",
+    "set_term_title",
+    "svn",
+    "newline",
     "hg",
     "jobs",
     "root"
-  ]
+  ],
+  "mode": "flat",
+  "cwd": {
+    "mode": "plain",
+    "max_depth": 4
+  },
+  "theme": "gruvbox"
 }
+
