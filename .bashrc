@@ -129,7 +129,7 @@ function pushla () {
     git push origin master
 }
 
-alias z="~/bin/zargan.py"
+alias zl="~/bin/zargan.py"
 
 zl(){
         z $@ 2>/dev/null | head -10
@@ -239,7 +239,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 ##PS1="$C$B[$N$C\\u@\\h$B\$TMP_DELIM$N$C\$TMP_PWD_VALUE$B]\\\$$N"
 #PS1="$C$B[$N$C\\u@\\h$B:\$TRIMMED_PWD$N$C\$TMP_PWD_VALUE$B]\\\$$N"
 #unset HOSTHASH BRIGHT_COLORS COLOR C B N          # cleanup
-export PS1="$PS1\n"
+#export PS1="$PS1\n"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/cavitg/google-cloud-sdk/path.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/path.bash.inc'; fi
@@ -258,3 +258,11 @@ fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin/bin"
+
+function _update_ps1() {
+    PS1="$(powerline-shell $?)\n"
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
