@@ -162,7 +162,7 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH:/$HOME/.local/bin"
 #export PATH="$HOME/google-cloud-sdk/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
 eval "$(pyenv init -)"
@@ -173,9 +173,6 @@ HISTTIMEFORMAT='%F %T '
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 # https://zork.net/~st/jottings/How_to_limit_the_length_of_your_bash_prompt.html
 # shell and we should not mess with it.
@@ -256,8 +253,9 @@ if [ -s "${rvm_path-$HOME/.rvm}/scripts/rvm" ]; then
     source "${rvm_path-$HOME/.rvm}/scripts/rvm"
 fi
 
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin/bin"
+export PATH="$PATH:/usr/share/rvm/bin"
 
 function _update_ps1() {
     PS1="$(powerline-shell $?)\n"

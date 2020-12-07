@@ -6,7 +6,7 @@ eval "$(pyenv virtualenv-init -)"
 export GNOME_TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
 export EDITOR="vim"
 export TERMINAL="gnome-terminal"
-export BROWSER="chromium-browser"
+export BROWSER="brave-browser"
 export READER="zathura"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
