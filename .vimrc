@@ -192,5 +192,5 @@ let g:session_autoload = 'yes'
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16_solarized'
-au! BufNewFile,BufRead * source ~/.vimrc 
+au! BufNewFile,BufRead * colorscheme solarized8
 

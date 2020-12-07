@@ -134,7 +134,6 @@ alias zl="~/bin/zargan.py"
 zl(){
         z $@ 2>/dev/null | head -10
 }
-source /usr/share/autojump/autojump.sh
 export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
 
 #export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
@@ -239,13 +238,12 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 #export PS1="$PS1\n"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/cavitg/google-cloud-sdk/path.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/path.bash.inc'; fi
+#if [ -f '/home/cavitg/google-cloud-sdk/path.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/cavitg/google-cloud-sdk/completion.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/completion.bash.inc'; fi
-export CLOUDSDK_COMPUTE_REGION=us-central1
-￼￼
-export CLOUDSDK_COMPUTE_ZONE=us-central1-f
+#if [ -f '/home/cavitg/google-cloud-sdk/completion.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/completion.bash.inc'; fi
+#export CLOUDSDK_COMPUTE_REGION=us-central1
+#export CLOUDSDK_COMPUTE_ZONE=us-central1-f
 if [ -s "$HOME/.rvmrc" ]; then
     source "$HOME/.rvmrc"
 fi # to have $rvm_path defined if set
@@ -264,3 +262,4 @@ function _update_ps1() {
 if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
+source /usr/share/autojump/autojump.sh
