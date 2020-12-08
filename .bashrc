@@ -263,3 +263,4 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 source "/etc/profile.d/rvm.sh"
+source /usr/share/autojump/autojump.sh
