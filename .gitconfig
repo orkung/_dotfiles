@@ -1,5 +1,5 @@
 [user]
-	email = orkungunayx@gmail.com
+	email = orkun.gunay@kafein.com.tr
 	name = Cavit Gunay
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -7,8 +7,16 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
-	editor = vim
+	editor = code --wait
 [commit]
   template = ~/.gitmessage
 [url "https://"]
 	insteadOf = git://
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE 
