@@ -265,3 +265,4 @@ fi
 source "/etc/profile.d/rvm.sh"
 source /usr/share/autojump/autojump.sh
 alias tmux="TERM=screen-256color-bce tmux"
+export TERM="xterm-256color"
