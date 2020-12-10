@@ -264,3 +264,4 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 fi
 source "/etc/profile.d/rvm.sh"
 source /usr/share/autojump/autojump.sh
+alias tmux="TERM=screen-256color-bce tmux"

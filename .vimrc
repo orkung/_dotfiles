@@ -173,10 +173,6 @@ noremap <S-w> :wqall!<CR>
 noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
-augroup MyColors
-    autocmd!
-    autocmd ColorScheme * hi Comment guifg=#002b36 guibg=#586e75 guisp=NONE gui=italic cterm=italic
-augroup END
 colorscheme solarized8
 "colorscheme OceanicNext
 if exists('+termguicolors')
@@ -193,5 +189,9 @@ let g:session_autoload = 'yes'
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16_solarized'
-au! BufNewFile,BufRead * colorscheme solarized8
+au! BufNewFile,BufRead * colorscheme solarized8 
 
+command! WQ wq!
+command! Wq wq!
+command! W w!
+command! Q q!
