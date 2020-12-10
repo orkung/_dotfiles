@@ -1,5 +1,6 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
