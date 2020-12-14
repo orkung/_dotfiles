@@ -4,7 +4,7 @@ auto-reload yes
 #feed-sort-order unreadarticlecount
 show-keymap-hint yes
 swap-title-and-hints no
-text-width 62
+text-width 79
 datetime-format ""
 #itemview-title-format ""	
 #articlelist-title-format ""	
