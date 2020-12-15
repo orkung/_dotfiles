@@ -1,8 +1,10 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
-Plug 'pedrohdz/vim-yaml-folds'
+"Plug 'pedrohdz/vim-yaml-folds'
 Plug 'tpope/vim-fugitive'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-syntastic/syntastic'
@@ -64,7 +66,8 @@ au InsertLeave * set nopaste
 " set noequalalways
 
 " YAML editor
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+"au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
@@ -200,7 +203,7 @@ command! WQ wq!
 command! Wq wq!
 command! W w!
 command! Q q!
-set foldlevelstart=1
+"set foldlevelstart=1
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
@@ -370,3 +373,8 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+autocmd InsertEnter * set cursorline cursorcolumn
+autocmd InsertLeave * set nocursorline nocursorcolumn
+highlight cursorline cterm=none ctermfg=7 ctermbg=4
+highlight cursorcolumn cterm=none ctermfg=7 ctermbg=4
