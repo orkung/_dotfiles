@@ -1,14 +1,17 @@
-i3-wm.program.unclutter:
-i3-wm.program.1: /usr/bin/setxkbmap -option ctrl:escape
-i3-wm.program.2: /bin/xmodmap ~/.Xmodmap
-i3-wm.program.3: /usr/bin/nm-applet
-i3-wm.program.3: keep-presence  --seconds 60
+i3-wm.program.1: /usr/local/bin/clipit
+i3-wm.program.2: /usr/bin/setxkbmap -option ctrl:escape
+i3-wm.program.3: /bin/xmodmap ~/.Xmodmap
 i3-wm.gaps.focus_follows_mouse: yes
 i3-wm.bar.trayoutput:primary
-gnome.terminal.font: Droid Sans Mono Slashed for Powerline Regular 11
+gnome.terminal.font: Droid Sans Mono Slashed for Powerline Regular 12
 gnome.terminal.scrollbar:	never
 gnome.wallpaper: ~/Pictures/thiemeyer_road_to_samarkand.jpg
-gnome.gtk.theme:	Yaru-dark
+gnome.gtk.theme:	Nordic
 gnome.icon.theme:	Yaru
-gnome.wm.theme:	Yaru-dark
+gnome.wm.theme:	Nordic
 rofi.icon-theme:	Yaru
+i3-wm.bindsym.2: u
+i3-wm.bindsym.program.2: /usr/bin/gnome-terminal --class=floating_window -e 'td --interactive'
+Xft.dpi: 192
+i3-wm.bar.font: pango:Source Code Pro Medium 8, Material Design Icons 8
+i3xrocks.value.font: Source Code Pro Medium 8

@@ -11,7 +11,8 @@ Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
+"Plug 'FelipeCRamos/nord-vim-darker'
 "Plug 'flazz/vim-colorschemes'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/limelight.vim'
@@ -141,11 +142,20 @@ inoremap <silent><C-w>z <C-o>:MaximizerToggle<CR>
 " Limelight
 nnoremap <Leader>l :Limelight<CR>
 nnoremap <Leader>k :Limelight!<CR>
-let g:limelight_conceal_ctermfg = 'Black'
-let g:limelight_conceal_ctermfg = 0
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
+
+let g:limelight_conceal_ctermfg = 00
+let g:limelight_conceal_ctermfg = 00
+let g:limelight_conceal_guifg = '#002b36'
+let g:limelight_conceal_guifg = '#002b36'
 let g:limelight_default_coefficient = 1
+
+"let g:limelight_conceal_ctermfg = 'Black'
+"let g:limelight_conceal_ctermfg = 0
+"let g:limelight_conceal_guifg = 'DarkGray'
+"let g:limelight_conceal_guifg = '#777777'
+"let g:limelight_default_coefficient = 1
+
+"guifg=#002b36 guibg=#586e75
 
 """ Görünüm
 "hi Normal guifg=#93a1a1 " metin gorunum rengi
@@ -181,6 +191,7 @@ noremap <S-w> :wqall!<CR>
 noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
+"colorscheme nord
 colorscheme solarized8
 "colorscheme OceanicNext
 if exists('+termguicolors')
