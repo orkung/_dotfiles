@@ -1,6 +1,7 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
@@ -192,7 +193,8 @@ noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
 "colorscheme nord
-colorscheme solarized8
+colorscheme iceberg
+"colorscheme solarized8
 "colorscheme OceanicNext
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -207,8 +209,10 @@ let g:session_autoload = 'yes'
 "set sessionoptions=buffers
 
 "let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16_solarized'
-au! BufNewFile,BufRead * colorscheme solarized8 
+let g:airline_theme='lucius'
+"let g:airline_theme='base16_solarized'
+"au! BufNewFile,BufRead * colorscheme iceberg
+"au! BufNewFile,BufRead * colorscheme solarized8 
 
 command! WQ wq!
 command! Wq wq!
