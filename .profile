@@ -37,3 +37,20 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin/bin"
 eval `dircolors $HOME/Git_repolari/diger/dircolors-solarized/dircolors.256dark`
+
+# https://notabug.org/vejetaryenvampir/dots/src/master/.profile
+# Less is more!
+export LESS=-R
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"; a="${a%_}"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"; a="${a%_}"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"; a="${a%_}"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
+
+
+# becasue why not
+#cat <<keymap | sudo loadkeys -s
+#keycode 94 = backslash 
+#keymap

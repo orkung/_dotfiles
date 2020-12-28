@@ -35,3 +35,32 @@ taskd.ca=/home/cavitg/.task/ca.cert.pem
 taskd.server=inthe.am:53589
 taskd.credentials=inthe_am/orkungunayx/4b9851e3-43bb-43c8-bc26-848f806772d2
 taskd.trust=ignore hostname
+
+#include /home/cavitg/Git_repolari/diger/taskwarrior_tools/eisenmux/twreports
+#Quadrant 1: urgent and important (pri:h, due.before:1w)
+report.q1.description=urgent and important
+report.q1.columns=id,description,due,project,tags
+report.q1.labels=ID,DESCRIPTION,DUE,PROJECT,TAGS
+report.q1.sort=priority-,due+,project+,tags+
+report.q1.filter=status:pending limit:page pri:H due.before:today+1w -BLOCKED
+
+#Quadrant 2: important, but not urgent (pri:h, due.after:1w or due emptry)
+report.q2.description=important, but not urgent
+report.q2.columns=id,description,due,project,tags
+report.q2.labels=ID,DESCRIPTION,DUE,PROJECT,TAGS
+report.q2.sort=priority-,due+,project+,tags+
+report.q2.filter=status:pending limit:page pri:H and ( due: or due.after:today+1w )
+
+#Quadrant 3: urgent, but not important (pri:<=m, due.before:1w)
+report.q3.description=urgent, but not important
+report.q3.columns=id,description,due,project,tags
+report.q3.labels=ID,DESCRIPTION,DUE,PROJECT,TAGS
+report.q3.sort=priority-,due+,project+,tags+
+report.q3.filter=status:pending limit:page pri.not:H due.before:today+1w
+
+#Quadrant 4: not urgent and not important (pri:<=m, due.after:1w)
+report.q4.description=not urgent and not important
+report.q4.columns=id,description,due,project,tags
+report.q4.labels=ID,DESCRIPTION,DUE,PROJECT,TAGS
+report.q4.sort=priority-,due+,project+,tags+
+report.q4.filter=status:pending limit:page pri.not:H and ( due.after:today+1w or due: )
