@@ -11,7 +11,7 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=~/.task
+data.location=~/.task_misc
 
 # Color theme (uncomment one to use)
 #include /usr/share/taskwarrior/light-16.theme
@@ -29,9 +29,9 @@ data.location=~/.task
 #include /usr/share/taskwarrior/solarized-light-256.theme
 #include /usr/share/taskwarrior/no-color.theme
 
-taskd.certificate=/home/cavitg/.task/private.cert
-taskd.key=/home/cavitg/.task/private.key
-taskd.ca=/home/cavitg/.task/ca.cert.pem
+taskd.certificate=/home/cavitg/.task_misc/private.cert
+taskd.key=/home/cavitg/.task_misc/private.key
+taskd.ca=/home/cavitg/.task_misc/ca.cert.pem
 taskd.server=inthe.am:53589
 taskd.credentials=inthe_am/orkungunayx/4b9851e3-43bb-43c8-bc26-848f806772d2
 taskd.trust=ignore hostname
