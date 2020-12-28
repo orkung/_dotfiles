@@ -29,11 +29,12 @@ data.location=~/.task
 #include /usr/share/taskwarrior/solarized-light-256.theme
 #include /usr/share/taskwarrior/no-color.theme
 
-taskd.certificate=/home/cavitg/.task/private.cert
-taskd.key=/home/cavitg/.task/private.key
-taskd.ca=/home/cavitg/.task/ca.cert.pem
-taskd.server=inthe.am:53589
-taskd.credentials=inthe_am/orkungunayx/4b9851e3-43bb-43c8-bc26-848f806772d2
+taskd.certificate=\/home\/cavitg\/.task\/cavit_gunay.cert.pem
+taskd.key=\/home\/cavitg\/.task\/cavit_gunay.key.pem
+taskd.ca=\/home\/cavitg\/.task\/ca.cert.pem
+#taskd.server=35.202.7.187:53589
+taskd.server=taskd.orkun.space:53589
+taskd.credentials=Public\/cavit gunay\/d6074474-2b2e-42df-b676-3c8d95273015
 taskd.trust=ignore hostname
 
 #include /home/cavitg/Git_repolari/diger/taskwarrior_tools/eisenmux/twreports
