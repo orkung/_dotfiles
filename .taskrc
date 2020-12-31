@@ -72,3 +72,4 @@ report.q4.filter=status:pending limit:page pri.not:H and ( due.after:today+1w or
 #report.work.filter=status:pending
 #journal.time=on
 #dateformat.annotation=d\/m\/Y H:N
+context.work=pro:work
