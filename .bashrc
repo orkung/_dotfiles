@@ -271,6 +271,49 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
-alias tami="export TASKRC=$HOME/.task_misc"
-alias tawo="unset TASKRC"
-#alias tawo="unset TASKRC && export TASKRC=$HOME/.taskrc"
+#alias tami="export TASKRC=$HOME/.task_misc"
+#alias tawo="unset TASKRC"
+alias t="/bin/task"
+#alias ta='/bin/task add pro:"$1" pri:"$2" "$3"' 
+alias tl="task list"
+alias tlpw="tl pro:work"
+alias tlpb="tl pro:budget"
+alias tlpm="tl pro:misc"
+alias tlph="tl pro:home"
+alias tlpc="tl pro:comp"
+
+alias tc="task context"
+alias tcd="tc devops"
+alias tcn="tc none"
+
+taskaddlong () {
+    task add +next pro:$1 pri:$2 +$3 due:$4 scheduled:$5 wait:$6 $7
+}
+taskaddshort () {
+    task add pro:$1 pri:$2 +$3 due:$4 $5
+}
+
+alias tal=taskaddlong
+alias tas=taskaddshort
+alias reload="source ~/.bashrc"
+
+alias ttcd="~/bin/tt context devops ; sleep 0.1 ; ~/bin/tt"
+alias ttcn="tt context none ; sleep 0.1 ; ~/bin/tt"
+alias ttpw="~/bin/tt list pro:work" 
+alias ttpn="~/bin/tt list pro: ; sleep 0.1 ; ~/bin/tt"
+alias ttpb="~/bin/tt list pro:budget"
+alias ttpc="~/bin/tt list pro:comp"
+alias ttpm="~/bin/tt list pro:misc"
+alias ttph="~/bin/tt list pro:home"
+#alias ttpn="~/bin/tt long pro:"
+#alias ttpw="~/bin/tt long pro:work ; sleep 0.1 ; ~/bin/tt"
+#alias ttc="~/bin/tt context comp ; sleep 0.1 ; ~/bin/tt"
+#alias tth="~/bin/tt context home ; sleep 0.1 ; ~/bin/tt"
+#alias ttm="~/bin/tt context misc ; sleep 0.1 ; ~/bin/tt"
+#alias ttb="~/bin/tt context budget ; sleep 0.1 ; ~/bin/tt"
+
+# from vejetaryenvampir https://notabug.org/vejetaryenvampir/dots/src/master/.config/shortcuts/aliases
+tur(){ curl -s "https://tureng.com/en/turkish-english/$(echo "$@" | tr [A-Z] [a-z])" | elinks -dump | sed '1,60d;/Pronunciation in context/q' | less; }
+tdk(){ curl -s "http://www.tdk.gov.tr/index.php?option=com_gts&view=gts&kelime=$*" | elinks -dump | sed '1,65d;/kez söz arandı./q' | less; }
+#et() { sdcv -nu "Babylon English-Turkish" "$@" | sed -e "/^-->.*$/d" -e "s/\r\r/\r/" -e "s/<font.*\">/$(printf "\e[34m")/" -e "s/<\/font>/$(printf "\e[00m")/"; }
+#alias te="sdcv -cu Turkish-English"

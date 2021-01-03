@@ -1,20 +1,22 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'jiangmiao/auto-pairs'
+"Plug 'powerman/vim-plugin-AnsiEsc'
+"Plug 'majutsushi/tagbar'
+"Plug 'farseer90718/vim-taskwarrior'
+"Plug 'vimwiki/vimwiki', { 'branch' : 'dev' }
+"Plug 'tools-life/taskwiki'
 Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
-"Plug 'pedrohdz/vim-yaml-folds'
 Plug 'tpope/vim-fugitive'
-Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'arcticicestudio/nord-vim'
-"Plug 'FelipeCRamos/nord-vim-darker'
-"Plug 'flazz/vim-colorschemes'
+"Plug 'arcticicestudio/nord-vim'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
@@ -25,10 +27,16 @@ Plug 'xolox/vim-misc'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'joom/turkish-deasciifier.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'mhartington/oceanic-next'
+"Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Yggdroot/indentLine'
+"Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'pedrohdz/vim-yaml-folds'
+"Plug 'tmux-plugins/vim-tmux-focus-events'
+"Plug 'FelipeCRamos/nord-vim-darker'
+"Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 set rtp+=~/.fzf
@@ -74,8 +82,15 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
 """ Eklenti yapilandirma
+"let g:vimwiki_list = [{'path': '~/vimwiki/',
+"                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 " indenLine
 let g:indentLine_char = '⦙'
+
+" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsExpandTrigger="<c-b>"
 
 " Buffergator; buffer'lar arasi gezinme
 nnoremap <C-n> :BuffergatorMruCycleNext<cr>
