@@ -10,6 +10,7 @@ Plug 'tools-life/taskwiki'
 Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'fannheyward/coc-sql'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-syntastic/syntastic'
@@ -408,3 +409,7 @@ autocmd InsertEnter * set cursorline cursorcolumn
 autocmd InsertLeave * set nocursorline nocursorcolumn
 highlight cursorline cterm=none ctermfg=7 ctermbg=4
 highlight cursorcolumn cterm=none ctermfg=7 ctermbg=4
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
