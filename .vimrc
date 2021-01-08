@@ -1,12 +1,12 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'jiangmiao/auto-pairs'
-"Plug 'powerman/vim-plugin-AnsiEsc'
-"Plug 'majutsushi/tagbar'
-"Plug 'farseer90718/vim-taskwarrior'
-"Plug 'vimwiki/vimwiki', { 'branch' : 'dev' }
-"Plug 'tools-life/taskwiki'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'majutsushi/tagbar'
+Plug 'farseer90718/vim-taskwarrior'
+Plug 'vimwiki/vimwiki', { 'branch' : 'dev' }
+Plug 'tools-life/taskwiki'
 Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
