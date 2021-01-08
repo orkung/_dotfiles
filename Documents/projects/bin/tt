@@ -1,5 +1,6 @@
 #! /bin/bash
 
+cd ~
 # put the search string into the search file
 search_file=".task/task-pane-search"
 refresh_file=".task/task-pane-refresh"
