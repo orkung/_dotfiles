@@ -161,7 +161,7 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/.pyenv/versions/3.9.0/bin:$HOME/.pyenv/versions/2.7.18/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/.pyenv/versions/3.9.0/bin:$HOME/.pyenv/versions/2.7.18/bin:$PATH"
 #export PATH="$HOME/google-cloud-sdk/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
 eval "$(pyenv init -)"
@@ -255,13 +255,22 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:/usr/share/rvm/bin"
 
-function _update_ps1() {
-    PS1="$(powerline-shell $?)\n"
-}
-
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# Running under WSL (Windows Subsystem for Linux)?
+if uname -r |egrep -q '*microsoft*' ; then
+        WSL_running=true
+    else
+        WSL_running=false
 fi
+ 
+if [[ $WSL_running == false ]]; then
+  function _update_ps1() {
+      PS1="$(powerline-shell $?)\n"
+  }
+fi
+
+#if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
 source "/etc/profile.d/rvm.sh"
 source /usr/share/autojump/autojump.sh
 alias tmux="TERM=xterm-256color /usr/bin/tmux"

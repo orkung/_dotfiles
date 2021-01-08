@@ -1,6 +1,7 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'mbbill/undotree'
 "Plug 'jiangmiao/auto-pairs'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'majutsushi/tagbar'
@@ -413,3 +414,4 @@ highlight cursorcolumn cterm=none ctermfg=7 ctermbg=4
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+nnoremap <F6> :UndotreeToggle<CR>
