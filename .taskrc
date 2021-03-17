@@ -20,21 +20,28 @@ data.location=~/.task
 #include /usr/share/taskwarrior/dark-256.theme
 #include /usr/share/taskwarrior/dark-red-256.theme
 #include /usr/share/taskwarrior/dark-green-256.theme
-include /usr/share/taskwarrior/dark-blue-256.theme
+#include /usr/share/taskwarrior/dark-blue-256.theme
 #include /usr/share/taskwarrior/dark-violets-256.theme
 #include /usr/share/taskwarrior/dark-yellow-green.theme
 #include /usr/share/taskwarrior/dark-gray-256.theme
 #include /usr/share/taskwarrior/dark-gray-blue-256.theme
-#include /usr/share/taskwarrior/solarized-dark-256.theme
+include /usr/share/taskwarrior/solarized-dark-256.theme
+#include /usr/local/share/doc/task/rc/solarized-dark-256.theme
 #include /usr/share/taskwarrior/solarized-light-256.theme
 #include /usr/share/taskwarrior/no-color.theme
 
-taskd.certificate=/home/cavitg/.task/private.cert
-taskd.key=/home/cavitg/.task/private.key
-taskd.ca=/home/cavitg/.task/ca.cert.pem
-taskd.server=inthe.am:53589
-taskd.credentials=inthe_am/orkungunayx/4b9851e3-43bb-43c8-bc26-848f806772d2
-taskd.trust=ignore hostname
+#WingTask sync server
+taskd.server=app.wingtask.com:53589
+taskd.key=~/.wingtask_certs/cavit@orkun.space.key.pem
+taskd.ca=~/.wingtask_certs/dst.pem
+taskd.certificate=~/.wingtask_certs/cavit@orkun.space.cert.pem
+taskd.credentials=WingTask/cavit@orkun.space/15274b14-0700-4b81-8c1a-85e5ddbec793
+#taskd.certificate=/home/cavitg/.task/private.cert
+#taskd.key=/home/cavitg/.task/private.key
+#taskd.ca=/home/cavitg/.task/ca.cert.pem
+#taskd.server=inthe.am:53589
+#taskd.credentials=inthe_am/orkungunayx/4b9851e3-43bb-43c8-bc26-848f806772d2
+#taskd.trust=ignore hostname
 
 #include /home/cavitg/Git_repolari/diger/taskwarrior_tools/eisenmux/twreports
 #Quadrant 1: urgent and important (pri:h, due.before:1w)
@@ -79,3 +86,4 @@ report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 context.devops=project:work -deploy -local_comp -outlook
+#context.test=project:work or project:work.fm

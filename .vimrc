@@ -1,5 +1,9 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'chrisbra/NrrwRgn'
+" Tell vim-plug to install python module with post-update hook
+Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
+Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mbbill/undotree'
 "Plug 'jiangmiao/auto-pairs'
@@ -64,7 +68,9 @@ set magic               " For regular expressions turn magic on
 noremap <Leader>s :update<CR> " mevcbut buffer'i diske kayededer
 let $PAGER='' " man page icin 
 set clipboard=unnamedplus
-set term=tmux-256color
+"set term=tmux-256color
+"set term=screen-256color
+"set term=screen-256color-bce
 set t_Co=256
 "map y "+y
 set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
@@ -88,7 +94,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 "                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " indenLine
-let g:indentLine_char = '⦙'
+let g:indentLine_char = '|'
 
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
@@ -415,3 +421,13 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 nnoremap <F6> :UndotreeToggle<CR>
+set exrc 
+set secure
+
+" By default, it will be triggered by `ENTER` in insert mode.
+" set this to 1 to use `CTRL+ENTER` instead, and keep the  
+" default `ENTER` behavior unchanged.
+let g:rtf_ctrl_enter = 0
+
+" Enable formatting when leaving insert mode
+let g:rtf_on_insert_leave = 1

@@ -31,7 +31,7 @@ this_pane=$(tmux list-panes -F "#{pane_id} #{pane_start_command}" | grep "^%[0-9
         lines=$(wc -l < $output_file)
         tmux resize-pane -t $this_pane -y $(( lines - 2 ))
 #       tmux set set-titles-string " $(task rc.gc=no rc.indent.report=4 rc.verbose= rc.report.next.columns=priority rc.report.next.labels= rc.defaultwidth=1000 next +ACTIVE 2>/dev/null </dev/null | sed -e 's/^ */«/' | sed 's/$/»/' | tr '\n' ' ')"
-        tmux set set-titles-string " $(task rc.gc=no rc.indent.report=4 rc.verbose= rc.report.next.columns=description.desc rc.report.next.labels= rc.defaultwidth=1000 next +ACTIVE 2>/dev/null </dev/null | sed -e 's/^ */«/' | sed 's/$/»/' | tr '\n' ' ')"
+        tmux set set-titles-string " $(task rc.gc=no rc.indent.report=24 rc.verbose= rc.report.next.columns=description.desc rc.report.next.labels= rc.defaultwidth=1000 next +ACTIVE 2>/dev/null </dev/null | sed -e 's/^ */«/' | sed 's/$/»/' | tr '\n' ' ')"
     done
 )
 #if [ -z "$this_pane" ]; then

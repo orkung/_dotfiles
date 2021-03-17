@@ -36,7 +36,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin/bin"
-eval `dircolors $HOME/Git_repolari/diger/dircolors-solarized/dircolors.256dark`
+#eval `dircolors $HOME/Git_repolari/diger/dircolors-solarized/dircolors.256dark`
 
 # https://notabug.org/vejetaryenvampir/dots/src/master/.profile
 # Less is more!

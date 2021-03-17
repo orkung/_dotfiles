@@ -42,9 +42,9 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+#case "$TERM" in
+#    xterm-color|*-256color) color_prompt=yes;;
+#esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -63,11 +63,12 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ \n'
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ \n'
 fi
-unset color_prompt force_color_prompt
+set color_prompt force_color_prompt
+#unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -129,10 +130,12 @@ function pushla () {
     git push origin master
 }
 
-alias zl="~/bin/zargan.py"
+#zl() {
+#    ~/bin/zargan.py $1 |less
+#}
 
 zl(){
-        z $@ 2>/dev/null | head -10
+    ~/bin/zargan.py $@ 2>/dev/null | head -10
 }
 export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
 
@@ -161,7 +164,8 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="/usr/local/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/.pyenv/versions/3.9.0/bin:$HOME/.pyenv/versions/2.7.18/bin:$PATH"
+export PATH="$HOME/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/.pyenv/versions/3.9.0/bin:$HOME/.pyenv/versions/2.7.18/bin:$HOME/.local/lib/python2.7/site-packages:$PATH"
+#PATH="/usr/local/bin:$HOME/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/.pyenv/versions/3.9.0/bin:$HOME/.pyenv/versions/2.7.18/bin:$PATH"
 #export PATH="$HOME/google-cloud-sdk/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
 eval "$(pyenv init -)"
@@ -273,8 +277,11 @@ fi
 #fi
 source "/etc/profile.d/rvm.sh"
 source /usr/share/autojump/autojump.sh
-alias tmux="TERM=xterm-256color /usr/bin/tmux"
+#alias tmux="TERM=xterm-256color /usr/bin/tmux"
 #alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color tmux"
+#alias tmux="TERM=tmux-256color tmux"
+#alias tmux='tmux new "export TERM=screen-256color-bce; $SHELL"' 
 #export TERM="xterm-256color"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -300,26 +307,26 @@ taskaddlong () {
     task add +next pro:$1 pri:$2 +$3 due:$4 scheduled:$5 wait:$6 $7
 }
 
-taskaddshortwork () {
-    task add pro:work pri:$1 +$2 due:$3 scheduled:$4 $5
-}
 taskaddshort () {
     task add pro:$1 pri:$2 +$3 due:$4 $5
 }
+alias reload="source ~/.bashrc"
 
 alias tal=taskaddlong
 alias tas=taskaddshort
-alias tasw=taskaddshortwork
-alias reload="source ~/.bashrc"
 
 alias ttcd="~/bin/tt context devops ; sleep 0.1 ; ~/bin/tt"
 alias ttcn="tt context none ; sleep 0.1 ; ~/bin/tt"
-alias ttpw="~/bin/tt ready pro:work" 
 alias ttpn="~/bin/tt ready pro: ; sleep 0.1 ; ~/bin/tt"
 alias ttpb="~/bin/tt ready pro:budget"
 alias ttpc="~/bin/tt ready pro:comp"
 alias ttpm="~/bin/tt ready pro:misc"
 alias ttph="~/bin/tt ready pro:home"
+alias ttpw="~/bin/tt ready pro:work" 
+alias ttpwsu="~/bin/tt ready pro:work.support" 
+alias ttpwmi="~/bin/tt ready pro:work.misc" 
+alias ttpwop="~/bin/tt ready pro:work.ops" 
+alias ttpwde="~/bin/tt ready pro:work.dev" 
 #alias ttpn="~/bin/tt long pro:"
 #alias ttpw="~/bin/tt long pro:work ; sleep 0.1 ; ~/bin/tt"
 #alias ttc="~/bin/tt context comp ; sleep 0.1 ; ~/bin/tt"
@@ -333,3 +340,66 @@ tdk(){ curl -s "http://www.tdk.gov.tr/index.php?option=com_gts&view=gts&kelime=$
 #et() { sdcv -nu "Babylon English-Turkish" "$@" | sed -e "/^-->.*$/d" -e "s/\r\r/\r/" -e "s/<font.*\">/$(printf "\e[34m")/" -e "s/<\/font>/$(printf "\e[00m")/"; }
 #alias te="sdcv -cu Turkish-English"
 function ta_proj() { echo "$2" | vipe | tr '\n' '\0' | xargs -0 -n1 -t task add "project:$1"; }
+
+taskaddworksupport () {
+    task add pro:work.support pri:$1 +$2 due:$3 scheduled:$4 $5
+}
+taskaddshortworksupport () {
+    task add pro:work.support pri:$1 +$2 due:$3 $4
+}
+alias tawsu=taskaddworksupport
+alias taswsu=taskaddshortworksupport
+
+taskaddworkmisc () {
+    task add pro:work.misc pri:$1 +$2 due:$3 scheduled:$4 $5
+}
+taskaddshortworkmisc () {
+    task add pro:work.misc pri:$1 +$2 due:$3 $4
+}
+alias tawmi=taskaddworkmisc
+alias taswmi=taskaddshortworkmisc
+
+taskaddworkdev () {
+    task add pro:work.dev pri:$1 +$2 due:$3 scheduled:$4 $5
+}
+taskaddshortworkdev () {
+    task add pro:work.dev pri:$1 +$2 due:$3 $4
+}
+alias tawde=taskaddworkdev
+alias taswde=taskaddshortworkdev
+
+taskaddworkops () {
+    task add pro:work.ops pri:$1 +$2 due:$3 scheduled:$4 $5
+}
+taskaddshortworkops () {
+    task add pro:work.ops pri:$1 +$2 due:$3 $4
+}
+alias tawop=taskaddworkops
+alias taswop=taskaddshortworkops
+
+# If use_tmux=1, add these codes to .bashrc/.zshrc:
+#[[ -z "$TMUX" && -n "$USE_TMUX" ]] && {
+#       [[ -n "$ATTACH_ONLY" ]] && {
+#           tmux a 2>/dev/null || {
+#               cd && exec tmux
+#        }
+#        exit
+#    }
+#    tmux new-window task-pane && tmux new-window task-web && tmux select-window -t 1 && tmux kill-window 2>/dev/null && exec tmux a
+##   tmux new-window -c "$PWD" 2>/dev/null && exec tmux a
+##tmux new-session -d ; tmux set -g status off ; tmux split-window ; tmux select-pane -t 0 tmux send-keys "/home/cavitg/bin/task-pane" "Enter" ; tmux new-window ; tmux select-window -t 1 ; tmux send-keys "/home/cavitg/.rvm/gems/ruby-2.5.0@task-web/bin/task-web" "Enter" ; tmux kill-window
+#    exec tmux
+#}
+#!/bin/bash
+
+#export TASKRC="~/.task_old/.taskrc"
+taskaddworkrefund () {
+    task add pro:work.refund pri:$1 +$2 due:$3 scheduled:$4 $5
+}
+taskaddshortworkrefund () {
+    task add pro:work.refund pri:$1 +$2 due:$3 $4
+}
+alias tawref=taskaddworkrefund
+alias taswref=taskaddshortworkrefund
+#alias oc="/mnt/c/Users/Kafein/.crc/bin/oc/oc.exe"
+alias toast='powershell.exe -command New-BurntToastNotification'
