@@ -106,10 +106,12 @@ nnoremap <C-p> :BuffergatorMruCyclePrev<cr>
 nnoremap <Leader>b :BuffergatorToggle<CR> " acik buffer'lari listele
 
 " turkish-deasciifier; harflerdeki turkceye ozgu karakterlerin, kelimenin anlamina gore eklenip kaldirilmasini saglar.
-vmap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
-vmap <Leader>rt :<c-u>call Turkish_Asciify()<CR>
+nnoremap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
+nnoremap <Leader>rt :<c-u>call Turkish_Asciify()<CR>
 let g:turkish_deasciifier_path = 'deasciify'
 "let g:turkish_deasciifier_path = '~/Git_Repolari/diger/turkish-deasciifier/turkish-deasciify'
+let g:turkish_deasciifier_path = '~/Library/turkish-deasciifier/turkish-deasciify'
+
 
 """ Nerdtree dizin/dosya paneli
 " Leader key ile acma

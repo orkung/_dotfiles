@@ -403,3 +403,4 @@ alias tawref=taskaddworkrefund
 alias taswref=taskaddshortworkrefund
 #alias oc="/mnt/c/Users/Kafein/.crc/bin/oc/oc.exe"
 alias toast='powershell.exe -command New-BurntToastNotification'
+eval "$(register-python-argcomplete pipx)"
