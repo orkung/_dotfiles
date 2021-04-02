@@ -8,6 +8,7 @@ endif
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/limelight.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'chrisbra/NrrwRgn'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -126,6 +127,16 @@ nnoremap <C-w>q :tabclose!<CR>
 nnoremap <silent><C-w>z :MaximizerToggle<CR>
 vnoremap <silent><C-w>z :MaximizerToggle<CR>gv
 inoremap <silent><C-w>z <C-o>:MaximizerToggle<CR>
+
+" Limelight
+nnoremap <Leader>l :Limelight<CR>
+nnoremap <Leader>k :Limelight!<CR>
+
+let g:limelight_conceal_ctermfg = 00
+let g:limelight_conceal_ctermfg = 00
+let g:limelight_conceal_guifg = '#002b36'
+let g:limelight_conceal_guifg = '#002b36'
+let g:limelight_default_coefficient = 1
 
 " By default, it will be triggered by `ENTER` in insert mode.
 " set this to 1 to use `CTRL+ENTER` instead, and keep the  

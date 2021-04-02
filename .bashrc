@@ -404,3 +404,6 @@ alias taswref=taskaddshortworkrefund
 #alias oc="/mnt/c/Users/Kafein/.crc/bin/oc/oc.exe"
 alias toast='powershell.exe -command New-BurntToastNotification'
 eval "$(register-python-argcomplete pipx)"
+export HOST_IP="$(ip route |awk '/^default/{print $3}')"
+export PULSE_SERVER="tcp:$HOST_IP"
+#export DISPLAY="$HOST_IP:0.0"

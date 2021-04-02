@@ -71,8 +71,8 @@ set clipboard=unnamedplus
 "set term=tmux-256color
 "set term=screen-256color
 "set term=screen-256color-bce
-set t_Co=256
 "map y "+y
+set t_Co=256
 set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
                                 " paste mode, where you can paste mass data
                                 " that won't be autoindented
