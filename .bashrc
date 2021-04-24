@@ -409,4 +409,7 @@ export HOST_IP="$(ip route |awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
 #export DISPLAY="$HOST_IP:0.0"
 alias gacp="git add -A && git commit -m "." && git push"
+function tra() {
+trans :tr $1
+}
 

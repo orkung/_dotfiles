@@ -29,6 +29,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 """"""""""""""""""""""""""" settings from vimrc
@@ -352,3 +354,9 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+"let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='lucius'
+"let g:airline_theme='base16_solarized'
+"au! BufNewFile,BufRead * colorscheme iceberg
+"au! BufNewFile,BufRead * colorscheme solarized8 
