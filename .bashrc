@@ -413,3 +413,4 @@ function tra() {
 trans :tr $1
 }
 
+export FZF_DEFAULT_COMMAND='fd'
