@@ -56,4 +56,3 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 #keymap
 export VAGRANT_DEFAULT_PROVIDER="hyperv"
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
-

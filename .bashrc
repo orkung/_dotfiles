@@ -164,18 +164,18 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/.pyenv/versions/3.9.0/bin:$HOME/.pyenv/versions/2.7.18/bin:$HOME/.local/lib/python2.7/site-packages:$PATH"
-#PATH="/usr/local/bin:$HOME/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$HOME/.local/bin:$HOME/.pyenv/versions/3.9.0/bin:$HOME/.pyenv/versions/2.7.18/bin:$PATH"
-#export PATH="$HOME/google-cloud-sdk/bin:$HOME/bin:$HOME/.rvm/gems/ruby-2.7.1/bin:$HOME/.rvm/bin:$HOME/.pyenv/bin:$PATH"
+export PATH="${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:$PATH"
+#PATH="/usr/local/bin:${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:$PATH"
+#export PATH="${HOME}/google-cloud-sdk/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 # Print the timestamp of each command
 HISTTIMEFORMAT='%F %T '
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
 
 # https://zork.net/~st/jottings/How_to_limit_the_length_of_your_bash_prompt.html
 # shell and we should not mess with it.
@@ -242,17 +242,17 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 #export PS1="$PS1\n"
 
 # The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/home/cavitg/google-cloud-sdk/path.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/path.bash.inc'; fi
+#if [ -f '${HOME}/google-cloud-sdk/path.bash.inc' ]; then . '${HOME}/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-#if [ -f '/home/cavitg/google-cloud-sdk/completion.bash.inc' ]; then . '/home/cavitg/google-cloud-sdk/completion.bash.inc'; fi
+#if [ -f '${HOME}/google-cloud-sdk/completion.bash.inc' ]; then . '${HOME}/google-cloud-sdk/completion.bash.inc'; fi
 #export CLOUDSDK_COMPUTE_REGION=us-central1
 #export CLOUDSDK_COMPUTE_ZONE=us-central1-f
-if [ -s "$HOME/.rvmrc" ]; then
-    source "$HOME/.rvmrc"
+if [ -s "${HOME}/.rvmrc" ]; then
+    source "${HOME}/.rvmrc"
 fi # to have $rvm_path defined if set
-if [ -s "${rvm_path-$HOME/.rvm}/scripts/rvm" ]; then
-    source "${rvm_path-$HOME/.rvm}/scripts/rvm"
+if [ -s "${rvm_path-${HOME}/.rvm}/scripts/rvm" ]; then
+    source "${rvm_path-${HOME}/.rvm}/scripts/rvm"
 fi
 
 
@@ -275,7 +275,7 @@ fi
 #if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 #    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 #fi
-source "/etc/profile.d/rvm.sh"
+#source "/etc/profile.d/rvm.sh"
 source /usr/share/autojump/autojump.sh
 #alias tmux="TERM=xterm-256color /usr/bin/tmux"
 #alias tmux="TERM=screen-256color-bce tmux"
@@ -288,7 +288,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
-#alias tami="export TASKRC=$HOME/.task_misc"
+#alias tami="export TASKRC=${HOME}/.task_misc"
 #alias tawo="unset TASKRC"
 alias t="/bin/task"
 #alias ta='/bin/task add pro:"$1" pri:"$2" "$3"' 
@@ -387,7 +387,7 @@ alias taswop=taskaddshortworkops
 #    }
 #    tmux new-window task-pane && tmux new-window task-web && tmux select-window -t 1 && tmux kill-window 2>/dev/null && exec tmux a
 ##   tmux new-window -c "$PWD" 2>/dev/null && exec tmux a
-##tmux new-session -d ; tmux set -g status off ; tmux split-window ; tmux select-pane -t 0 tmux send-keys "/home/cavitg/bin/task-pane" "Enter" ; tmux new-window ; tmux select-window -t 1 ; tmux send-keys "/home/cavitg/.rvm/gems/ruby-2.5.0@task-web/bin/task-web" "Enter" ; tmux kill-window
+##tmux new-session -d ; tmux set -g status off ; tmux split-window ; tmux select-pane -t 0 tmux send-keys "${HOME}/bin/task-pane" "Enter" ; tmux new-window ; tmux select-window -t 1 ; tmux send-keys "${HOME}/.rvm/gems/ruby-2.5.0@task-web/bin/task-web" "Enter" ; tmux kill-window
 #    exec tmux
 #}
 #!/bin/bash
@@ -404,7 +404,7 @@ alias taswref=taskaddshortworkrefund
 #alias oc="/mnt/c/Users/Kafein/.crc/bin/oc/oc.exe"
 alias toast='powershell.exe -command New-BurntToastNotification'
 alias tp='trans -p'
-eval "$(register-python-argcomplete pipx)"
+#eval "$(register-python-argcomplete pipx)"
 export HOST_IP="$(ip route |awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
 #export DISPLAY="$HOST_IP:0.0"

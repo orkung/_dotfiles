@@ -99,8 +99,8 @@ bindsym $mod+$i3-wm.binding.browser exec gtk-launch $(xdg-settings get default-w
 
 set_from_resource $rofiTheme rofi.theme /etc/regolith/styles/lascaille/rofi.rasi
 
-## Launch // Application // <> Space ##
-set_from_resource $i3-wm.binding.launcher.app i3-wm.binding.launcher.app space
+## Launch // Application // <> s ##
+set_from_resource $i3-wm.binding.launcher.app i3-wm.binding.launcher.app s
 set_from_resource $i3-wm.program.launcher.app i3-wm.program.launcher.app rofi -show drun -theme $rofiTheme
 bindsym $mod+$i3-wm.binding.launcher.app exec $i3-wm.program.launcher.app
 
@@ -183,8 +183,8 @@ bindsym $mod+Ctrl+$ws9_key workspace number $ws19
 set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next Tab
 bindsym $mod+$i3-wm.binding.ws_next workspace next
 
-## Navigate // Next Workspace // <><Alt> → ##
-set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Mod1+Right
+## Navigate // Next Workspace // <><Ctrl> → ##
+set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Ctrl+Right
 bindsym $mod+$i3-wm.binding.ws_next2 workspace next
 
 ## Navigate // Next Workspace on Output // <><Ctrl> Tab ##
@@ -199,8 +199,8 @@ bindsym $mod+$i3-wm.binding.ws_next_on_output2 workspace next_on_output
 set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev Shift+Tab 
 bindsym $mod+$i3-wm.binding.ws_prev workspace prev
 
-## Navigate // Previous Workspace // <><Alt> ← ##
-set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Mod1+Left
+## Navigate // Previous Workspace // <><Ctrl> ← ##
+set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Ctrl+Left
 bindsym $mod+$i3-wm.binding.ws_prev2 workspace prev
 
 ## Navigate // Previous Workspace on Output // <><Ctrl><Shift> Tab ##
@@ -308,6 +308,10 @@ bindsym $mod+Shift+Ctrl+$ws6_key move container to workspace number $ws16
 bindsym $mod+Shift+Ctrl+$ws7_key move container to workspace number $ws17
 bindsym $mod+Shift+Ctrl+$ws8_key move container to workspace number $ws18
 bindsym $mod+Shift+Ctrl+$ws9_key move container to workspace number $ws19
+
+## Modify // Move Window to Next Free Workspace // <><Shift> ` ##
+set_from_resource $i3-wm.binding.move_next_free i3-wm.binding.move_next_free Shift+grave
+bindsym $mod+$i3-wm.binding.move_next_free exec --no-startup-id /usr/bin/i3-next-workspace --move-window
 
 # move focused container to workspace, move to workspace
 ## Modify // Carry Window to Workspace 1 - 10// <><Alt> 0..9 ##
@@ -418,6 +422,11 @@ set_from_resource $i3-wm.binding.bluetooth i3-wm.binding.bluetooth b
 set_from_resource $i3-wm.program.bluetooth i3-wm.program.bluetooth gnome-control-center --class=floating_window bluetooth
 bindsym $mod+$i3-wm.binding.bluetooth exec $i3-wm.program.bluetooth
 
+## Modify // Sound Settings // <> s ##
+set_from_resource $i3-wm.binding.sound i3-wm.binding.sound space
+set_from_resource $i3-wm.program.sound i3-wm.program.sound gnome-control-center --class=floating_window sound
+bindsym $mod+$i3-wm.binding.sound exec $i3-wm.program.sound
+
 ## Launch // File Browser // <><Shift> n ##
 set_from_resource $i3-wm.binding.files i3-wm.binding.files Shift+n
 set_from_resource $i3-wm.program.files i3-wm.program.files /usr/bin/nautilus --new-window
@@ -506,8 +515,8 @@ bindsym $mod+r mode "Resize Mode"
 ###############################################################################
 
 # Disable titlebar
-set_from_resource $i3-wm.window.border.size i3-wm.window.border.size 1
-set_from_resource $i3-wm.floatingwindow.border.size i3-wm.floatingwindow.border.size 1
+set_from_resource $i3-wm.window.border.size i3-wm.window.border.size 0
+set_from_resource $i3-wm.floatingwindow.border.size i3-wm.floatingwindow.border.size 0
 default_border pixel $i3-wm.window.border.size
 default_floating_border pixel $i3-wm.floatingwindow.border.size
 
