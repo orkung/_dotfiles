@@ -409,8 +409,15 @@ export HOST_IP="$(ip route |awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
 #export DISPLAY="$HOST_IP:0.0"
 alias gacp="git add -A && git commit -m "." && git push"
-function tra() {
+function entr() {
 trans :tr $1
+}
+function tren() {
+trans :en $1
+}
+
+function enen() {
+trans :en $1
 }
 
 export FZF_DEFAULT_COMMAND='fd'
