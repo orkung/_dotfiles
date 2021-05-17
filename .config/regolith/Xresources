@@ -1,3 +1,4 @@
 gnome.wallpaper: ~/Pictures/thiemeyer_road_to_samarkand.jpg
 gnome.gtk.theme: Nordic
 i3-wm.program.1: /usr/bin/setxkbmap -option caps:swapescape
+i3-wm.program.2: /usr/bin/xmodmap ~/.Xmodmap
