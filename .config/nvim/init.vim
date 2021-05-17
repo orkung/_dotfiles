@@ -7,6 +7,7 @@ endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Use release branch (recommend)
+Plug 'cloudhead/neovim-fuzzy'
 Plug 'glepnir/dashboard-nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/limelight.vim'
@@ -70,6 +71,7 @@ let g:indentLine_char = '|'
 nnoremap <C-n> :BuffergatorMruCycleNext<cr>
 nnoremap <C-p> :BuffergatorMruCyclePrev<cr>
 nnoremap <Leader>b :BuffergatorToggle<CR> " acik buffer'lari listele
+nnoremap <C-o> :FuzzyOpen<CR>
 
 " turkish-deasciifier; harflerdeki turkceye ozgu karakterlerin, kelimenin anlamina gore eklenip kaldirilmasini saglar.
 "nnoremap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
