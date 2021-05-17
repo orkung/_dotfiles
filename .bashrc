@@ -410,14 +410,14 @@ export PULSE_SERVER="tcp:$HOST_IP"
 #export DISPLAY="$HOST_IP:0.0"
 alias gacp="git add -A && git commit -m "." && git push"
 function entr() {
-trans :tr "$1"
+trans :tr "$1" |less
 }
 function tren() {
-trans :en "$1"
+trans :en "$1" |less
 }
 
 function enen() {
-trans :en "$1"
+trans :en "$1" |less
 }
 
 export FZF_DEFAULT_COMMAND='fd'
