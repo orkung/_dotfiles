@@ -7,6 +7,8 @@ endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Use release branch (recommend)
+Plug 'cloudhead/neovim-fuzzy'
+Plug 'glepnir/dashboard-nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/limelight.vim'
 Plug 'cocopon/iceberg.vim'
@@ -69,13 +71,16 @@ let g:indentLine_char = '|'
 nnoremap <C-n> :BuffergatorMruCycleNext<cr>
 nnoremap <C-p> :BuffergatorMruCyclePrev<cr>
 nnoremap <Leader>b :BuffergatorToggle<CR> " acik buffer'lari listele
+nnoremap <C-o> :FuzzyOpen<CR>
 
 " turkish-deasciifier; harflerdeki turkceye ozgu karakterlerin, kelimenin anlamina gore eklenip kaldirilmasini saglar.
-nnoremap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
-nnoremap <Leader>rt :<c-u>call Turkish_Asciify()<CR>
+"nnoremap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
+"nnoremap <Leader>rt :<c-u>call Turkish_Asciify()<CR>
+vnoremap <Leader>tr :<c-u>call Turkish_Deasciify()<CR>
+vnoremap <Leader>rt :<c-u>call Turkish_Asciify()<CR>
 let g:turkish_deasciifier_path = 'deasciify'
 "let g:turkish_deasciifier_path = '~/Git_Repolari/diger/turkish-deasciifier/turkish-deasciify'
-let g:turkish_deasciifier_path = '~/Library/turkish-deasciifier/turkish-deasciify'
+"let g:turkish_deasciifier_path = '~/Library/turkish-deasciifier/turkish-deasciify'
 
 
 """ Nerdtree dizin/dosya paneli
@@ -360,3 +365,14 @@ let g:airline_theme='lucius'
 "let g:airline_theme='base16_solarized'
 "au! BufNewFile,BufRead * colorscheme iceberg
 "au! BufNewFile,BufRead * colorscheme solarized8 
+
+let g:mapleader="\<Space>"
+let g:dashboard_default_executive ='fzf'
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
+nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
+nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
+nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
