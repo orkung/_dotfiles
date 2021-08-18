@@ -422,7 +422,14 @@ trans :en "$1" |less
 
 export FZF_DEFAULT_COMMAND='fd'
 xmodmap ~/.Xmodmap
-eval $(crc oc-env)
+#eval $(crc oc-env)
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
-
+# Powerline Configuration
+if [ -f $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh ];
+then
+    $HOME/.local/bin/powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+fi

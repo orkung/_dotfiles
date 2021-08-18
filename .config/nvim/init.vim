@@ -8,6 +8,8 @@ endif
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Use release branch (recommend)
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/limelight.vim'
@@ -32,6 +34,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
+Plug 'rakr/vim-one'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
@@ -171,6 +174,7 @@ noremap <S-e> :qall!<cr>
 
 "colorscheme nord
 colorscheme iceberg
+"colorscheme one
 "colorscheme solarized8
 "colorscheme OceanicNext
 if exists('+termguicolors')
@@ -362,6 +366,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='lucius'
+let g:airline_powerline_fonts = 1
 "let g:airline_theme='base16_solarized'
 "au! BufNewFile,BufRead * colorscheme iceberg
 "au! BufNewFile,BufRead * colorscheme solarized8 
@@ -376,3 +381,13 @@ nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
 nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
 nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
 nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+nmap <silent> <buffer> gK <Plug>(kite-docs)
+
+if (empty($TMUX))
+    if (has("nvim"))
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    if (has("termguicolors"))
+        set termguicolors
+    endif
+endif
