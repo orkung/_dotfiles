@@ -8,6 +8,7 @@ endif
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Use release branch (recommend)
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'Raimondi/delimitMate'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'glepnir/dashboard-nvim'
@@ -22,7 +23,7 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
-Plug 'maxbrunsfeld/vim-yankstack'
+"Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'szw/vim-maximizer'
 Plug 'gcmt/taboo.vim'
 Plug 'xolox/vim-session'
@@ -39,13 +40,13 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 """"""""""""""""""""""""""" settings from vimrc
-nnoremap <Leader>h :nohl<CR> "aramadaki highlight'i kaldir
+nnoremap <Leader>h :nohl<CR> 
 set t_Co=256
 set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
                                 " paste mode, where you can paste mass data
                                 " that won't be autoindented
 au InsertLeave * set nopaste
-set clipboard=unnamedplus
+set clipboard=unnamed
 syntax on
 set nocompatible        " don't bother with vi compatibility
 set autoread            " reload files when changed on disk, i.e. via `git checkout`
@@ -375,12 +376,12 @@ let g:mapleader="\<Space>"
 let g:dashboard_default_executive ='fzf'
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR>
-nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
-nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
-nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
-nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
-nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
-nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+"nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
+"nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+"nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
+"nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
+"nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+"nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
 nmap <silent> <buffer> gK <Plug>(kite-docs)
 
 if (empty($TMUX))
@@ -391,3 +392,34 @@ if (empty($TMUX))
         set termguicolors
     endif
 endif
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>af :Telescope find_files<CR>
+"nnoremap <leader>af :Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+"nnoremap <Leader>af :lua require('telescope.builtin').find_files()<cr>
+"nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+"nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+"nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+"set operatorfunc=v.lua
+
+"use {
+"    "AcksID/nvim-neoclip.lua",
+"    config = function()
+"        require('neoclip').setup({
+"            history = 1000,
+"            filter = nil,
+"        })
+"    end,
+"}
+
+"inoremap <C-v> <ESC>"+pa
+"vnoremap y "+y
+"vnoremap yy "+y
+
+
