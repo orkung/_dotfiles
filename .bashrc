@@ -266,11 +266,11 @@ if uname -r |egrep -q '*microsoft*' ; then
         WSL_running=false
 fi
  
-if [[ $WSL_running == false ]]; then
-  function _update_ps1() {
-      PS1="$(powerline-shell $?)\n"
-  }
-fi
+#if [[ $WSL_running == false ]]; then
+#  function _update_ps1() {
+#      PS1="$(powerline-shell $?)\n"
+#  }
+#fi
 
 #if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 #    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
@@ -426,10 +426,11 @@ eval $(crc oc-env)
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
 # Powerline Configuration
-if [ -f $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh ];
-then
-    $HOME/.local/bin/powerline-daemon -q
-    POWERLINE_BASH_CONTINUATION=1
-    POWERLINE_BASH_SELECT=1
-    source $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
-fi
+#if [ -f $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh ];
+#then
+#    $HOME/.local/bin/powerline-daemon -q
+#    POWERLINE_BASH_CONTINUATION=1
+#    POWERLINE_BASH_SELECT=1
+#    source $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+#fi
+#source ~/.bash-powerline.sh
