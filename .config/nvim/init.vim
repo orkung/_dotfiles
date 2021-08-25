@@ -5,8 +5,10 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 	autocmd VimEnter * PlugInstall
 endif
 
+"call plug#begin('~/.config/nvim/plugged')
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Use release branch (recommend)
+Plug 'mfussenegger/nvim-lint'
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'Raimondi/delimitMate'
 Plug 'nvim-lua/plenary.nvim'
@@ -423,3 +425,17 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 "vnoremap yy "+y
 
 
+" nvim-lint
+"require('lint').linters_by_ft = {
+"    markdownlint = {'vale',}        
+"}
+"
+"require('lint').linters_by_ft = {
+"    shellcheck = {'vale',}
+"}
+"
+"require('lint').linters_by_ft = {
+"    ansible_lint = {'vale',}
+"}
+"
+"au BufWritePost <buffer> lua require('lint').try_lint()

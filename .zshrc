@@ -278,8 +278,7 @@ function enen() {
 trans :en "$1" |less
 }
 
-export FZF_DEFAULT_COMMAND='fd'
-xmodmap ~/.Xmodmap
+export FZF_DEFAULT_COMMAND='fdfind'
 eval $(crc oc-env)
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
