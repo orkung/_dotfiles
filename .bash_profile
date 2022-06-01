@@ -1,7 +1,7 @@
 if [ -f "$HOME/.bashrc" ] ; then
        source $HOME/.bashrc
 fi
-eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 #export TERM="xterm-256color"
 export TERM="screen-256color"

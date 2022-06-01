@@ -99,6 +99,9 @@ bindsym $mod+$i3-wm.binding.browser exec gtk-launch $(xdg-settings get default-w
 
 set_from_resource $rofiTheme rofi.theme /etc/regolith/styles/lascaille/rofi.rasi
 
+set $greenclip /home/orkun/bin/greenclip
+bindsym $mod+Shift+d exec rofi -modi "clipboard:$greenclip print" -show clipboard 
+
 ## Launch // Application // <> s ##
 set_from_resource $i3-wm.binding.launcher.app i3-wm.binding.launcher.app s
 set_from_resource $i3-wm.program.launcher.app i3-wm.program.launcher.app rofi -show drun -theme $rofiTheme
@@ -675,3 +678,4 @@ set_from_resource $i3-wm.bindsym.2 i3-wm.bindsym.2 :
 set_from_resource $i3-wm.bindsym.program.2 i3-wm.bindsym.program.2 :
 bindsym $mod+$i3-wm.bindsym.2 exec --no-startup-id "$i3-wm.bindsym.program.2"
 #exec --no-startup-id /home/cavitg/.config/regolith/i3/layout.sh
+exec_always --no-startup-id greenclip daemon >/dev/null 2>&1 

@@ -164,7 +164,7 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:$PATH"
+export PATH="${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:/home/orkun/.crc/bin/oc:$PATH"
 #PATH="/usr/local/bin:${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:$PATH"
 #export PATH="${HOME}/google-cloud-sdk/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
@@ -266,11 +266,11 @@ if uname -r |egrep -q '*microsoft*' ; then
         WSL_running=false
 fi
  
-if [[ $WSL_running == false ]]; then
-  function _update_ps1() {
-      PS1="$(powerline-shell $?)\n"
-  }
-fi
+#if [[ $WSL_running == false ]]; then
+#  function _update_ps1() {
+#      PS1="$(powerline-shell $?)\n"
+#  }
+#fi
 
 #if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 #    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
@@ -424,3 +424,13 @@ export FZF_DEFAULT_COMMAND='fd'
 #xmodmap ~/.Xmodmap
 #eval $(crc oc-env)
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
+alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
+# Powerline Configuration
+#if [ -f $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh ];
+#then
+#    $HOME/.local/bin/powerline-daemon -q
+#    POWERLINE_BASH_CONTINUATION=1
+#    POWERLINE_BASH_SELECT=1
+#    source $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
+#fi
+#source ~/.bash-powerline.sh
