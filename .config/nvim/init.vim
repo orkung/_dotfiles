@@ -33,6 +33,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 """"""""""""""""""""""""""" settings from vimrc
@@ -169,8 +170,8 @@ noremap <S-w> :wqall!<CR>
 noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
-"colorscheme nord
-colorscheme iceberg
+"colorscheme nord-vim
+"colorscheme iceberg
 "colorscheme solarized8
 "colorscheme OceanicNext
 if exists('+termguicolors')

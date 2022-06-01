@@ -32,10 +32,15 @@ include /usr/share/taskwarrior/solarized-dark-256.theme
 
 #WingTask sync server
 taskd.server=app.wingtask.com:53589
-taskd.key=~/.wingtask_certs/cavit@orkun.space.key.pem
+taskd.key=~/.wingtask_certs/orkungunayx@gmail.com.key.pem
 taskd.ca=~/.wingtask_certs/dst.pem
-taskd.certificate=~/.wingtask_certs/cavit@orkun.space.cert.pem
-taskd.credentials=WingTask/cavit@orkun.space/15274b14-0700-4b81-8c1a-85e5ddbec793
+taskd.certificate=~/.wingtask_certs/orkungunayx@gmail.com.cert.pem
+taskd.credentials=WingTask/orkungunayx@gmail.com/644524f4-0dba-4435-8a69-75b5c7a2b96d
+#taskd.credentials=WingTask/cavit@orkun.space/15274b14-0700-4b81-8c1a-85e5ddbec793
+#taskd.key=~/.wingtask_certs/cavit@orkun.space.key.pem
+#taskd.ca=~/.wingtask_certs/dst.pem
+#taskd.certificate=~/.wingtask_certs/cavit@orkun.space.cert.pem
+#taskd.credentials=WingTask/cavit@orkun.space/15274b14-0700-4b81-8c1a-85e5ddbec793
 #taskd.certificate=/home/cavitg/.task/private.cert
 #taskd.key=/home/cavitg/.task/private.key
 #taskd.ca=/home/cavitg/.task/ca.cert.pem

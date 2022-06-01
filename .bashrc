@@ -290,7 +290,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 #alias tami="export TASKRC=${HOME}/.task_misc"
 #alias tawo="unset TASKRC"
-alias t="/bin/task"
+#alias t="/bin/task"
 #alias ta='/bin/task add pro:"$1" pri:"$2" "$3"' 
 alias tr="task ready"
 alias trpw="tr pro:work"
@@ -407,20 +407,20 @@ alias tp='trans -p'
 #eval "$(register-python-argcomplete pipx)"
 export HOST_IP="$(ip route |awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
-#export DISPLAY="$HOST_IP:0.0"
+export DISPLAY="$HOST_IP:0.0"
 alias gacp="git add -A && git commit -m "." && git push"
 function entr() {
-trans :tr "$1" |less
+trans :tr "$1" |head -n 25
 }
 function tren() {
-trans :en "$1" |less
+trans :en "$1" |head -n 25
 }
 
 function enen() {
-trans :en "$1" |less
+trans :en "$1" |head -n 25
 }
 
 export FZF_DEFAULT_COMMAND='fd'
-xmodmap ~/.Xmodmap
-eval $(crc oc-env)
+#xmodmap ~/.Xmodmap
+#eval $(crc oc-env)
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
