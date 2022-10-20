@@ -1,7 +1,8 @@
+#!/bin/bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-#export SHELL="/bin/bash --login"
+export SHELL="/bin/bash --login"
 #export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # If not running interactively, don't do anything
@@ -125,8 +126,8 @@ if ! shopt -oq posix; then
 fi
 set -o vi
 function pushla () {
-    git add . 
-    git commit -a -m "$1" 
+    git add .
+    git commit -a -m "$1"
     git push origin master
 }
 
@@ -164,7 +165,7 @@ vop(){
 #export PATH=""
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:/home/orkun/.crc/bin/oc:$PATH"
+export PATH=${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:/home/orkun/.crc/bin/oc:$PATH
 #PATH="/usr/local/bin:${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:$PATH"
 #export PATH="${HOME}/google-cloud-sdk/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:$PATH"
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
@@ -186,7 +187,7 @@ alias dotfiles="/usr/bin/git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
 #        TRIMMED_PWD=${TRIMMED_PWD:-$PWD}
 #    '
 #
-#    # If there's an existing prompt command, let's not 
+#    # If there's an existing prompt command, let's not
 #    # clobber it
 #    if [ -n "$PROMPT_COMMAND" ]; then
 #        PROMPT_COMMAND="$PROMPT_COMMAND;$NEW_PROMPT_COMMAND"
@@ -265,7 +266,7 @@ if uname -r |egrep -q '*microsoft*' ; then
     else
         WSL_running=false
 fi
- 
+
 #if [[ $WSL_running == false ]]; then
 #  function _update_ps1() {
 #      PS1="$(powerline-shell $?)\n"
@@ -281,7 +282,7 @@ source /usr/share/autojump/autojump.sh
 #alias tmux="TERM=screen-256color-bce tmux"
 alias tmux="TERM=screen-256color tmux"
 #alias tmux="TERM=tmux-256color tmux"
-#alias tmux='tmux new "export TERM=screen-256color-bce; $SHELL"' 
+#alias tmux='tmux new "export TERM=screen-256color-bce; $SHELL"'
 #export TERM="xterm-256color"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -291,7 +292,7 @@ alias ......="cd ../../../../.."
 #alias tami="export TASKRC=${HOME}/.task_misc"
 #alias tawo="unset TASKRC"
 #alias t="/bin/task"
-#alias ta='/bin/task add pro:"$1" pri:"$2" "$3"' 
+#alias ta='/bin/task add pro:"$1" pri:"$2" "$3"'
 alias tr="task ready"
 alias trpw="tr pro:work"
 alias trpb="tr pro:budget"
@@ -322,11 +323,11 @@ alias ttpb="~/bin/tt ready pro:budget"
 alias ttpc="~/bin/tt ready pro:comp"
 alias ttpm="~/bin/tt ready pro:misc"
 alias ttph="~/bin/tt ready pro:home"
-alias ttpw="~/bin/tt ready pro:work" 
-alias ttpwsu="~/bin/tt ready pro:work.support" 
-alias ttpwmi="~/bin/tt ready pro:work.misc" 
-alias ttpwop="~/bin/tt ready pro:work.ops" 
-alias ttpwde="~/bin/tt ready pro:work.dev" 
+alias ttpw="~/bin/tt ready pro:work"
+alias ttpwsu="~/bin/tt ready pro:work.support"
+alias ttpwmi="~/bin/tt ready pro:work.misc"
+alias ttpwop="~/bin/tt ready pro:work.ops"
+alias ttpwde="~/bin/tt ready pro:work.dev"
 #alias ttpn="~/bin/tt long pro:"
 #alias ttpw="~/bin/tt long pro:work ; sleep 0.1 ; ~/bin/tt"
 #alias ttc="~/bin/tt context comp ; sleep 0.1 ; ~/bin/tt"
@@ -434,3 +435,5 @@ alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "stat
 #    source $HOME/.local/pipx/venvs/powerline-status/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
 #fi
 #source ~/.bash-powerline.sh
+
+alias cls="clear; printf '\033[3J'"
