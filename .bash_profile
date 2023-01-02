@@ -1,20 +1,17 @@
 if [ -f "$HOME/.bashrc" ] ; then
        source $HOME/.bashrc
 fi
-#eval "$(pyenv virtualenv-init -)"
-
-#export TERM="xterm-256color"
 export TERM="screen-256color"
-#export TERM="tmux-256color"
-#export TERM="screen-256color-bce"
-#export GNOME_TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
 export EDITOR="vim"
-export TERMINAL="gnome-terminal"
-export BROWSER="brave-browser"
-export READER="zathura"
+export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
+export PATH=${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:/home/orkun/.crc/bin/oc:/usr/share/rvm/bin:$PATH
+export HOST_IP="$(ip route |awk '/^default/{print $3}')"
+export PULSE_SERVER="tcp:$HOST_IP"
+export DISPLAY="$HOST_IP:0.0"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND='fd'
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-#export PYTHONPATH="$HOME/taskwarrior_tools/tasklib:$PYTHONPATH"
-#export PYTHONPATH="$HOME/.pyenv/versions/3.9.0/lib/python3.9/site-packages:$HOME/.local/lib/python3.9/site-packages:$PYTHONPATH"
+export SHELL="/bin/bash --login"
 
 
 if [ -r ~/.profile ]; then . ~/.profile; fi
@@ -23,3 +20,13 @@ case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 #xmodmap ~/.Xmodmap
+#export PYTHONPATH="$HOME/taskwarrior_tools/tasklib:$PYTHONPATH"
+#export PYTHONPATH="$HOME/.pyenv/versions/3.9.0/lib/python3.9/site-packages:$HOME/.local/lib/python3.9/site-packages:$PYTHONPATH"
+#eval "$(pyenv virtualenv-init -)"
+#export TERM="xterm-256color"
+#export TERM="tmux-256color"
+#export TERM="screen-256color-bce"
+#export GNOME_TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
+#export TERMINAL="gnome-terminal"
+#export BROWSER="brave-browser"
+#export READER="zathura"
