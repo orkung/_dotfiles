@@ -3,8 +3,8 @@ if [ -f "$HOME/.bashrc" ] ; then
 fi
 export TERM="screen-256color"
 export EDITOR="vim"
-export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
-export PATH=${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:/home/orkun/.crc/bin/oc:/usr/share/rvm/bin:$PATH
+#export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
+export PATH=${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:/home/orkun/.crc/bin/oc:/usr/share/rvm/bin:/home/cavitg/.local/bin:$PATH
 export HOST_IP="$(ip route |awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
 export DISPLAY="$HOST_IP:0.0"
@@ -30,3 +30,6 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 #export TERMINAL="gnome-terminal"
 #export BROWSER="brave-browser"
 #export READER="zathura"
+export MANPATH="$MANPATH:$HOME/man"
+#export MANSECT="1:n:l:8:3:2:3posix:3pm:3perl:5:4:9:6:7:pj"
+export MANSECT=$(pcregrep -o1 MANSECT\\s\{2,\}\(.*\) /etc/man.conf):pj
