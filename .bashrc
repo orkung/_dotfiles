@@ -171,3 +171,15 @@ trans :en "$1" |head -n 25
 function enen() {
 trans :en "$1" |head -n 25
 }
+
+export GO111MODULE=on
+
+um ()
+{
+    code ~/man/manpj/*$1*
+}
+
+umls ()
+{
+    ls -1 ~/man/manpj/*
+}
