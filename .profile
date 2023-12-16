@@ -7,7 +7,7 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
-xmodmap ~/.Xmodmap
+#xmodmap ~/.Xmodmap
 # if running zsh
 #if [ -n "$BASH_VERSION" ]; then
 #    # include .zshrc if it exists
@@ -52,7 +52,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 
 # becasue why not
 #cat <<keymap | sudo loadkeys -s
-#keycode 94 = backslash 
+#keycode 94 = backslash
 #keymap
 export VAGRANT_DEFAULT_PROVIDER="hyperv"
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
