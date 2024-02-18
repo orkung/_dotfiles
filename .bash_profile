@@ -12,7 +12,8 @@ export DISPLAY="$HOST_IP:0.0"
 export FZF_DEFAULT_COMMAND='fd'
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export SHELL="/bin/bash --login"
-export VSCODE_IPC_HOOK_CLI=$(ls -t /run/user/$UID/vscode-ipc-*.sock | head -1)
+#export VSCODE_IPC_HOOK_CLI=$(ls -t /run/user/$UID/vscode-ipc-*.sock | head -1)
+export VSCODE_IPC_HOOK_CLI=$(lsof | grep $UID/vscode-ipc | awk '{print $(NF-1)}' | head -n 1)
 
 if [ -r ~/.profile ]; then . ~/.profile; fi
 case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi ;; esac
