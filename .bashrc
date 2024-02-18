@@ -187,3 +187,18 @@ parse_git_branch() {
     git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 export PS1="\u@\h:\[\e[32m\]\w\[\e[91m\]\$(parse_git_branch)\[\e[00m\]$\n"
+
+function fcode() {
+    new_IPC_HOOK=$(lsof | grep $UID/vscode-ipc | awk '{print $NF}' | head -n 1)
+    echo $new_IPC_HOOK
+    export VSCODE_IPC_HOOK_CLI=$new_IPC_HOOK
+    if [[ ! -z $# ]]; then
+        code $@
+    fi
+}
+
+#for i in /tmp/vscode-*.sock; do
+#    if ! socat -u OPEN:/dev/null "UNIX-CONNECT:${i}"; then
+#        rm --force --verbose "${i}"
+#    fi
+#done
