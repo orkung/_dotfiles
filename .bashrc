@@ -30,7 +30,7 @@ fi
 #*)
 #    ;;
 #esac
-export PROMPT_COMMAND='history -a'
+export PROMPT_COMMAND='history -a; history -c; history -r'
 
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
