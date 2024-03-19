@@ -204,4 +204,4 @@ function fcode() {
 #done
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
+#eval "$(atuin init bash)"
