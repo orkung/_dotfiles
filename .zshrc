@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/cavitg/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -320,13 +320,4 @@ fi
 alias lh="ls -ld .?*"
 alias lr="ls -alhtr"
 alias random="tr -dc A-Za-z0-9 </dev/urandom | head -c 13; echo"
-#export ZSH_HISTORY_SYNC_SCRIPT_PATH=/home/cavitg/.zsh-history-sync/sync-history.sh
-#export ZSH_HISTORY_SYNC_GIT_REPO_PATH=/mnt/c/Users/Kafein/Documents/Git_repolari/kisisel/zsh_history/
-#export ZSH_HISTORY_SYNC_GPG_KEY_UID="72C67A25C1780F37C7FF0D2455F5456B16838AD4"
-##export ZSH_HISTORY_SYNC_GPG_KEY_UID="Orkun Gunay orkungunayx@gmail.com"
-#source /home/cavitg/.zsh-history-sync/zsh.include.shexport ZSH_HISTORY_SYNC_SCRIPT_PATH=/home/cavitg/zsh-history-sync-1.0.6/sync-history.sh
-#export ZSH_HISTORY_SYNC_GIT_REPO_PATH=$HOME/zsh_history/
-#source /home/cavitg/zsh-history-sync-1.0.6/zsh.include.sh
-#export ZSH_HISTORY_SYNC_SCRIPT_PATH="/home/cavitg/zsh-history-sync-1.0.6/sync-history.sh"
-#export ZSH_HISTORY_SYNC_GIT_REPO_PATH="/home/cavitg/zsh_history"
-#source /home/cavitg/zsh-history-sync-1.0.6/zsh.include.sh
+source $HOME/zsh.include.sh
