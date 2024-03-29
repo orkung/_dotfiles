@@ -321,3 +321,5 @@ alias lh="ls -ld .?*"
 alias lr="ls -alhtr"
 alias random="tr -dc A-Za-z0-9 </dev/urandom | head -c 13; echo"
 source $HOME/zsh.include.sh
+export VSCODE_IPC_HOOK_CLI=$(lsof | grep $UID/vscode-ipc | awk '{print $(NF-1)}' | head -n 1)
+
