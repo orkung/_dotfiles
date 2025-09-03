@@ -34,3 +34,4 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 #export MANPATH="$MANPATH:$HOME/man"
 #export MANSECT="1:n:l:8:3:2:3posix:3pm:3perl:5:4:9:6:7:pj"
 #export MANSECT=$(pcregrep -o1 MANSECT\\s\{2,\}\(.*\) /etc/man.conf):pj
+. "$HOME/.cargo/env"
