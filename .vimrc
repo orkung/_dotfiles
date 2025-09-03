@@ -217,9 +217,9 @@ noremap <S-w> :wqall!<CR>
 noremap <S-q> :bdelete!<cr>
 noremap <S-e> :qall!<cr>
 
-colorscheme nord
+"colorscheme nord
 "colorscheme iceberg
-colorscheme solarized8
+"colorscheme solarized8
 "colorscheme OceanicNext
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
