@@ -18,6 +18,7 @@ k9s:
     noIcons: false
     defaultsToFullScreen: false
     useFullGVRTitle: false
+    skin: solarized-light
   skipLatestRevCheck: false
   disablePodCounting: false
   shellPod:
