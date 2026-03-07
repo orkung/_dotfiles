@@ -206,3 +206,7 @@ function fcode() {
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 #eval "$(atuin init bash)"
 . "$HOME/.cargo/env"
+. "/root/.deno/env"
+
+complete -C /usr/bin/terraform terraform
+export BROWSER=wslview

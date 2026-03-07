@@ -35,3 +35,15 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 #export MANSECT="1:n:l:8:3:2:3posix:3pm:3perl:5:4:9:6:7:pj"
 #export MANSECT=$(pcregrep -o1 MANSECT\\s\{2,\}\(.*\) /etc/man.conf):pj
 . "$HOME/.cargo/env"
+
+# IntelliShell
+export INTELLI_HOME="/root/.local/share/intelli-shell"
+# export INTELLI_SEARCH_HOTKEY=\\C-@
+# export INTELLI_VARIABLE_HOTKEY=\\C-l
+# export INTELLI_BOOKMARK_HOTKEY=\\C-b
+# export INTELLI_FIX_HOTKEY=\\C-x
+# export INTELLI_SKIP_ESC_BIND=0
+# alias is="intelli-shell"
+export PATH="$INTELLI_HOME/bin:$PATH"
+eval "$(intelli-shell init bash)"
+. "/root/.deno/env"

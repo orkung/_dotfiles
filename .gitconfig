@@ -1,5 +1,5 @@
 [user]
-	email = cavitorkun.gunay@vodafone.com
+	email = cavit.gunay1@kafein.com.tr
 	name = cavit orkun
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -7,7 +7,7 @@
 [core]
 	excludesFile = ~/.gitignore
 	autocrlf = input
-	editor = code --wait
+	editor = antigravity --wait
     pager = delta
 [interactive]
     diffFilter = delta --color-only
@@ -27,13 +27,13 @@
 [url "https://"]
 	insteadOf = git://
 [merge]
-	tool = vscode
-[mergetool "vscode"]
-	cmd = code --wait $MERGED
+	tool = antigravity
+[mergetool "antigravity"]
+	cmd = antigravity --wait $MERGED
 [diff]
-	tool = vscode
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+	tool = antigravity
+[difftool "antigravity"]
+	cmd = antigravity --wait --diff $LOCAL $REMOTE
 #[credential]
 #	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe
 [credential]
