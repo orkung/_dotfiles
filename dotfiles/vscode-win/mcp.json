@@ -1,0 +1,149 @@
+{
+	"servers": {
+		"microsoft/markitdown": {
+			"type": "stdio",
+			"command": "uvx",
+			"args": [
+				"--python",
+				"python3.10",
+				"--prerelease=allow",
+				"markitdown-mcp"
+			],
+			"gallery": "https://api.mcp.github.com/v0/servers/976a2f68-e16c-4e2b-9709-7133487f8c14",
+			"version": "1.0.0"
+		},
+		"microsoftdocs/mcp": {
+			"type": "http",
+			"url": "https://learn.microsoft.com/api/mcp",
+			"gallery": "https://api.mcp.github.com/v0/servers/e0455530-d34a-4795-8dc6-b2888ae76c27",
+			"version": "1.0.0"
+		},
+		"perplexity": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@perplexity-ai/mcp-server"
+			],
+			"env": {
+				"PERPLEXITY_API_KEY": "${env:PERPLEXITY_API_KEY}",
+				"LOG_LEVEL": "debug",
+				"NODE_ENV": "development"
+			}
+		},
+		"azure/aks-mcp": {
+			"type": "stdio",
+			"command": "docker",
+			"args": [
+				"run",
+				"-i",
+				"--rm",
+				"ghcr.io/azure/aks-mcp:latest",
+				"--transport",
+				"stdio"
+			],
+			"env": {
+				"AZURE_TENANT_ID": "${input:azure_tenant_id}",
+				"AZURE_CLIENT_ID": "${input:azure_client_id}",
+				"AZURE_CLIENT_SECRET": "${input:azure_client_secret}",
+				"AZURE_FEDERATED_TOKEN_FILE": "${input:azure_federated_token_file}",
+				"AZURE_SUBSCRIPTION_ID": "${input:azure_subscription_id}",
+				"AZURE_MANAGED_IDENTITY": "${input:azure_managed_identity}"
+			},
+			"gallery": "https://api.mcp.github.com/v0/servers/52720d16-d942-4f99-8599-3af03cb1b4a0",
+			"version": "1.0.0"
+		},
+		"makenotion/notion-mcp-server": {
+			"type": "http",
+			"url": "https://mcp.notion.com/sse",
+			"gallery": "https://api.mcp.github.com/v0/servers/2a045418-16b2-4ea6-bc36-113feb0df335",
+			"version": "1.0.0"
+		},
+		"hashicorp/terraform-mcp-server": {
+			"type": "stdio",
+			"command": "docker",
+			"args": [
+				"run",
+				"-i",
+				"--rm",
+				"-e",
+				"TFE_TOKEN=${input:tfe_token}",
+				"-e",
+				"TFE_HOSTNAME=${input:tfe_hostname}",
+				"hashicorp/terraform-mcp-server"
+			],
+			"gallery": "https://api.mcp.github.com/v0/servers/34cd3839-461a-404a-a290-3d3bc9d8bee3",
+			"version": "1.0.0"
+		},
+		"gitkraken1": {
+			"type": "stdio",
+			"command": "wsl",
+			"args": [
+				"/usr/bin/gk",
+				"mcp"
+			]
+		}
+	},
+	"inputs": [
+		{
+			"id": "azure_tenant_id",
+			"type": "promptString",
+			"description": "Tenant ID (for service principal / workload identity auth).",
+			"password": false
+		},
+		{
+			"id": "azure_client_id",
+			"type": "promptString",
+			"description": "Client ID (service principal or managed identity).",
+			"password": false
+		},
+		{
+			"id": "azure_client_secret",
+			"type": "promptString",
+			"description": "Client secret (if using service principal secret).",
+			"password": true
+		},
+		{
+			"id": "azure_subscription_id",
+			"type": "promptString",
+			"description": "Optional: prefer a specific subscription by default.",
+			"password": false
+		},
+		{
+			"id": "azure_mcp_collect_telemetry",
+			"type": "promptString",
+			"description": "Set to 'false' to opt out of telemetry (default is true).",
+			"password": false
+		},
+		{
+			"type": "promptString",
+			"id": "perplexity-api-key",
+			"description": "Perplexity API Key",
+			"password": true
+		},
+		{
+			"id": "azure_federated_token_file",
+			"type": "promptString",
+			"description": "Workload Identity token file path.",
+			"password": false
+		},
+		{
+			"id": "azure_managed_identity",
+			"type": "promptString",
+			"description": "Set to 'system' to use system-assigned MI.",
+			"password": false
+		},
+		{
+			"id": "tfe_token",
+			"type": "promptString",
+			"description": "Terraform API Token",
+			"password": true
+		},
+		{
+			"id": "tfe_hostname",
+			"type": "promptString",
+			"description": "Terraform hostname",
+			"password": false
+		}
+	]
+}
