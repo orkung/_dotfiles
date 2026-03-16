@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TF: Format Check",
+      "type": "shell",
+      "command": "terraform fmt -check -diff",
+      "group": "test"
+    },
+    {
+      "label": "TF: Validate",
+      "type": "shell",
+      "command": "terraform validate",
+      "group": "test"
+    },
+    {
+      "label": "TF: Plan",
+      "type": "shell",
+      "command": "terraform plan -out tfplan",
+      "group": "build"
+    },
+  ]
+}
