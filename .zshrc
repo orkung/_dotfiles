@@ -705,9 +705,10 @@ fi
 
 #tmux-git-autofetch() {(/root/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
 #add-zsh-hook chpwd tmux-git-autofetch
+
 # VS Code wrapper to pass all arguments correctly
 code() {
-  local bin="/root/.vscode-server/bin/61b3d0ab13be7dda2389f1d3e60a119c7f660cc3/bin/remote-cli/code"
+  local bin="$(ls -1dt /root/.vscode-server/cli/servers/*/server/bin/remote-cli/code /root/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
   if [[ $# -eq 0 ]]; then
     "$bin" .
   else
@@ -1017,3 +1018,17 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 export BROWSER=wslview
 fpath=($fpath ~/.zsh/completion)
+
+# Apply unified diff patches from stdin (or from a patch-string argument).
+apply_patch() {
+  if ! command -v git >/dev/null 2>&1; then
+    echo "apply_patch: git is required" >&2
+    return 127
+  fi
+
+  if [[ $# -gt 0 ]]; then
+    printf '%s\n' "$*" | git apply --recount --whitespace=nowarn -
+  else
+    git apply --recount --whitespace=nowarn -
+  fi
+}
