@@ -902,11 +902,43 @@ bindkey -M vicmd '^F' _intelli_fix
 
 # VS Code shell integration
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-  local _integration_path
+  typeset _integration_path
   _integration_path=$(code --locate-shell-integration-path zsh 2>/dev/null)
   if [[ -n "$_integration_path" && -f "$_integration_path" ]]; then
     source "$_integration_path"
   fi
+fi
+
+__apply_interactive_keybindings() {
+  bindkey -v
+
+  if zle -la | grep -qx 'history-substring-search-up'; then
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+    bindkey -M viins '^[[A' history-substring-search-up
+    bindkey -M viins '^[[B' history-substring-search-down
+    bindkey -M vicmd 'k' history-substring-search-up
+    bindkey -M vicmd 'j' history-substring-search-down
+    bindkey -M viins '^P' history-substring-search-up
+    bindkey -M viins '^N' history-substring-search-down
+  fi
+
+  zle -N _intelli_search
+  zle -N _intelli_save
+  zle -N _intelli_variable
+  zle -N _intelli_fix
+  bindkey -M viins '^ ' _intelli_search
+  bindkey -M vicmd '^ ' _intelli_search
+  bindkey -M viins '^G' _intelli_save
+  bindkey -M vicmd '^G' _intelli_save
+  bindkey -M viins '^X' _intelli_variable
+  bindkey -M vicmd '^X' _intelli_variable
+  bindkey -M viins '^F' _intelli_fix
+  bindkey -M vicmd '^F' _intelli_fix
+}
+
+if [[ -o interactive ]]; then
+  __apply_interactive_keybindings
 fi
 
 # # Define key bindings, using defaults if environment variables are not set
