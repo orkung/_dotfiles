@@ -757,9 +757,9 @@ alias bat=batcat
 # Start SSH agent automatically
 if [[ -t 0 && -z "$SSH_AUTH_SOCK" ]]; then
   eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/kafein-ssh
-  ssh-add ~/.ssh/id_ed25519_orkung
-  ssh-add ~/.ssh/id_ed25519
+  # ssh-add ~/.ssh/kafein-ssh
+  # ssh-add ~/.ssh/id_ed25519_orkung
+  # ssh-add ~/.ssh/id_ed25519
 fi
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 . "/root/.deno/env"
