@@ -267,5 +267,14 @@
     "key": "ctrl+shift+t",
     "command": "workbench.action.tasks.runTask",
     "args": "TF: Format Check"
-  }
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "workbench.action.terminal.newWithCwd",
+    "when": "terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.newWithProfile"
+  },
 ]
