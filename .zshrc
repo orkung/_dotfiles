@@ -806,9 +806,9 @@ awsmfa() {
 # https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 
 # IntelliShell
-export INTELLI_SEARCH_HOTKEY='^ '        # Ctrl-Space
+export INTELLI_SEARCH_HOTKEY='^G'        # Ctrl-G
 export INTELLI_VARIABLE_HOTKEY='^X'      # Ctrl-X
-export INTELLI_BOOKMARK_HOTKEY='^G'      # Ctrl-G
+export INTELLI_BOOKMARK_HOTKEY='^Y'      # Ctrl-Y
 export INTELLI_FIX_HOTKEY='^F'           # Ctrl-F
 export INTELLI_SKIP_ESC_BIND=1
 
@@ -891,10 +891,10 @@ zle -N _intelli_save
 zle -N _intelli_variable
 zle -N _intelli_fix
 
-bindkey -M viins '^ ' _intelli_search
-bindkey -M vicmd '^ ' _intelli_search
-bindkey -M viins '^G' _intelli_save
-bindkey -M vicmd '^G' _intelli_save
+bindkey -M viins '^G' _intelli_search
+bindkey -M vicmd '^G' _intelli_search
+bindkey -M viins '^Y' _intelli_save
+bindkey -M vicmd '^Y' _intelli_save
 bindkey -M viins '^X' _intelli_variable
 bindkey -M vicmd '^X' _intelli_variable
 bindkey -M viins '^F' _intelli_fix
@@ -927,10 +927,10 @@ __apply_interactive_keybindings() {
   zle -N _intelli_save
   zle -N _intelli_variable
   zle -N _intelli_fix
-  bindkey -M viins '^ ' _intelli_search
-  bindkey -M vicmd '^ ' _intelli_search
-  bindkey -M viins '^G' _intelli_save
-  bindkey -M vicmd '^G' _intelli_save
+  bindkey -M viins '^G' _intelli_search
+  bindkey -M vicmd '^G' _intelli_search
+  bindkey -M viins '^Y' _intelli_save
+  bindkey -M vicmd '^Y' _intelli_save
   bindkey -M viins '^X' _intelli_variable
   bindkey -M vicmd '^X' _intelli_variable
   bindkey -M viins '^F' _intelli_fix
