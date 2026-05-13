@@ -21,12 +21,8 @@
   "explorer.confirmDelete": false,
   "workbench.editorAssociations": {},
   "python.pythonPath": "/usr/bin/python3",
-  "yaml.schemas": {
-    "file:///c%3A/Users/orkun.gunay/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
   "explorer.confirmDragAndDrop": false,
   "vim.enableNeovim": false,
-  //   "vim.neovimPath": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
   "vim.replaceWithRegister": false,
   "vim.easymotion": true,
   "vim.statusBarColorControl": false,
@@ -129,6 +125,15 @@
     }
   ],
   "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "<C-w>",
+        "W"
+      ],
+      "commands": [
+        "workbench.action.focusPreviousGroup"
+      ]
+    },
     {
       "before": [
         "|"
@@ -309,7 +314,13 @@
   "tab-groups.groups": "eyJEZWZhdWx0IjpbeyJkb2N1bWVudCI6eyJ1cmkiOnsiJG1pZCI6MSwiZnNQYXRoIjoiL21udC9jL1VzZXJzL0thZmVpbi9Eb2N1bWVudHMvbm90ZXMvaXMvaW5kZXgubWQiLCJleHRlcm5hbCI6ImZpbGU6Ly8vbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9pbmRleC5tZCIsInBhdGgiOiIvbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9pbmRleC5tZCIsInNjaGVtZSI6ImZpbGUifSwiZmlsZU5hbWUiOiIvbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9pbmRleC5tZCIsImlzVW50aXRsZWQiOmZhbHNlLCJsYW5ndWFnZUlkIjoibWFya2Rvd24iLCJ2ZXJzaW9uIjoyMzAyLCJpc0Nsb3NlZCI6dHJ1ZSwiaXNEaXJ0eSI6ZmFsc2UsImVvbCI6MSwibGluZUNvdW50IjoyNn0sIndvcmtzcGFjZUluZGV4IjowLCJwYXRoIjoiaW5kZXgubWQiLCJ2aWV3Q29sdW1uIjoxLCJmb2N1c3NlZCI6dHJ1ZSwicGlubmVkIjpmYWxzZX0seyJkb2N1bWVudCI6eyJ1cmkiOnsiJG1pZCI6MSwiZnNQYXRoIjoiL21udC9jL1VzZXJzL0thZmVpbi9Eb2N1bWVudHMvbm90ZXMvaXMvcHJvbW90aW9uX21zX2FrdGFyaW0ubWQiLCJleHRlcm5hbCI6ImZpbGU6Ly8vbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9wcm9tb3Rpb25fbXNfYWt0YXJpbS5tZCIsInBhdGgiOiIvbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9wcm9tb3Rpb25fbXNfYWt0YXJpbS5tZCIsInNjaGVtZSI6ImZpbGUifSwiZmlsZU5hbWUiOiIvbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9wcm9tb3Rpb25fbXNfYWt0YXJpbS5tZCIsImlzVW50aXRsZWQiOmZhbHNlLCJsYW5ndWFnZUlkIjoibWFya2Rvd24iLCJ2ZXJzaW9uIjo1NDczLCJpc0Nsb3NlZCI6dHJ1ZSwiaXNEaXJ0eSI6ZmFsc2UsImVvbCI6MSwibGluZUNvdW50IjoyNTV9LCJ3b3Jrc3BhY2VJbmRleCI6MCwicGF0aCI6InByb21vdGlvbl9tc19ha3RhcmltLm1kIiwidmlld0NvbHVtbiI6MSwiZm9jdXNzZWQiOmZhbHNlLCJwaW5uZWQiOmZhbHNlfSx7ImRvY3VtZW50Ijp7InVyaSI6eyIkbWlkIjoxLCJmc1BhdGgiOiIvbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9wcm9tb3Rpb25feWFwaWxhY2FrbGFyLm1kIiwiZXh0ZXJuYWwiOiJmaWxlOi8vL21udC9jL1VzZXJzL0thZmVpbi9Eb2N1bWVudHMvbm90ZXMvaXMvcHJvbW90aW9uX3lhcGlsYWNha2xhci5tZCIsInBhdGgiOiIvbW50L2MvVXNlcnMvS2FmZWluL0RvY3VtZW50cy9ub3Rlcy9pcy9wcm9tb3Rpb25feWFwaWxhY2FrbGFyLm1kIiwic2NoZW1lIjoiZmlsZSJ9LCJmaWxlTmFtZSI6Ii9tbnQvYy9Vc2Vycy9LYWZlaW4vRG9jdW1lbnRzL25vdGVzL2lzL3Byb21vdGlvbl95YXBpbGFjYWtsYXIubWQiLCJpc1VudGl0bGVkIjpmYWxzZSwibGFuZ3VhZ2VJZCI6Im1hcmtkb3duIiwidmVyc2lvbiI6NjE4LCJpc0Nsb3NlZCI6dHJ1ZSwiaXNEaXJ0eSI6ZmFsc2UsImVvbCI6MSwibGluZUNvdW50IjoxNX0sIndvcmtzcGFjZUluZGV4IjowLCJwYXRoIjoicHJvbW90aW9uX3lhcGlsYWNha2xhci5tZCIsInZpZXdDb2x1bW4iOjEsImZvY3Vzc2VkIjpmYWxzZSwicGlubmVkIjpmYWxzZX1dfQ==",
   "pasteImage.showFilePathConfirmInputBox": true,
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.renderWhitespace": "none",
+    "editor.renderControlCharacters": false,
+    "editor.guides.indentation": false,
+    "editor.guides.highlightActiveIndentation": false,
+    "editor.guides.bracketPairs": false,
+    "editor.guides.bracketPairsHorizontal": false
   },
   "editor.tabSize": 2,
   "editor.detectIndentation": true,
@@ -332,7 +343,6 @@
     // can be a little distracting in markdown docs:
     // "editor.wordBasedSuggestions": false, // yeni degistirdim
     "editor.wordBasedSuggestions": "matchingDocuments", // yeni degistirdim
-    //"editor.wordBasedSuggestions": "matchingDocuments", // yeni degistirdim
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     // Set this to false if you turn on quickSuggestions
@@ -344,20 +354,59 @@
     "editor.defaultFormatter": "vscode.markdown-language-features",
     "editor.folding": true,
     "editor.foldingStrategy": "auto",
-    "editor.showFoldingControls": "mouseover"
+    "editor.showFoldingControls": "never",
+    // From markdown-inline-preview-vscode extension
+    "editor.fontFamily": "Fira Sans",
+    "editor.wrappingStrategy": "advanced",
+    "editor.cursorStyle": "underline-thin",
+    "editor.fontSize": 16,
+    "editor.lineHeight": 1.2,
+    "editor.indentSize": "tabSize",
+    "editor.padding.top": 20
+  },
+  "editor.tokenColorCustomizations": {
+    "[Solarized Custom Dark]": {
+      "textMateRules": [
+        {
+          "scope": "punctuation.definition.list.begin.markdown",
+          "settings": {
+            "foreground": "#777",
+          }
+        },
+      ]
+    }
   },
   "markdownlint.config": {
-    "MD041": false,
-    "MD013": false,
-    "MD012": false,
-    "MD046": false,
-    "MD049": false,
-    "MD059": false,
-    "MD026": false,
-    "no-hard-tabs": false,
+    "MD001": true,
+    "MD004": {
+      "style": "dash"
+    },
     "MD007": {
       "indent": 2
-    }
+    },
+    "MD010": false,
+    "MD012": false,
+    "MD013": {
+      "line_length": 80,
+      "code_block_line_length": 120
+    },
+    "MD018": false,
+    "MD024": false,
+    "MD026": false,
+    "MD029": {
+      "style": "ordered"
+    },
+    "MD033": {
+      "allowed_elements": [
+        "a",
+        "strong",
+        "em"
+      ]
+    },
+    "MD041": false,
+    "MD046": false,
+    "MD049": false,
+    "MD059": false
   },
   "editor.cursorStyle": "underline-thin",
   "jenkins.pipeline.linter.connector.pass": "admin",
@@ -384,6 +433,11 @@
   "editor.glyphMargin": true,
   "editor.lineDecorationsWidth": 5,
   "editor.renderWhitespace": "none",
+  "editor.renderControlCharacters": false,
+  "editor.guides.indentation": false,
+  "editor.guides.highlightActiveIndentation": false,
+  "editor.guides.bracketPairs": false,
+  "editor.guides.bracketPairsHorizontal": false,
   "workbench.editor.splitInGroupLayout": "vertical",
   "twitter.consumerkey": "obSuYI5CLHY2I3GOZAJDs2RxP", // Consumer Key (API Key)
   "twitter.consumersecret": "hOT11PdPsP2x2HyUOQ9NqKXP0gFgv8mSKqhWP9R3lcPReTcfUS", // Consumer Secret (API Secret)
@@ -401,6 +455,7 @@
     "<C-p>": false,
     "<C-d>": true,
     "<C-u>": true,
+    "<C-w>": true,
   },
   "rss.accounts": {
     "dc72b2e0-76c6-11ed-b1d3-a519d43f0fa8": {
@@ -680,12 +735,11 @@
     ]
   },
   "explorer.sortOrder": "modified",
-  "editor.guides.indentation": false,
   "settingsSync.ignoredSettings": [
     "editor.tokenColorCustomizations"
   ],
   /*
-"workbench.colorCustomizations": {
+  "workbench.colorCustomizations": {
     "statusBar.background": "#002b36",
     "editor.background": "#002b36",
     "statusBar.foreground": "#839496",
@@ -705,7 +759,7 @@
     "editorOverviewRuler.addedForeground": "#0000",
     "editorOverviewRuler.modifiedForeground": "#0000",
     "editorOverviewRuler.deletedForeground": "#0000"
-}
+  },
 */
   "workbench.colorCustomizations": {
     "[Light+ Dimmed]": {
@@ -749,6 +803,12 @@
   "terminal.integrated.env.linux": {},
   "rewrap.wrappingColumn": 60,
   "[jsonc]": {
+    "editor.renderWhitespace": "none",
+    "editor.renderControlCharacters": false,
+    "editor.guides.indentation": false,
+    "editor.guides.highlightActiveIndentation": false,
+    "editor.guides.bracketPairs": false,
+    "editor.guides.bracketPairsHorizontal": false,
     "editor.quickSuggestions": {
       "strings": true
     },
@@ -1037,20 +1097,20 @@
   "claudeCodeChat.wsl.claudePath": "/root/.local/bin/claude",
   "claudeCode.preferredLocation": "panel",
   "editor.linkedEditing": true,
-  "editor.rulers": [
-    {
-      "column": 80,
-      "color": "#00FF0010"
-    },
-    {
-      "column": 100,
-      "color": "#BDB76B15"
-    },
-    {
-      "column": 120,
-      "color": "#FA807219"
-    }
-  ],
+  //"editor.rulers": [
+  //  {
+  //    "column": 80,
+  //    "color": "#00FF0010"
+  //  },
+  //  {
+  //    "column": 100,
+  //    "color": "#BDB76B15"
+  //  },
+  //  {
+  //    "column": 120,
+  //    "color": "#FA807219"
+  //  }
+  //],
   "editor.unicodeHighlight.includeComments": true,
   "workbench.editor.revealIfOpen": true,
   "emmet.variables": {
@@ -1058,6 +1118,11 @@
   },
   "trailing-spaces.backgroundColor": "rgba(255,0,0,0.1)",
   "trailing-spaces.includeEmptyLines": false,
+  "trailing-spaces.liveMatching": false,
+  "trailing-spaces.highlightCurrentLine": false,
+  "indentRainbow.includedLanguages": [
+    "__disabled__"
+  ],
   "terminal.integrated.tabs.hideCondition": "never",
   "terminal.integrated.enablePersistentSessions": false,
   "java.compile.nullAnalysis.mode": "automatic",
@@ -1205,5 +1270,10 @@
   "aws.cloudformation.telemetry.enabled": true,
   "markdown-preview-enhanced.codeBlockTheme": "solarized-dark.css",
   "markdown-preview-enhanced.revealjsTheme": "solarized.css",
-  "chat.viewSessions.orientation": "stacked"
+  "chat.viewSessions.orientation": "stacked",
+  "editor.overtypeCursorStyle": "underline-thin",
+  "vim.cursorStylePerMode.insert": "underline-thin",
+  "vim.cursorStylePerMode.normal": "underline-thin",
+  "outline.collapseItems": "alwaysCollapse",
+  "vim.foldfix": true
 }
