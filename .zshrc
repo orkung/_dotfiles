@@ -84,6 +84,7 @@ plugins=(git aws docker autojump fzf-zsh-plugin zsh-completions zsh-history-subs
 
 source "$ZSH/oh-my-zsh.sh"
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -101,92 +102,6 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-#bindkey '^[[A' history-substring-search-up
-#bindkey '^[[B' history-substring-search-down
-#bindkey -M vicmd 'k' history-substring-search-up
-#bindkey -M vicmd 'j' history-substring-search-down
-#bindkey -M viins '^P' history-substring-search-up
-#bindkey -M viins '^N' history-substring-search-down
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias dedockify="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm mrhavens/dedockify"
-alias k="kubectl"
-alias kx="kubectl exec -it"
-alias kgn="kubectl get nodes -o wide"
-alias kgns="kubectl get ns"
-alias kcl="kubectl config get-contexts"
-alias kcc="kubectl config current-context"
-alias kbgp="kubectl get pods -o wide -n kube-system"
-alias kbgd="kubectl get deploy -o wide -n kube-system"
-alias kbgsvc="kubectl get svc -o wide -n kube-system"
-alias kbgpall="kubectl get pods -o wide --all-namespaces"
-alias kbgdall="kubectl get deploy -o wide --all-namespaces"
-alias kbgsvcall="kubectl get svc -o wide --all-namespaces"
-alias kgnall="kubectl get nodes -o wide"
-#vauld() { kubectl exec -n vault vault-0 -- vault "$@"; }
-klogs() { kubectl logs -f --tail=100 -n "$1" "$2" "${@:3}"; }
-kexec() {
-  local namespace pod
-  namespace="$1"
-  pod="$2"
-  shift 2
-  if (( $# == 0 )); then
-    kubectl exec -it -n "$namespace" "$pod" -- /bin/bash
-  else
-    kubectl exec -it -n "$namespace" "$pod" -- "$@"
-  fi
-}
-kgp() { kubectl get pods -o wide -n "$1"; }
-kgs() { kubectl get svc -o wide -n "$1"; }
-kgd() { kubectl get deploy -o wide -n "$1"; }
-kctx() { kubectl config use-context "$1"; }
-kcu() { kubectl config use-context "$1"; }
-kcd() { builtin cd "$HOME/kubeconfigs" && kubectl config use-context "$1" && builtin cd - >/dev/null; }
-kga() { kubectl get all -o wide -n "$1"; }
-kdel() { kubectl delete -n "$1" "$2" "${@:3}"; }
-kdp() { kubectl describe pod -n "$1" "$2"; }
-kdd() { kubectl describe deploy -n "$1" "$2"; }
-kds() { kubectl describe svc -n "$1" "$2"; }
-kdn() { kubectl describe node "$1"; }
-kdi() { kubectl describe ing -n "$1" "$2"; }
-kcp() { kubectl config set-context --current --namespace="$1"; }
-kpf() { kubectl port-forward -n "$1" "$2" "$3:$4"; }
-kclp() { kubectl config get-contexts | grep -- "$1"; }
-kdelp() { kubectl delete pod -n "$1" "$2"; }
-kdr() { kubectl drain "$1" --ignore-daemonsets --delete-local-data; }
-kdu() { kubectl uncordon "$1"; }
-kbdp() { kubectl describe pod -n kube-system "$1"; }
-kbdd() { kubectl describe deploy -n kube-system "$1"; }
-kbdsvc() { kubectl describe svc -n kube-system "$1"; }
-kbi() { kubectl describe ing -n kube-system "$1"; }
-kbdpall() { kubectl describe pod --all-namespaces "$1"; }
-kbddall() { kubectl describe deploy --all-namespaces "$1"; }
-kbdsvcall() { kubectl describe svc --all-namespaces "$1"; }
-kbiall() { kubectl describe ing --all-namespaces "$1"; }
 HISTFILE="$HOME/.zsh_history"
 export DIR_HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/dir_history"
 HISTSIZE=100000
@@ -239,13 +154,7 @@ fi
 export KEYTIMEOUT=1
 # bindkey '^d' exit
 
-zl() {
-    ~/bin/zargan.py "$@" 2>/dev/null | head -n 10
-}
-
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-#export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
-
 export INTELLI_HOME="$HOME/.local/share/intelli-shell"
 typeset -U path PATH
 path=(
@@ -284,120 +193,10 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
-#alias tami="export TASKRC=${HOME}/.task_misc"
-#alias tawo="unset TASKRC"
-alias t="/bin/task"
-#alias ta='/bin/task add pro:"$1" pri:"$2" "$3"'
-alias tr="task ready"
-alias trpw="tr pro:work"
-alias trpb="tr pro:budget"
-alias trpm="tr pro:misc"
-alias trph="tr pro:home"
-alias trpc="tr pro:comp"
-
-alias tc="task context"
-alias tcd="tc devops"
-alias tcn="tc none"
-
-taskaddlong() {
-    task add +next pro:$1 pri:$2 +$3 due:$4 scheduled:$5 wait:$6 $7
-}
-
-taskaddshort() {
-    task add pro:$1 pri:$2 +$3 due:$4 $5
-}
-alias reload="source ~/.zshrc"
-
-alias tal=taskaddlong
-alias tas=taskaddshort
-
-alias ttcd="~/bin/tt context devops ; sleep 0.1 ; ~/bin/tt"
-alias ttcn="tt context none ; sleep 0.1 ; ~/bin/tt"
-alias ttpn="~/bin/tt ready pro: ; sleep 0.1 ; ~/bin/tt"
-alias ttpb="~/bin/tt ready pro:budget"
-alias ttpc="~/bin/tt ready pro:comp"
-alias ttpm="~/bin/tt ready pro:misc"
-alias ttph="~/bin/tt ready pro:home"
-alias ttpw="~/bin/tt ready pro:work"
-alias ttpwsu="~/bin/tt ready pro:work.support"
-alias ttpwmi="~/bin/tt ready pro:work.misc"
-alias ttpwop="~/bin/tt ready pro:work.ops"
-alias ttpwde="~/bin/tt ready pro:work.dev"
-#alias ttpn="~/bin/tt long pro:"
-#alias ttpw="~/bin/tt long pro:work ; sleep 0.1 ; ~/bin/tt"
-#alias ttc="~/bin/tt context comp ; sleep 0.1 ; ~/bin/tt"
-#alias tth="~/bin/tt context home ; sleep 0.1 ; ~/bin/tt"
-#alias ttm="~/bin/tt context misc ; sleep 0.1 ; ~/bin/tt"
-#alias ttb="~/bin/tt context budget ; sleep 0.1 ; ~/bin/tt"
 
 # from vejetaryenvampir https://notabug.org/vejetaryenvampir/dots/src/master/.config/shortcuts/aliases
 tur() { curl -s "https://tureng.com/en/turkish-english/$(echo "$@" | tr [A-Z] [a-z])" | elinks -dump | sed '1,60d;/Pronunciation in context/q' | less; }
 tdk() { curl -s "http://www.tdk.gov.tr/index.php?option=com_gts&view=gts&kelime=$*" | elinks -dump | sed '1,65d;/kez söz arandı./q' | less; }
-#et() { sdcv -nu "Babylon English-Turkish" "$@" | sed -e "/^-->.*$/d" -e "s/\r\r/\r/" -e "s/<font.*\">/$(printf "\e[34m")/" -e "s/<\/font>/$(printf "\e[00m")/"; }
-#alias te="sdcv -cu Turkish-English"
-function ta_proj() { echo "$2" | vipe | tr '\n' '\0' | xargs -0 -n1 -t task add "project:$1"; }
-
-taskaddworksupport() {
-    task add pro:work.support pri:$1 +$2 due:$3 scheduled:$4 $5
-}
-taskaddshortworksupport() {
-    task add pro:work.support pri:$1 +$2 due:$3 $4
-}
-alias tawsu=taskaddworksupport
-alias taswsu=taskaddshortworksupport
-
-taskaddworkmisc() {
-    task add pro:work.misc pri:$1 +$2 due:$3 scheduled:$4 $5
-}
-taskaddshortworkmisc() {
-    task add pro:work.misc pri:$1 +$2 due:$3 $4
-}
-alias tawmi=taskaddworkmisc
-alias taswmi=taskaddshortworkmisc
-
-taskaddworkdev() {
-    task add pro:work.dev pri:$1 +$2 due:$3 scheduled:$4 $5
-}
-taskaddshortworkdev() {
-    task add pro:work.dev pri:$1 +$2 due:$3 $4
-}
-alias tawde=taskaddworkdev
-alias taswde=taskaddshortworkdev
-
-taskaddworkops() {
-    task add pro:work.ops pri:$1 +$2 due:$3 scheduled:$4 $5
-}
-taskaddshortworkops() {
-    task add pro:work.ops pri:$1 +$2 due:$3 $4
-}
-alias tawop=taskaddworkops
-alias taswop=taskaddshortworkops
-
-# If use_tmux=1, add these codes to .bashrc/.zshrc:
-#[[ -z "$TMUX" && -n "$USE_TMUX" ]] && {
-#       [[ -n "$ATTACH_ONLY" ]] && {
-#           tmux a 2>/dev/null || {
-#               cd && exec tmux
-#        }
-#        exit
-#    }
-#    tmux new-window task-pane && tmux new-window task-web && tmux select-window -t 1 && tmux kill-window 2>/dev/null && exec tmux a
-##   tmux new-window -c "$PWD" 2>/dev/null && exec tmux a
-##tmux new-session -d ; tmux set -g status off ; tmux split-window ; tmux select-pane -t 0 tmux send-keys "${HOME}/bin/task-pane" "Enter" ; tmux new-window ; tmux select-window -t 1 ; tmux send-keys "${HOME}/.rvm/gems/ruby-2.5.0@task-web/bin/task-web" "Enter" ; tmux kill-window
-#    exec tmux
-#}
-#!/bin/bash
-
-#export TASKRC="~/.task_old/.taskrc"
-taskaddworkrefund() {
-    task add pro:work.refund pri:$1 +$2 due:$3 scheduled:$4 $5
-}
-taskaddshortworkrefund() {
-    task add pro:work.refund pri:$1 +$2 due:$3 $4
-}
-alias tawref=taskaddworkrefund
-alias taswref=taskaddshortworkrefund
-#alias oc="/mnt/c/Users/Kafein/.crc/bin/oc/oc.exe"
 alias toast='powershell.exe -command New-BurntToastNotification'
 alias tp='trans -p'
 #eval "$(register-python-argcomplete pipx)"
@@ -455,7 +254,7 @@ function enen() {
 }
 
 # Running under WSL (Windows Subsystem for Linux)?
-if uname -r | egrep -q '*microsoft*'; then
+if uname -r | grep -q 'microsoft'; then
     WSL_running=true
 else
     WSL_running=false
@@ -708,16 +507,47 @@ fi
 #add-zsh-hook chpwd tmux-git-autofetch
 
 # VS Code wrapper to pass all arguments correctly
-code() {
-  local bin="$(ls -1dt /root/.vscode-server/cli/servers/*/server/bin/remote-cli/code /root/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
-  if [[ $# -eq 0 ]]; then
-    "$bin" .
-  else
-    "$bin" "$@"
+#code() {
+#  local bin="$(ls -1dt $HOME/.vscode-server/cli/servers/*/server/bin/remote-cli/code $HOME/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
+#  if [[ $# -eq 0 ]]; then
+#    "$bin" .
+#  else
+#    "$bin" "$@"
+#  fi
+#}
+
+_fix_stale_vscode_ipc() {
+  if [[ -n "$VSCODE_IPC_HOOK_CLI" && ! -S "$VSCODE_IPC_HOOK_CLI" ]]; then
+    unset VSCODE_IPC_HOOK_CLI
+
+    if [[ -n "$TMUX" ]]; then
+      tmux setenv -gu VSCODE_IPC_HOOK_CLI 2>/dev/null
+    fi
   fi
 }
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+code () {
+  _fix_stale_vscode_ipc
+
+  if [[ -n "$VSCODE_IPC_HOOK_CLI" && -S "$VSCODE_IPC_HOOK_CLI" ]]; then
+    local bin="$(ls -1dt $HOME/.vscode-server/cli/servers/*/server/bin/remote-cli/code $HOME/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
+    [[ $# -eq 0 ]] && "$bin" . || "$bin" "$@"
+  else
+    local win_code="/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code"
+    [[ $# -eq 0 ]] && "$win_code" . || "$win_code" "$@"
+  fi
+}
+
+#_fix_stale_vscode_ipc
+#code () {
+#  if [[ -n "$VSCODE_IPC_HOOK_CLI" ]]; then
+#    local bin="$(ls -1dt $HOME/.vscode-server/cli/servers/*/server/bin/remote-cli/code $HOME/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
+#    [[ $# -eq 0 ]] && "$bin" . || "$bin" "$@"
+#  else
+#    [[ $# -eq 0 ]] && command /mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code . || command /mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code "$@"
+#  fi
+#}
+
 ## Fix VS Code IPC socket for tmux sessions
 #if [ -d "/tmp" ]; then
 #  export VSCODE_IPC_HOOK_CLI=$(ls -tr /tmp/vscode-ipc-* 2>/dev/null | tail -n 1)
@@ -727,6 +557,7 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 #if [ -d "/mnt/wslg/runtime-dir" ]; then
 #  export VSCODE_IPC_HOOK_CLI=$(ls -tr /mnt/wslg/runtime-dir/vscode-ipc-* 2>/dev/null | tail -n 1)
 #fi
+
 # Prompt enhancer using Claude API
 enhance() {
     local question="$*"
@@ -763,7 +594,7 @@ if [[ -t 0 && -z "$SSH_AUTH_SOCK" ]]; then
   # ssh-add ~/.ssh/id_ed25519
 fi
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-. "/root/.deno/env"
+#. "/root/.deno/env"
 
 # Auto-update VS Code IPC socket for tmux compatibility
 # This ensures Antigravity works in tmux by only picking sockets with active listeners
@@ -815,7 +646,7 @@ export INTELLI_SKIP_ESC_BIND=1
 
 alias is="intelli-shell"
 eval "$(intelli-shell init zsh)"
-source ~/.local/share/intelli-shell/bin/intelli-shell.sh
+# source ~/.local/share/intelli-shell/bin/intelli-shell
 
 # Override the generated widgets with vi-mode aware bindings and a friendlier
 # bookmark flow: save the current command, or fall back to the last history item.
@@ -942,6 +773,57 @@ if [[ -o interactive ]]; then
   __apply_interactive_keybindings
 fi
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+fpath=($fpath ~/.zsh/completion)
+
+# Apply unified diff patches from stdin (or from a patch-string argument).
+apply_patch() {
+  if ! command -v git >/dev/null 2>&1; then
+    echo "apply_patch: git is required" >&2
+    return 127
+  fi
+
+  if [[ $# -gt 0 ]]; then
+    printf '%s\n' "$*" | git apply --recount --whitespace=nowarn -
+  else
+    git apply --recount --whitespace=nowarn -
+  fi
+}
+
+# ---------------------------- commented out ---------------------------- #
+# Select pod
+#kp() {
+#    kubectl get pods --no-headers | awk '{print $1}' | fzf
+#}
+#
+## Logs from selected pod
+#kl() {
+#    kubectl logs -f "$(kp)"
+#}
+## Exec into selected pod
+#ke() {
+#    kubectl exec -it "$(kp)" -- sh
+#}
+# kubectl completion
+#source <(kubectl completion bash)
+#complete -o default -F __start_kubectl k
+#
+## aliases
+#alias k='kubectl'
+#alias kctx='kubectx'
+#alias kns='kubens'．
+#
+## optional: show current context/namespace
+#kube_prompt() {
+#  local ctx ns
+#  ctx=$(kubectl config current-context 2>/dev/null)
+#  ns=$(kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null)
+#  [ -z "$ns" ] && ns=default
+#  [ -n "$ctx" ] && echo "[$ctx:$ns] "
+#}
+
+#export BROWSER=wslview
 # # Define key bindings, using defaults if environment variables are not set
 # intelli_search_key="${INTELLI_SEARCH_HOTKEY:-^@}"
 # intelli_bookmark_key="${INTELLI_BOOKMARK_HOTKEY:-^b}"
@@ -1047,21 +929,202 @@ fi
 # # Export the execution prompt variable
 # export INTELLI_EXEC_PROMPT="$(print -r -- "$PS2" | sed 's/%{//g; s/%}//g')"
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-export BROWSER=wslview
-fpath=($fpath ~/.zsh/completion)
 
-# Apply unified diff patches from stdin (or from a patch-string argument).
-apply_patch() {
-  if ! command -v git >/dev/null 2>&1; then
-    echo "apply_patch: git is required" >&2
-    return 127
-  fi
+#bindkey '^[[A' history-substring-search-up
+#bindkey '^[[B' history-substring-search-down
+#bindkey -M vicmd 'k' history-substring-search-up
+#bindkey -M vicmd 'j' history-substring-search-down
+#bindkey -M viins '^P' history-substring-search-up
+#bindkey -M viins '^N' history-substring-search-down
 
-  if [[ $# -gt 0 ]]; then
-    printf '%s\n' "$*" | git apply --recount --whitespace=nowarn -
-  else
-    git apply --recount --whitespace=nowarn -
-  fi
-}
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias dedockify="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm mrhavens/dedockify"
+# alias k="kubectl"
+# alias kx="kubectl exec -it"
+# alias kgn="kubectl get nodes -o wide"
+# alias kgns="kubectl get ns"
+# alias kcl="kubectl config get-contexts"
+# alias kcc="kubectl config current-context"
+# alias kbgp="kubectl get pods -o wide -n kube-system"
+# alias kbgd="kubectl get deploy -o wide -n kube-system"
+# alias kbgsvc="kubectl get svc -o wide -n kube-system"
+# alias kbgpall="kubectl get pods -o wide --all-namespaces"
+# alias kbgdall="kubectl get deploy -o wide --all-namespaces"
+# alias kbgsvcall="kubectl get svc -o wide --all-namespaces"
+# alias kgnall="kubectl get nodes -o wide"
+# #vauld() { kubectl exec -n vault vault-0 -- vault "$@"; }
+# klogs() { kubectl logs -f --tail=100 -n "$1" "$2" "${@:3}"; }
+# kexec() {
+#   local namespace pod
+#   namespace="$1"
+#   pod="$2"
+#   shift 2
+#   if (( $# == 0 )); then
+#     kubectl exec -it -n "$namespace" "$pod" -- /bin/bash
+#   else
+#     kubectl exec -it -n "$namespace" "$pod" -- "$@"
+#   fi
+# }
+# kgp() { kubectl get pods -o wide -n "$1"; }
+# kgs() { kubectl get svc -o wide -n "$1"; }
+# kgd() { kubectl get deploy -o wide -n "$1"; }
+# kctx() { kubectl config use-context "$1"; }
+# kcu() { kubectl config use-context "$1"; }
+# kcd() { builtin cd "$HOME/kubeconfigs" && kubectl config use-context "$1" && builtin cd - >/dev/null; }
+# kga() { kubectl get all -o wide -n "$1"; }
+# kdel() { kubectl delete -n "$1" "$2" "${@:3}"; }
+# kdp() { kubectl describe pod -n "$1" "$2"; }
+# kdd() { kubectl describe deploy -n "$1" "$2"; }
+# kds() { kubectl describe svc -n "$1" "$2"; }
+# kdn() { kubectl describe node "$1"; }
+# kdi() { kubectl describe ing -n "$1" "$2"; }
+# kcp() { kubectl config set-context --current --namespace="$1"; }
+# kpf() { kubectl port-forward -n "$1" "$2" "$3:$4"; }
+# kclp() { kubectl config get-contexts | grep -- "$1"; }
+# kdelp() { kubectl delete pod -n "$1" "$2"; }
+# kdr() { kubectl drain "$1" --ignore-daemonsets --delete-local-data; }
+# kdu() { kubectl uncordon "$1"; }
+# kbdp() { kubectl describe pod -n kube-system "$1"; }
+# kbdd() { kubectl describe deploy -n kube-system "$1"; }
+# kbdsvc() { kubectl describe svc -n kube-system "$1"; }
+# kbi() { kubectl describe ing -n kube-system "$1"; }
+# kbdpall() { kubectl describe pod --all-namespaces "$1"; }
+# kbddall() { kubectl describe deploy --all-namespaces "$1"; }
+# kbdsvcall() { kubectl describe svc --all-namespaces "$1"; }
+# kbiall() { kubectl describe ing --all-namespaces "$1"; }
+#alias tami="export TASKRC=${HOME}/.task_misc"
+#alias tawo="unset TASKRC"
+#alias t="/bin/task"
+#alias ta='/bin/task add pro:"$1" pri:"$2" "$3"'
+#alias tr="task ready"
+#alias trpw="tr pro:work"
+#alias trpb="tr pro:budget"
+#alias trpm="tr pro:misc"
+#alias trph="tr pro:home"
+#alias trpc="tr pro:comp"
+#
+#alias tc="task context"
+#alias tcd="tc devops"
+#alias tcn="tc none"
+#
+#taskaddlong() {
+#    task add +next pro:$1 pri:$2 +$3 due:$4 scheduled:$5 wait:$6 $7
+#}
+#
+#taskaddshort() {
+#    task add pro:$1 pri:$2 +$3 due:$4 $5
+#}
+#alias reload="source ~/.zshrc"
+#
+#alias tal=taskaddlong
+#alias tas=taskaddshort
+#
+#alias ttcd="~/bin/tt context devops ; sleep 0.1 ; ~/bin/tt"
+#alias ttcn="tt context none ; sleep 0.1 ; ~/bin/tt"
+#alias ttpn="~/bin/tt ready pro: ; sleep 0.1 ; ~/bin/tt"
+#alias ttpb="~/bin/tt ready pro:budget"
+#alias ttpc="~/bin/tt ready pro:comp"
+#alias ttpm="~/bin/tt ready pro:misc"
+#alias ttph="~/bin/tt ready pro:home"
+#alias ttpw="~/bin/tt ready pro:work"
+#alias ttpwsu="~/bin/tt ready pro:work.support"
+#alias ttpwmi="~/bin/tt ready pro:work.misc"
+#alias ttpwop="~/bin/tt ready pro:work.ops"
+#alias ttpwde="~/bin/tt ready pro:work.dev"
+#alias ttpn="~/bin/tt long pro:"
+#alias ttpw="~/bin/tt long pro:work ; sleep 0.1 ; ~/bin/tt"
+#alias ttc="~/bin/tt context comp ; sleep 0.1 ; ~/bin/tt"
+#alias tth="~/bin/tt context home ; sleep 0.1 ; ~/bin/tt"
+#alias ttm="~/bin/tt context misc ; sleep 0.1 ; ~/bin/tt"
+#alias ttb="~/bin/tt context budget ; sleep 0.1 ; ~/bin/tt"
+#taskaddworksupport() {
+#    task add pro:work.support pri:$1 +$2 due:$3 scheduled:$4 $5
+#}
+#taskaddshortworksupport() {
+#    task add pro:work.support pri:$1 +$2 due:$3 $4
+#}
+#alias tawsu=taskaddworksupport
+#alias taswsu=taskaddshortworksupport
+#
+#taskaddworkmisc() {
+#    task add pro:work.misc pri:$1 +$2 due:$3 scheduled:$4 $5
+#}
+#taskaddshortworkmisc() {
+#    task add pro:work.misc pri:$1 +$2 due:$3 $4
+#}
+#alias tawmi=taskaddworkmisc
+#alias taswmi=taskaddshortworkmisc
+#
+#taskaddworkdev() {
+#    task add pro:work.dev pri:$1 +$2 due:$3 scheduled:$4 $5
+#}
+#taskaddshortworkdev() {
+#    task add pro:work.dev pri:$1 +$2 due:$3 $4
+#}
+#alias tawde=taskaddworkdev
+#alias taswde=taskaddshortworkdev
+#
+#taskaddworkops() {
+#    task add pro:work.ops pri:$1 +$2 due:$3 scheduled:$4 $5
+#}
+#taskaddshortworkops() {
+#    task add pro:work.ops pri:$1 +$2 due:$3 $4
+#}
+#alias tawop=taskaddworkops
+#alias taswop=taskaddshortworkops
+#zl() {
+#    ~/bin/zargan.py "$@" 2>/dev/null | head -n 10
+#}
+#export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
+#export TASKRC="~/.task_old/.taskrc"
+#taskaddworkrefund() {
+#    task add pro:work.refund pri:$1 +$2 due:$3 scheduled:$4 $5
+#}
+#taskaddshortworkrefund() {
+#    task add pro:work.refund pri:$1 +$2 due:$3 $4
+#}
+#alias tawref=taskaddworkrefund
+#alias taswref=taskaddshortworkrefund
+#alias oc="/mnt/c/Users/Kafein/.crc/bin/oc/oc.exe"
+#et() { sdcv -nu "Babylon English-Turkish" "$@" | sed -e "/^-->.*$/d" -e "s/\r\r/\r/" -e "s/<font.*\">/$(printf "\e[34m")/" -e "s/<\/font>/$(printf "\e[00m")/"; }
+#alias te="sdcv -cu Turkish-English"
+#function ta_proj() { echo "$2" | vipe | tr '\n' '\0' | xargs -0 -n1 -t task add "project:$1"; }
+
+# If use_tmux=1, add these codes to .bashrc/.zshrc:
+#[[ -z "$TMUX" && -n "$USE_TMUX" ]] && {
+#       [[ -n "$ATTACH_ONLY" ]] && {
+#           tmux a 2>/dev/null || {
+#               cd && exec tmux
+#        }
+#        exit
+#    }
+#    tmux new-window task-pane && tmux new-window task-web && tmux select-window -t 1 && tmux kill-window 2>/dev/null && exec tmux a
+##   tmux new-window -c "$PWD" 2>/dev/null && exec tmux a
+##tmux new-session -d ; tmux set -g status off ; tmux split-window ; tmux select-pane -t 0 tmux send-keys "${HOME}/bin/task-pane" "Enter" ; tmux new-window ; tmux select-window -t 1 ; tmux send-keys "${HOME}/.rvm/gems/ruby-2.5.0@task-web/bin/task-web" "Enter" ; tmux kill-window
+#    exec tmux
+#}
+#!/bin/bash

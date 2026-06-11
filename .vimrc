@@ -66,35 +66,35 @@ set lbr                 " linebreak; satir sonunda alt satira hecelemeyle gecisi
 set tw=79               " bir satırın alabileceği karakter sayısı
 set magic               " For regular expressions turn magic on
 "noremap <Leader>s :update<CR> "mevcbut buffer'i diske kayededer
-let $PAGER='' " man page icin 
+let $PAGER='' " man page icin
 set clipboard=unnamedplus
 "set term=tmux-256color
 "set term=screen-256color
 "set term=screen-256color-bce
 "map y "+y
 set t_Co=256
+" indentLine
+let g:indentLine_char = '|'
 set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
                                 " paste mode, where you can paste mass data
                                 " that won't be autoindented
 au InsertLeave * set nopaste
-" au VimResized * wincmd =      " vim itself moves the split bar... 
+" au VimResized * wincmd =      " vim itself moves the split bar...
                                 " when the window is grown, vim will not move the split bars back.
                                 " this is independent of equalalways, which works only when creating new splits or
                                 " closing windows. But not when resizing the surrounding window.
 " set noequalalways
 
+
 " YAML editor
 "au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml 
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
 """ Eklenti yapilandirma
 "let g:vimwiki_list = [{'path': '~/vimwiki/',
 "                      \ 'syntax': 'markdown', 'ext': '.md'}]
-
-" indenLine
-let g:indentLine_char = '|'
 
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
@@ -230,14 +230,14 @@ endif
 
 " Vim session
 let g:session_autosave= 'no'
-let g:session_autoload = 'yes' 
+let g:session_autoload = 'yes'
 "set sessionoptions=buffers
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='lucius'
 "let g:airline_theme='base16_solarized'
 "au! BufNewFile,BufRead * colorscheme iceberg
-"au! BufNewFile,BufRead * colorscheme solarized8 
+"au! BufNewFile,BufRead * colorscheme solarized8
 
 command! WQ wq!
 command! Wq wq!
@@ -423,11 +423,11 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 nnoremap <F6> :UndotreeToggle<CR>
-set exrc 
+set exrc
 set secure
 
 " By default, it will be triggered by `ENTER` in insert mode.
-" set this to 1 to use `CTRL+ENTER` instead, and keep the  
+" set this to 1 to use `CTRL+ENTER` instead, and keep the
 " default `ENTER` behavior unchanged.
 let g:rtf_ctrl_enter = 0
 

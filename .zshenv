@@ -1,4 +1,4 @@
-. "$HOME/.cargo/env"
+#. "$HOME/.cargo/env"
 #export FUNCNEST=100
 #export DISPLAY=:0
 #export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
