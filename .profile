@@ -58,3 +58,7 @@ export VAGRANT_DEFAULT_PROVIDER="hyperv"
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 . "$HOME/.cargo/env"
 . "/root/.deno/env"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/wacavitg/.local/bin:$PATH"

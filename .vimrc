@@ -1,5 +1,6 @@
 """ Eklentiler
 call plug#begin('~/.vim/plugged')
+Plug 'rbgrouleff/bclose.vim'
 Plug 'chrisbra/NrrwRgn'
 " Tell vim-plug to install python module with post-update hook
 Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }

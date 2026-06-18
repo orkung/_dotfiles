@@ -47,3 +47,7 @@ export INTELLI_HOME="/root/.local/share/intelli-shell"
 export PATH="$INTELLI_HOME/bin:$PATH"
 eval "$(intelli-shell init bash)"
 . "/root/.deno/env"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/wacavitg/.local/bin:$PATH"

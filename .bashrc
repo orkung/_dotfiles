@@ -211,3 +211,6 @@ function fcode() {
 complete -C /usr/bin/terraform terraform
 export BROWSER=wslview
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# Added by Antigravity CLI installer
+export PATH="/home/wacavitg/.local/bin:$PATH"

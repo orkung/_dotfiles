@@ -767,6 +767,10 @@ __apply_interactive_keybindings() {
   bindkey -M vicmd '^X' _intelli_variable
   bindkey -M viins '^F' _intelli_fix
   bindkey -M vicmd '^F' _intelli_fix
+
+  # Restore CTRL-R keybinding for fzf history search
+  bindkey -M viins '^R' fzf-history-widget
+  bindkey -M vicmd '^R' fzf-history-widget
 }
 
 if [[ -o interactive ]]; then
@@ -1128,3 +1132,7 @@ apply_patch() {
 #    exec tmux
 #}
 #!/bin/bash
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/wacavitg/.local/bin:$PATH"
