@@ -51,3 +51,5 @@ eval "$(intelli-shell init bash)"
 
 # Added by Antigravity CLI installer
 export PATH="/home/wacavitg/.local/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"

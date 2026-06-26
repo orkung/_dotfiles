@@ -214,3 +214,5 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Added by Antigravity CLI installer
 export PATH="/home/wacavitg/.local/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"

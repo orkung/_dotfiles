@@ -589,9 +589,11 @@ alias bat=batcat
 # Start SSH agent automatically
 if [[ -t 0 && -z "$SSH_AUTH_SOCK" ]]; then
   eval "$(ssh-agent -s)"
-  # ssh-add ~/.ssh/kafein-ssh
-  # ssh-add ~/.ssh/id_ed25519_orkung
-  # ssh-add ~/.ssh/id_ed25519
+ssh-add ~/.ssh/id_ed25519_wacavitg
+# ssh-add ~/.ssh/kafein-ssh
+# ssh-add ~/.ssh/id_ed25519_orkung
+# ssh-add ~/.ssh/id_ed25519
+
 fi
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 #. "/root/.deno/env"
@@ -1136,3 +1138,28 @@ apply_patch() {
 
 # Added by Antigravity CLI installer
 export PATH="/home/wacavitg/.local/bin:$PATH"
+
+alias pbcopy='clip.exe'
+
+# Paste from Windows clipboard (and strip Windows carriage returns)
+alias pbpaste='powershell.exe -Command "Get-Clipboard" | sed "s/\r$//"'
+
+# . "$HOME/.atuin/bin/env"
+#export DISPLAY=localhost:0
+export LIBGL_ALWAYS_SOFTWARE=1
+export WEBKIT_DISABLE_COMPOSITING_MODE=1
+export WEBKIT_DISABLE_DMABUF_RENDERER=1
+#eval "$(atuin init zsh)"
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# DeepL Turkish translation helper function
+deepltr() {
+  deepl translate "$1" --to tr
+}
+
+# DeepL English translation helper function
+deeplen() {
+  deepl translate "$1" --from tr --to en
+}
