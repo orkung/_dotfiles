@@ -36,24 +36,28 @@ Plug 'joom/turkish-deasciifier.vim'
 Plug 'scrooloose/nerdtree'
 "Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'rbgrouleff/bclose.vim'
 Plug 'Yggdroot/indentLine'
 "Plug 'honza/vim-snippets'
 "Plug 'SirVer/ultisnips'
 "Plug 'pedrohdz/vim-yaml-folds'
 "Plug 'tmux-plugins/vim-tmux-focus-events'
 "Plug 'FelipeCRamos/nord-vim-darker'
-"Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 call plug#end()
 
 set rtp+=~/.fzf
 
 """ Ayarlar
+let g:markdown_folding = 1
+
 filetype on
 filetype plugin on
 filetype plugin indent on
 filetype indent on
 
+set guicursor=n:block,i:block
+set guicursor+=a:blinkon0
 set shell=bash\ --login
 set background=dark
 syntax on
@@ -220,13 +224,20 @@ noremap <S-e> :qall!<cr>
 
 "colorscheme nord
 "colorscheme iceberg
-"colorscheme solarized8
+colorscheme solarized8
 "colorscheme OceanicNext
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
+
+augroup user_markdown_highlight
+  autocmd!
+  autocmd FileType markdown highlight! link markdownError Normal
+  autocmd Syntax markdown highlight! link markdownError Normal
+  autocmd ColorScheme * if &filetype ==# 'markdown' | highlight! link markdownError Normal | endif
+augroup END
 
 
 " Vim session
@@ -244,7 +255,7 @@ command! WQ wq!
 command! Wq wq!
 command! W w!
 command! Q q!
-"set foldlevelstart=1
+set foldlevelstart=99
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
@@ -277,6 +288,55 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+nnoremap <F6> :UndotreeToggle<CR>
+set exrc
+set secure
+
+" Keep fzf compact and centered.
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" Keep command history between Vim sessions.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Initialize fzf.vim settings before assigning values.
+let g:fzf_vim = {}
+
+" Show previews on the right, and toggle them with CTRL-/.
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+
+" Jump to an existing window when selecting an open buffer.
+let g:fzf_vim.buffers_jump = 1
+
+" Use quickfix for multi-select search results.
+let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
+
+" Common mappings.
+nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>fg :GFiles<CR>
+nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>fr :Rg<CR>
+nnoremap <silent> <leader>fl :Lines<CR>
+nnoremap <silent> <leader>fh :History<CR>
+
+"If Vim runs inside tmux and you prefer a tmux popup, use this layout instead:
+
+if exists('$TMUX')
+  let g:fzf_layout = { 'tmux': '90%,70%' }
+else
+  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+endif
+
+" By default, it will be triggered by `ENTER` in insert mode.
+" set this to 1 to use `CTRL+ENTER` instead, and keep the
+" default `ENTER` behavior unchanged.
+let g:rtf_ctrl_enter = 0
+
+" Enable formatting when leaving insert mode
+let g:rtf_on_insert_leave = 1
 
 "" Use tab for trigger completion with characters ahead and navigate.
 "" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -420,17 +480,3 @@ endif
 "highlight cursorline cterm=none ctermfg=7 ctermbg=4
 "highlight cursorcolumn cterm=none ctermfg=7 ctermbg=4
 
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-nnoremap <F6> :UndotreeToggle<CR>
-set exrc
-set secure
-
-" By default, it will be triggered by `ENTER` in insert mode.
-" set this to 1 to use `CTRL+ENTER` instead, and keep the
-" default `ENTER` behavior unchanged.
-let g:rtf_ctrl_enter = 0
-
-" Enable formatting when leaving insert mode
-let g:rtf_on_insert_leave = 1

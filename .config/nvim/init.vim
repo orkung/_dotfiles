@@ -45,7 +45,7 @@ call plug#end()
 """"""""""""""""""""""""""" settings from vimrc
 nnoremap <Leader>h :nohl<CR>
 set t_Co=256
-set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
+"set pastetoggle=<F5>            " when in insert mode, press <F5> to go to
                                 " paste mode, where you can paste mass data
                                 " that won't be autoindented
 au InsertLeave * set nopaste
@@ -60,6 +60,8 @@ set expandtab           " tab'a basıldığında boşluk karakterlerinden oluşa
 set lbr                 " linebreak; satir sonunda alt satira hecelemeyle gecisi saglar
 set tw=79               " bir satırın alabileceği karakter sayısı
 set magic               " For regular expressions turn magic on
+let g:markdown_folding = 1
+
 filetype on
 filetype plugin on
 filetype plugin indent on
@@ -199,7 +201,7 @@ command! WQ wq!
 command! Wq wq!
 command! W w!
 command! Q q!
-"set foldlevelstart=1
+set foldlevelstart=99
 
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_error = '✘'
@@ -375,7 +377,14 @@ let g:airline_theme='lucius'
 let g:airline_powerline_fonts = 1
 "let g:airline_theme='base16_solarized'
 au! BufNewFile,BufRead * colorscheme iceberg
-au! BufNewFile,BufRead * colorscheme solarized8
+"au! BufNewFile,BufRead * colorscheme solarized8
+
+augroup user_markdown_highlight
+  autocmd!
+  autocmd FileType markdown highlight! link markdownError Normal
+  autocmd Syntax markdown highlight! link markdownError Normal
+  autocmd ColorScheme * if &filetype ==# 'markdown' | highlight! link markdownError Normal | endif
+augroup END
 
 let g:mapleader="\<Space>"
 let g:dashboard_default_executive ='fzf'
@@ -404,6 +413,40 @@ nnoremap <leader>af :Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Keep fzf compact and centered.
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" Keep command history between Neovim sessions.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Initialize fzf.vim settings before assigning values.
+let g:fzf_vim = {}
+
+" Show previews on the right, and toggle them with CTRL-/.
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+
+" Jump to an existing window when selecting an open buffer.
+let g:fzf_vim.buffers_jump = 1
+
+" Use quickfix for multi-select search results.
+let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
+
+" Common mappings.
+nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>fg :GFiles<CR>
+nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>fr :Rg<CR>
+nnoremap <silent> <leader>fl :Lines<CR>
+nnoremap <silent> <leader>fh :History<CR>
+
+" If Neovim runs inside tmux and you prefer a tmux popup, use this layout instead:
+
+if exists('$TMUX')
+  let g:fzf_layout = { 'tmux': '90%,70%' }
+else
+  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+endif
 
 " Using Lua functions
 "nnoremap <Leader>af :lua require('telescope.builtin').find_files()<cr>

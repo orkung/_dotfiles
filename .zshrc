@@ -218,17 +218,6 @@ alias gds="git diff --staged"
 alias glg="git log --stat"
 alias glgp="git log --pretty=format:'%h - %an, %ar : %s'"
 alias gs="git status"
-function entr() {
-    trans :tr "$1" | less
-}
-function tren() {
-    trans :en "$1" | less
-}
-
-function enen() {
-    trans :en "$1" | less
-}
-
 export FZF_BASE="${FZF_BASE:-/usr/bin/fzf}"
 #eval $(crc oc-env)
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
@@ -516,27 +505,37 @@ fi
 #  fi
 #}
 
-_fix_stale_vscode_ipc() {
-  if [[ -n "$VSCODE_IPC_HOOK_CLI" && ! -S "$VSCODE_IPC_HOOK_CLI" ]]; then
-    unset VSCODE_IPC_HOOK_CLI
+code() {
+  local win_code="/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code"
 
-    if [[ -n "$TMUX" ]]; then
-      tmux setenv -gu VSCODE_IPC_HOOK_CLI 2>/dev/null
-    fi
-  fi
+  unset VSCODE_IPC_HOOK_CLI
+  [[ -n "$TMUX" ]] && tmux setenv -gu VSCODE_IPC_HOOK_CLI 2>/dev/null
+
+  [[ $# -eq 0 ]] && "$win_code" . || "$win_code" "$@"
 }
 
-code () {
-  _fix_stale_vscode_ipc
+#code () {
+#  local bin="$(ls -1dt $HOME/.vscode-server/cli/servers/*/server/bin/remote-cli/code $HOME/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
+#
+#  if [[ -z "$bin" ]]; then
+#    print -u2 "VS Code remote CLI not found"
+#    return 1
+#  fi
+#
+#  [[ $# -eq 0 ]] && "$bin" . || "$bin" "$@"
+#}
 
-  if [[ -n "$VSCODE_IPC_HOOK_CLI" && -S "$VSCODE_IPC_HOOK_CLI" ]]; then
-    local bin="$(ls -1dt $HOME/.vscode-server/cli/servers/*/server/bin/remote-cli/code $HOME/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
-    [[ $# -eq 0 ]] && "$bin" . || "$bin" "$@"
-  else
-    local win_code="/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code"
-    [[ $# -eq 0 ]] && "$win_code" . || "$win_code" "$@"
-  fi
-}
+#code () {
+#  _fix_stale_vscode_ipc
+#
+#  if [[ -n "$VSCODE_IPC_HOOK_CLI" && -S "$VSCODE_IPC_HOOK_CLI" ]]; then
+#    local bin="$(ls -1dt $HOME/.vscode-server/cli/servers/*/server/bin/remote-cli/code $HOME/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
+#    [[ $# -eq 0 ]] && "$bin" . || "$bin" "$@"
+#  else
+#    local win_code="/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code"
+#    [[ $# -eq 0 ]] && "$win_code" . || "$win_code" "$@"
+#  fi
+#}
 
 #_fix_stale_vscode_ipc
 #code () {
@@ -590,8 +589,8 @@ alias bat=batcat
 if [[ -t 0 && -z "$SSH_AUTH_SOCK" ]]; then
   eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_wacavitg
+ssh-add ~/.ssh/id_ed25519_orkung
 # ssh-add ~/.ssh/kafein-ssh
-# ssh-add ~/.ssh/id_ed25519_orkung
 # ssh-add ~/.ssh/id_ed25519
 
 fi
@@ -1154,12 +1153,44 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# DeepL Turkish translation helper function
+# DeepL and Translate Shell Turkish translation helper
+entr() {
+  {
+    printf "=== DeepL ===\n"
+    deepl translate "$1" --to tr
+    printf "\n=== Translate Shell ===\n"
+    trans :tr "$1"
+  } | less
+}
 deepltr() {
-  deepl translate "$1" --to tr
+  entr "$1"
 }
 
-# DeepL English translation helper function
-deeplen() {
-  deepl translate "$1" --from tr --to en
+# DeepL and Translate Shell English translation helper
+tren() {
+  {
+    printf "=== DeepL ===\n"
+    deepl translate "$1" --from tr --to en
+    printf "\n=== Translate Shell ===\n"
+    trans :en "$1"
+  } | less
 }
+deeplen() {
+  tren "$1"
+}
+
+enen() {
+  trans :en "$1" | less
+}
+
+#export AWS_ACCESS_KEY_ID="your-aws-access-key-id"
+#export AWS_SECRET_ACCESS_KEY="your-aws-secret-access-key"
+# If using temporary credentials, also run:
+#export AWS_SESSION_TOKEN="your-aws-session-token"
+unset GIT_ASKPASS
+unset SSH_ASKPASS
+unset VSCODE_GIT_ASKPASS_MAIN
+unset VSCODE_GIT_ASKPASS_NODE
+unset VSCODE_GIT_IPC_HANDLE
+export GIT_TERMINAL_PROMPT=1
+alias vim='nvim'
