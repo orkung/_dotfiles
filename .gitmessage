@@ -1,7 +1,18 @@
-Why:
-*
-This change addresses the need by:
-*
-# 50-character subject line
+<type>(<scope>): <summary, imperative, no trailing period, <=70 chars>
+
+# Body (optional): explain WHY, not what — the diff already shows
+# what changed. Wrap body lines at ~72 chars.
 #
-# 72-character wrapped longer description.
+# Types:  feat, fix, refactor, docs, ci, chore
+# Scopes: rke2, postgresql, redis, vault, keycloak, rabbitmq,
+#         nextcloud, ufw, inventory, pipelines, docs
+#
+# Examples:
+#   feat(redis): add standalone server role and pipeline step
+#
+#   fix(rke2): allow vxlan 8472 access across nodes
+#
+#   Nodes on different subnets were dropping vxlan traffic because
+#   ufw only allowed 8472/udp from the local subnet.
+#
+# Lines starting with '#' are stripped automatically.
