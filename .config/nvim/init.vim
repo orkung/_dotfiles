@@ -288,6 +288,9 @@ endif
 "
 "" Highlight the symbol and its references when holding the cursor.
 "autocmd CursorHold * silent call CocActionAsync('highlight')
+
+"set guicursor=n:block,i:block
+set guicursor=a:blinkon0
 "
 "" Symbol renaming.
 "nmap <leader>rn <Plug>(coc-rename)
