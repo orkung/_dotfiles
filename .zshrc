@@ -206,13 +206,10 @@ export PULSE_SERVER="tcp:$HOST_IP"
 alias gacp="git add -A && git commit -m "." && git push"
 alias g="git"
 alias gp="git push"
-alias ga="git add -A"
-alias gc="git commit -m"
 alias gl="git log --oneline --graph --decorate --all"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gpl="git pull"
-alias gcm="git commit -m"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias glg="git log --stat"
@@ -224,6 +221,14 @@ alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
 alias gp="git push"
 alias gc="git commit"
+ga() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: ga <file> [file...]"
+        return 1
+    fi
+
+    git add "$@"
+}
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs newline)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load)
 
