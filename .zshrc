@@ -203,7 +203,7 @@ alias tp='trans -p'
 export HOST_IP="$(ip route | awk '/^default/{print $3}')"
 export PULSE_SERVER="tcp:$HOST_IP"
 #export DISPLAY="$HOST_IP:0.0"
-alias gacp="git add -A && git commit -m "." && git push"
+#alias gacp="git add -A && git commit -m "." && git push"
 alias g="git"
 alias gp="git push"
 alias gl="git log --oneline --graph --decorate --all"
@@ -221,14 +221,14 @@ alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
 alias gp="git push"
 alias gc="git commit"
-ga() {
-    if [[ $# -eq 0 ]]; then
-        echo "Usage: ga <file> [file...]"
-        return 1
-    fi
-
-    git add "$@"
-}
+# ga() {
+#     if [[ $# -eq 0 ]]; then
+#         echo "Usage: ga <file> [file...]"
+#         return 1
+#     fi
+#
+#     git add "$@"
+# }
 #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs newline)
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load)
 
@@ -1201,3 +1201,5 @@ unset VSCODE_GIT_ASKPASS_NODE
 unset VSCODE_GIT_IPC_HANDLE
 export GIT_TERMINAL_PROMPT=1
 alias vim='nvim'
+
+. "$HOME/.local/share/../bin/env"

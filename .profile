@@ -64,3 +64,5 @@ export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 export PATH="/home/wacavitg/.local/bin:$PATH"
 
 . "$HOME/.atuin/bin/env"
+
+. "$HOME/.local/share/../bin/env"

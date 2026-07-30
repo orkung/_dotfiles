@@ -2,28 +2,17 @@
 call plug#begin('~/.vim/plugged')
 Plug 'rbgrouleff/bclose.vim'
 Plug 'chrisbra/NrrwRgn'
-" Tell vim-plug to install python module with post-update hook
-Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
-"Plug 'godlygeek/tabular'
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mbbill/undotree'
-"Plug 'jiangmiao/auto-pairs'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'majutsushi/tagbar'
-"Plug 'farseer90718/vim-taskwarrior'
-"Plug 'vimwiki/vimwiki', { 'branch' : 'dev' }
-"Plug 'tools-life/taskwiki'
-Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/fzf.vim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'fannheyward/coc-sql'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
-"Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'arcticicestudio/nord-vim'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/limelight.vim'
 Plug 'szw/vim-maximizer'
@@ -34,14 +23,8 @@ Plug 'xolox/vim-misc'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'joom/turkish-deasciifier.vim'
 Plug 'scrooloose/nerdtree'
-"Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Yggdroot/indentLine'
-"Plug 'honza/vim-snippets'
-"Plug 'SirVer/ultisnips'
-"Plug 'pedrohdz/vim-yaml-folds'
-"Plug 'tmux-plugins/vim-tmux-focus-events'
-"Plug 'FelipeCRamos/nord-vim-darker'
 Plug 'flazz/vim-colorschemes'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 call plug#end()
@@ -56,8 +39,8 @@ filetype plugin on
 filetype plugin indent on
 filetype indent on
 
-set guicursor=n:block,i:block
-set guicursor+=a:blinkon0
+"set guicursor=n:block,i:block
+"set guicursor+=a:blinkon0
 set shell=bash\ --login
 set background=dark
 syntax on
@@ -71,7 +54,7 @@ set lbr                 " linebreak; satir sonunda alt satira hecelemeyle gecisi
 set tw=79               " bir satırın alabileceği karakter sayısı
 set magic               " For regular expressions turn magic on
 "noremap <Leader>s :update<CR> "mevcbut buffer'i diske kayededer
-let $PAGER='' " man page icin
+"let $PAGER='' " man page icin
 set clipboard=unnamedplus
 "set term=tmux-256color
 "set term=screen-256color
@@ -89,7 +72,14 @@ au InsertLeave * set nopaste
                                 " this is independent of equalalways, which works only when creating new splits or
                                 " closing windows. But not when resizing the surrounding window.
 " set noequalalways
-
+set ic
+set is
+set number
+set list
+autocmd InsertEnter * set cursorline cursorcolumn
+autocmd InsertLeave * set nocursorline nocursorcolumn
+highlight cursorline cterm=none ctermfg=7 ctermbg=4
+highlight cursorcolumn cterm=none ctermfg=7 ctermbg=4
 
 " YAML editor
 "au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
@@ -130,32 +120,6 @@ let g:NERDTreeMapJumpLastChild = ''
 let g:NERDTreeMapJumpFirstChild = ''
 let g:NERDTreeWinSize=31
 let g:NERDTreeDirArrows=0
-" vim-tmux-navigator; tmux pane'leri arasinda vim kisayollariyla gezinme
-if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let previous_winnr = winnr()
-    silent! execute "wincmd " . a:wincmd
-    if previous_winnr == winnr()
-      call system("tmux select-pane -" . a:tmuxdir)
-      redraw!
-    endif
-  endfunction
-
-  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
-
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
-else
-  map <C-h> <C-w>h
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-l> <C-w>l
-endif
-
 " Yankstack ile registers yonetimi
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
@@ -480,3 +444,21 @@ let g:rtf_on_insert_leave = 1
 "highlight cursorline cterm=none ctermfg=7 ctermbg=4
 "highlight cursorcolumn cterm=none ctermfg=7 ctermbg=4
 
+" Tell vim-plug to install python module with post-update hook
+"Plug 'skywind3000/vim-rt-format', { 'do': 'pip3 install autopep8' }
+"Plug 'godlygeek/tabular'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'farseer90718/vim-taskwarrior'
+"Plug 'vimwiki/vimwiki', { 'branch' : 'dev' }
+"Plug 'tools-life/taskwiki'
+"Plug 'cocopon/iceberg.vim'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'fannheyward/coc-sql'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'mhartington/oceanic-next'
+"Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'pedrohdz/vim-yaml-folds'
+"Plug 'tmux-plugins/vim-tmux-focus-events'
+"Plug 'FelipeCRamos/nord-vim-darker'
