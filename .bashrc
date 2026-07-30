@@ -216,3 +216,5 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="/home/wacavitg/.local/bin:$PATH"
 
 . "$HOME/.atuin/bin/env"
+
+. "$HOME/.local/share/../bin/env"
