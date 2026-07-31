@@ -217,7 +217,6 @@ alias glgp="git log --pretty=format:'%h - %an, %ar : %s'"
 alias gs="git status"
 export FZF_BASE="${FZF_BASE:-/usr/bin/fzf}"
 #eval $(crc oc-env)
-alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
 alias gp="git push"
 alias gc="git commit"

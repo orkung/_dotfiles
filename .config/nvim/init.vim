@@ -5,8 +5,8 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 	autocmd VimEnter * PlugInstall
 endif
 
-"call plug#begin('~/.config/nvim/plugged')
-call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
+call plug#begin('~/.config/nvim/plugged')
+"call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 " Use release branch (recommend)
 Plug 'mfussenegger/nvim-lint'
 Plug 'cloudhead/neovim-fuzzy'
@@ -23,7 +23,7 @@ Plug 'mbbill/undotree'
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'szw/vim-maximizer'

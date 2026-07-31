@@ -3,7 +3,7 @@ if [ -f "$HOME/.bashrc" ]; then
 fi
 # Keep the terminal type reported by Windows Terminal. tmux sets the
 # appropriate terminal type for programs running inside its panes.
-export EDITOR="vim"
+export EDITOR="nvim"
 #export MANPAGER='bash -c "vim -MRn -c \"set ft=man nomod nolist nospell nonu\" -c \"nm q :qa!<CR>\" -c \"nm <end> G\" -c \"nm <home> gg\"</dev/tty <(col -b)"'
 export PATH=${HOME}/.rvm/gems/ruby-2.5.0@task-web:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/gems/ruby-2.7.1/bin:${HOME}/.rvm/bin:${HOME}/.pyenv/bin:${HOME}/.local/bin:${HOME}/.pyenv/versions/3.9.0/bin:${HOME}/.pyenv/versions/2.7.18/bin:${HOME}/.local/lib/python2.7/site-packages:${HOME}/.cargo/bin:${HOME}/Downloads/crc-linux-1.25.0-amd64:/home/orkun/.crc/bin/oc:/usr/share/rvm/bin:/home/cavitg/.local/bin:$PATH
 export HOST_IP="$(ip route | awk '/^default/{print $3}')"
