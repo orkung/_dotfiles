@@ -238,16 +238,16 @@ alias gc="git commit"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-function entr() {
-    trans :tr "$1" | head -n 25
-}
-function tren() {
-    trans :en "$1" | head -n 25
-}
-
-function enen() {
-    trans :en "$1" | head -n 25
-}
+#function tentr() {
+#    trans :tr "$1" | head -n 25
+#}
+#function ttren() {
+#    trans :en "$1" | head -n 25
+#}
+#
+#function tenen() {
+#    trans :en "$1" | head -n 25
+#}
 
 # Running under WSL (Windows Subsystem for Linux)?
 if uname -r | grep -q 'microsoft'; then
@@ -1161,7 +1161,7 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # DeepL and Translate Shell Turkish translation helper
-entr() {
+tentr() {
   {
     printf "=== DeepL ===\n"
     deepl translate "$1" --to tr
@@ -1170,11 +1170,11 @@ entr() {
   } | less
 }
 deepltr() {
-  entr "$1"
+  tentr "$1"
 }
 
 # DeepL and Translate Shell English translation helper
-tren() {
+ttren() {
   {
     printf "=== DeepL ===\n"
     deepl translate "$1" --from tr --to en
@@ -1183,10 +1183,10 @@ tren() {
   } | less
 }
 deeplen() {
-  tren "$1"
+  ttren "$1"
 }
 
-enen() {
+tenen() {
   trans :en "$1" | less
 }
 

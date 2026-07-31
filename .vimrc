@@ -41,7 +41,7 @@ filetype indent on
 
 "set guicursor=n:block,i:block
 "set guicursor+=a:blinkon0
-set shell=bash\ --login
+set shell=/bin/zsh
 set background=dark
 syntax on
 set nocompatible        " don't bother with vi compatibility
@@ -55,6 +55,52 @@ set tw=79               " bir satırın alabileceği karakter sayısı
 set magic               " For regular expressions turn magic on
 "noremap <Leader>s :update<CR> "mevcbut buffer'i diske kayededer
 "let $PAGER='' " man page icin
+" Use the Windows clipboard directly when Vim runs under WSL. WSLg does not
+" provide the Wayland primary-selection protocol used by Vim's "*" register.
+if exists('$WSL_DISTRO_NAME')
+      \ && executable('powershell.exe')
+  function! WslClipboardCopy(register, register_type, lines) abort
+    let clipboard_text = join(a:lines, "\n")
+    if a:register_type ==# 'V'
+      let clipboard_text .= "\n"
+    endif
+    let clipboard_base64 = base64_encode(str2blob(clipboard_text))
+    call echoraw("\e]52;c;" . clipboard_base64 . "\x07")
+  endfunction
+
+  function! WslClipboardPaste(register) abort
+    let clipboard_text = system([
+          \ 'powershell.exe',
+          \ '-NoLogo',
+          \ '-NoProfile',
+          \ '-NonInteractive',
+          \ '-Command',
+          \ '[Console]::Out.Write((Get-Clipboard -Raw))'
+          \ ])
+    let clipboard_text = substitute(clipboard_text, "\r", '', 'g')
+    let register_type = clipboard_text =~# "\n$" ? 'V' : 'v'
+    let clipboard_lines = split(clipboard_text, "\n", 1)
+    if register_type ==# 'V' && !empty(clipboard_lines)
+          \ && clipboard_lines[-1] ==# ''
+      call remove(clipboard_lines, -1)
+    endif
+    return [register_type, clipboard_lines]
+  endfunction
+
+  let v:clipproviders['wsl'] = {
+        \ 'available': { -> v:true },
+        \ 'copy': {
+        \   '+': function('WslClipboardCopy'),
+        \   '*': function('WslClipboardCopy')
+        \ },
+        \ 'paste': {
+        \   '+': function('WslClipboardPaste'),
+        \   '*': function('WslClipboardPaste')
+        \ }
+        \ }
+  set clipmethod^=wsl
+endif
+
 set clipboard=unnamedplus
 "set term=tmux-256color
 "set term=screen-256color
