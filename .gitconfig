@@ -7,7 +7,7 @@
 [core]
 	excludesFile = ~/.gitignore
 	autocrlf = input
-	editor = code --wait
+	editor = '/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code' --wait
     pager = delta
 [interactive]
     diffFilter = delta --color-only
