@@ -10,7 +10,7 @@
     "plan-mode-for-complex-tasks": 10,
     "color-when-multi-clauding": 13,
     "memory-command": 16,
-    "theme-command": 1,
+    "theme-command": 21,
     "auto-copy-config-hint": 12,
     "status-line": 1,
     "prompt-queue": 10,
@@ -1198,8 +1198,8 @@
       "lastUsedAt": 1785334786461
     },
     "update-config": {
-      "usageCount": 1,
-      "lastUsedAt": 1785478161619
+      "usageCount": 2,
+      "lastUsedAt": 1785740283230
     }
   },
   "feedbackSurveyState": {
@@ -1288,7 +1288,7 @@
     "plan-mode-for-complex-tasks": 2,
     "color-when-multi-clauding": 2,
     "memory-command": 2,
-    "theme-command": 1,
+    "theme-command": 2,
     "auto-copy-config-hint": 2,
     "status-line": 1,
     "prompt-queue": 2,
@@ -1314,9 +1314,9 @@
   },
   "pluginUsage": {
     "aws-core@claude-plugins-official": {
-      "usageCount": 147,
-      "lastUsedAt": 1785510749693,
-      "lastUsedNumStartups": 20
+      "usageCount": 149,
+      "lastUsedAt": 1785739281447,
+      "lastUsedNumStartups": 21
     }
   },
   "cachedUsageUtilization": {
@@ -1404,6 +1404,6 @@
     }
   },
   "remoteControlUpsellSeenCount": 3,
-  "lastPlanModeUse": 1785501369453,
+  "lastPlanModeUse": 1785739925884,
   "hasSeenAutoModeEntryWarning": true
 }

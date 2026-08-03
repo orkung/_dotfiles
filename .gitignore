@@ -117,10 +117,11 @@ pnpm-debug.log*
 # Personal dotfiles checkout
 .dotfiles
 
-# markdown related files
+# Markdown and YAML linting files
 .markdownlint-cli2.json
 .markdownlint.json
 .yamllint.json
+.yamllintignore
 bitbucket-pipelines_self_hosted_runner.yaml
 
 
@@ -137,4 +138,3 @@ projects/
 # AI
 .claude/
 CLAUDE.md
-
