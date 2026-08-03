@@ -1203,3 +1203,7 @@ alias vim='nvim'
 
 . "$HOME/.local/share/../bin/env"
 alias tfcheck='terraform fmt -recursive && terraform validate && terraform plan -lock-timeout=5m -out=tfplan'
+ta() {
+   tmux set-environment -g WSL_INTEROP "$WSL_INTEROP"
+   tmux attach-session "$@"
+}

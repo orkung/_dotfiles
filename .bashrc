@@ -205,16 +205,16 @@ function fcode() {
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 #eval "$(atuin init bash)"
-. "$HOME/.cargo/env"
-. "/root/.deno/env"
+# . "$HOME/.cargo/env"
+# . "/root/.deno/env"
 
 complete -C /usr/bin/terraform terraform
 export BROWSER=wslview
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Added by Antigravity CLI installer
-export PATH="/home/wacavitg/.local/bin:$PATH"
+# export PATH="/home/wacavitg/.local/bin:$PATH"
 
-. "$HOME/.atuin/bin/env"
+# . "$HOME/.atuin/bin/env"
 
 . "$HOME/.local/share/../bin/env"

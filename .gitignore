@@ -1,0 +1,140 @@
+# Global ignore rules for DevOps/admin workstations.
+#
+# Keep repository-specific ignores in each repo's .gitignore. This file is for
+# editor state, local credentials, generated artifacts, and scratch files that
+# should rarely be committed from any project.
+
+# Local workspaces and editor state
+*.code-workspace
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS and filesystem noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+*.kubeconfig
+kubeconfig
+id_rsa
+id_ed25519
+known_hosts.old
+
+# DevOps/admin scratch directories
+.scripts/
+.templates/
+bitbucket/
+tmp/
+temp/
+.tmp/
+scratch/
+artifacts/
+reports/
+backups/
+.schemas/
+.agents/
+
+
+# Logs and command output
+*.log
+*.out
+*.err
+*.pid
+*.retry
+
+# Archives and bundles
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+
+# Terraform and OpenTofu local state
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.*
+*.auto.tfvars
+*.auto.tfvars.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+tfplan
+*.tfplan
+
+# Ansible local output
+.ansible/
+ansible.log
+inventory.local
+
+# Kubernetes and Helm generated output
+*.rendered.yaml
+helm-output/
+charts/*.tgz
+
+# Cloud and CLI caches
+.aws-sam/
+.serverless/
+.pulumi/
+.azure/
+.cache/
+
+# Python tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+
+# Node tooling
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Personal dotfiles checkout
+.dotfiles
+
+# markdown related files
+.markdownlint-cli2.json
+.markdownlint.json
+.yamllint.json
+bitbucket-pipelines_self_hosted_runner.yaml
+
+
+# Miscellaneous
+.notes/
+notes/
+.docs/
+docs/
+pre_commit_errors.txt
+
+# argocd project seperation not deployed yet
+projects/
+
+# AI
+.claude/
+CLAUDE.md
+
