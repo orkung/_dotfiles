@@ -1,0 +1,30 @@
+---
+exclude: ^inventory/group_vars/.*/vault\.ya?ml$
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+        args:
+          - --allow-multiple-documents
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args:
+          - --fix=no
+      - id: trailing-whitespace
+
+  - repo: local
+    hooks:
+      - id: markdownlint
+        name: Lint Markdown
+        entry: .scripts/markdownlint.sh
+        language: system
+        types:
+          - markdown
