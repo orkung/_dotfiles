@@ -1,0 +1,47 @@
+{
+  "folders": [
+    {
+      "name": "__WORKSPACE_NAME__",
+      "path": "__FOLDER_PATH__"
+    }
+  ],
+  "settings": {
+    "dimmer.enabled": false,
+    "editor.insertFinalNewline": true,
+    "editor.renderWhitespace": "boundary",
+    "files.eol": "\n",
+    "files.exclude": {
+      "**/.terraform": true,
+      "**/*.tfstate": true,
+      "**/*.tfstate.*": true
+    },
+    "json.schemas": [
+      {
+        "fileMatch": [
+          ".markdownlint.json"
+        ],
+        "url": "./.schemas/markdownlint-config.schema.json"
+      }
+    ],
+    "yaml.schemas": {
+      "kubernetes": "*deployment*.yaml"
+    },
+    "search.exclude": {
+      "**/.terraform": true,
+      "**/*.tfstate": true,
+      "**/*.tfstate.*": true,
+      "**/tfplan*": true
+    },
+    "terraform.experimentalFeatures.prefillRequiredFields": true,
+    "terminal.integrated.cwd": "${workspaceFolder}"
+  },
+  "extensions": {
+    "recommendations": [
+      "HashiCorp.terraform",
+      "DavidAnson.vscode-markdownlint",
+      "redhat.vscode-yaml",
+      "ms-kubernetes-tools.vscode-kubernetes-tools",
+      "timonwong.shellcheck"
+    ]
+  }
+}

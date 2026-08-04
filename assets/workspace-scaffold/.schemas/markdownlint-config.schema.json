@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.workspace/schemas/markdownlint-config.schema.json",
+  "title": "markdownlint configuration",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/$defs/ruleConfig"
+  },
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "default": {
+      "type": "boolean"
+    },
+    "ignore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "MD001": {
+      "$ref": "#/$defs/booleanRule"
+    },
+    "MD004": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/booleanRule"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "style": {
+              "type": "string",
+              "enum": [
+                "consistent",
+                "asterisk",
+                "plus",
+                "dash",
+                "sublist"
+              ]
+            }
+          },
+          "required": [
+            "style"
+          ]
+        }
+      ]
+    },
+    "MD007": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/booleanRule"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "indent": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "start_indented": {
+              "type": "boolean"
+            },
+            "start_indent": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      ]
+    },
+    "MD010": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD012": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD013": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/booleanRule"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "line_length": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "heading_line_length": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "code_block_line_length": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "code_blocks": {
+              "type": "boolean"
+            },
+            "tables": {
+              "type": "boolean"
+            },
+            "headings": {
+              "type": "boolean"
+            },
+            "headers": {
+              "type": "boolean"
+            },
+            "strict": {
+              "type": "boolean"
+            },
+            "stern": {
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "MD018": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD024": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD033": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/booleanRule"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "allowed_elements": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MD034": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD041": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD046": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD049": {
+      "$ref": "#/$defs/ruleConfig"
+    },
+    "MD059": {
+      "$ref": "#/$defs/ruleConfig"
+    }
+  },
+  "$defs": {
+    "booleanRule": {
+      "type": "boolean"
+    },
+    "ruleConfig": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    }
+  }
+}
