@@ -116,6 +116,7 @@ backups/
 *.rar
 
 # Terraform and OpenTofu local state
+**/.terraform/
 .terraform/
 .terraform.lock.hcl
 *.tfstate
