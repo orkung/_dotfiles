@@ -16,7 +16,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ "$ZSH_PROMPT_MODE" == minimal ]]; then
+  ZSH_THEME=""
+else
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+fi
 #ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
@@ -235,7 +239,15 @@ alias gc="git commit"
 #source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ "$ZSH_PROMPT_MODE" == minimal ]]; then
+  PROMPT='❯'
+  RPROMPT=''
+else
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
+
+alias minimal='ZSH_PROMPT_MODE=minimal exec zsh'
+alias default='unset ZSH_PROMPT_MODE; exec zsh'
 
 #function tentr() {
 #    trans :tr "$1" | head -n 25
