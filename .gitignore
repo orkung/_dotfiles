@@ -190,3 +190,9 @@ projects/
 # AI
 .claude/
 CLAUDE.md
+.remember/
+.agents/
+skills/
+skills-lock.json
+
+
