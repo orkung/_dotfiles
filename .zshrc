@@ -278,6 +278,7 @@ source $HOME/zsh.include.sh
 alias neo='source $(pwd)/venv/bin/activate && python3 $(pwd)/main.py'
 #export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+zstyle ':omz:plugins:kubectx' async-prompt no
 # source <(carapace _carapace)
 
 #socket=$(ls -1t /run/user/$UID/vscode-ipc-*.sock 2> /dev/null head -1)
@@ -828,10 +829,26 @@ apply_patch() {
 #ke() {
 #    kubectl exec -it "$(kp)" -- sh
 #}
+
 # kubectl completion
 #source <(kubectl completion bash)
 #complete -o default -F __start_kubectl k
-#
+_kubectl_completion_cache="$HOME/.zsh_kubectl_completion"
+_kubectl_version_cache="$HOME/.zsh_kubectl_completion.version"
+
+# Version-based invalidation: regenerate only when `kubectl version --client`
+# differs from what's recorded, so we pay one fast version check per shell
+# start instead of the expensive full completion generation.
+_kubectl_current_version="$(kubectl version --client 2>/dev/null)"
+if [[ ! -s "$_kubectl_completion_cache" || "$_kubectl_current_version" != "$(cat "$_kubectl_version_cache" 2>/dev/null)" ]]; then
+  kubectl completion zsh > "$_kubectl_completion_cache" 2>/dev/null
+  print -r -- "$_kubectl_current_version" > "$_kubectl_version_cache"
+fi
+unset _kubectl_current_version
+source "$_kubectl_completion_cache"
+alias k=kubectl
+compdef __start_kubectl k
+
 ## aliases
 #alias k='kubectl'
 #alias kctx='kubectx'
