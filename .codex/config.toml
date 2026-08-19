@@ -1,0 +1,130 @@
+service_tier = "priority"
+model = "gpt-5.6-luna"
+model_reasoning_effort = "medium"
+approvals_reviewer = "user"
+approval_policy = "never"
+
+[features]
+hooks = false
+memories = true
+
+[projects."/"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/elk-stack"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/ons-banking"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/components/postgres"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/new-microservices/ons-billing"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/architecture/new-components/elk-stack"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/architecture/new-components/rabbitmq"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/new-microservices/ons-banking/ons-banking-client-be"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspay-infra-ansible"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspay-infra-gitops"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/myself/orkung.github.io"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/onspay-infra-terraform-cdn"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspayv2/onspay-notification-client-service"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspayv2/onspay-ticker-service"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspayv2/onspay-backoffice"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/cakmakcitech/usermodule"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/onspay-infra-terraform-messaging"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/onspay-infra-terraform-assets"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/onspay-infra-ansible"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/terraform/onspay-infra-terraform-assets"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/terraform/onspay-infra-terraform-cdn"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/terraform/onspay-infra-terraform-messaging"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspaydevops/onspay-infra-gitops"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/development/dotnet-docker"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/learning/terminal_apps/tmux"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/learning"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/development/dotnet-docker/sandbox/onspay-healthcheck-operator-poc"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/learning/terminal_apps/git"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspayv2/onspay-banking-client-service"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/learning/terminal_apps/vim"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/learning/terminal_apps/zsh"]
+trust_level = "trusted"
+
+[projects."/home/wacavitg/projects/learning/ai"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.6-sol" = 3
+
+[marketplaces.agent-toolkit-for-aws]
+last_updated = "2026-08-19T07:29:47Z"
+last_revision = "1799aae50f30a8e97bab4faf38f2eadbd665028b"
+source_type = "git"
+source = "https://github.com/aws/agent-toolkit-for-aws.git"
+
+[memories]
+generate_memories = true
+use_memories = true

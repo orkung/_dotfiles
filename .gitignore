@@ -175,6 +175,7 @@ pnpm-debug.log*
 .yamllint.json
 .yamllintignore
 bitbucket-pipelines_self_hosted_runner.yaml
+tasks.md
 
 
 # Miscellaneous
