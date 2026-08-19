@@ -608,7 +608,7 @@ alias bat=batcat
 if [[ -t 0 && -z "$SSH_AUTH_SOCK" ]]; then
   eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_wacavitg
-ssh-add ~/.ssh/id_ed25519_orkung
+#ssh-add ~/.ssh/id_ed25519_orkung
 # ssh-add ~/.ssh/kafein-ssh
 # ssh-add ~/.ssh/id_ed25519
 
