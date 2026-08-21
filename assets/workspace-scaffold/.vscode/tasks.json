@@ -55,11 +55,14 @@
     },
     {
       "label": "Lint Markdown",
-      "type": "shell",
-      "command": "./.scripts/markdownlint.sh",
+      "type": "process",
+      "command": "${workspaceFolder}/.scripts/markdownlint.sh",
       "args": [
-        "."
+        "**/*.md"
       ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "problemMatcher": [],
       "group": {
         "kind": "test",
