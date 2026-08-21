@@ -81,6 +81,7 @@ printf 'Initializing workspace in %s\n' "$target"
 
 cp -R -n \
   "$repo_root/.markdownlint.json" \
+  "$repo_root/.markdownlintignore" \
   "$repo_root/.markdownlint-cli2.json" \
   "$repo_root/.yamllint.json" \
   "$repo_root/.pre-commit-config.yaml" \
