@@ -116,12 +116,15 @@ trust_level = "trusted"
 [projects."/home/wacavitg/projects/learning/ai"]
 trust_level = "trusted"
 
+[projects."/home/wacavitg/projects/knowledge-wiki"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.6-sol" = 3
 
 [marketplaces.agent-toolkit-for-aws]
-last_updated = "2026-08-19T07:29:47Z"
-last_revision = "1799aae50f30a8e97bab4faf38f2eadbd665028b"
+last_updated = "2026-08-21T05:35:57Z"
+last_revision = "d6ad2e44d5e3077b85b63f322e007c84f94f3a6c"
 source_type = "git"
 source = "https://github.com/aws/agent-toolkit-for-aws.git"
 

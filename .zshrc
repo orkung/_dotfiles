@@ -1236,3 +1236,7 @@ ta() {
    tmux set-environment -g WSL_INTEROP "$WSL_INTEROP"
    tmux attach-session "$@"
 }
+
+# >>> Codex installer >>>
+export PATH="/home/wacavitg/.local/bin:$PATH"
+# <<< Codex installer <<<

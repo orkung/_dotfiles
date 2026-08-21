@@ -172,6 +172,7 @@ pnpm-debug.log*
 # Markdown and YAML linting files
 .markdownlint-cli2.json
 .markdownlint.json
+.markdownlintignore
 .yamllint.json
 .yamllintignore
 bitbucket-pipelines_self_hosted_runner.yaml
@@ -229,3 +230,6 @@ artifacts/
 # Snapshots for acceptance testing (Shouldly)
 *.received.*
 
+# default files
+.gitkeep
+.pre-commit-config.yaml
