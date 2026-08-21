@@ -1,16 +1,4 @@
 {
-  "ignore": [
-    "rendercv_output/**",
-    ".templates/**",
-    "classic/**",
-    "markdown/**"
-  ],
-  "MD013": {
-    "line_length": 78,
-    "strict": false,
-    "stern": false
-  },
-  "MD034": false,
   "MD004": {
     "style": "dash"
   },
@@ -19,15 +7,29 @@
   },
   "MD010": false,
   "MD012": false,
+  "MD013": {
+    "line_length": 78,
+    "code_blocks": false,
+    "headings": false,
+    "tables": false,
+    "strict": false,
+    "stern": false
+  },
   "MD018": false,
   "MD024": false,
+  "MD029": {
+    "style": "ordered"
+  },
+  "MD032": true,
   "MD033": {
     "allowed_elements": [
       "a",
       "strong",
-      "em"
+      "em",
+      "topic"
     ]
   },
+  "MD034": false,
   "MD041": false,
   "MD046": false,
   "MD049": false,
