@@ -56,7 +56,7 @@
     {
       "label": "Lint Markdown",
       "type": "shell",
-      "command": "./scripts/markdownlint.sh",
+      "command": "./.scripts/markdownlint.sh",
       "args": [
         "."
       ],
