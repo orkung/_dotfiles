@@ -219,6 +219,9 @@ alias gds="git diff --staged"
 alias glg="git log --stat"
 alias glgp="git log --pretty=format:'%h - %an, %ar : %s'"
 alias gs="git status"
+alias dad="dotfiles add"
+alias dco="dotfiles commit"
+alias dpu="dotfiles push"
 export FZF_BASE="${FZF_BASE:-/usr/bin/fzf}"
 #eval $(crc oc-env)
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 |grep -E "state|to\ full|percentage"'
