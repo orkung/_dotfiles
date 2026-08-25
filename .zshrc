@@ -1253,3 +1253,8 @@ ta() {
 # >>> Codex installer >>>
 export PATH="/home/wacavitg/.local/bin:$PATH"
 # <<< Codex installer <<<
+
+export PAGER=ov
+export GIT_PAGER=ov
+export SYSTEMD_PAGER=ov
+export MANPAGER=ov
