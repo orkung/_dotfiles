@@ -527,14 +527,24 @@ fi
 #  fi
 #}
 
+# code() {
+#   local win_code="/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code"
+#
+#   unset VSCODE_IPC_HOOK_CLI
+#   [[ -n "$TMUX" ]] && tmux setenv -gu VSCODE_IPC_HOOK_CLI 2>/dev/null
+#
+#   [[ $# -eq 0 ]] && "$win_code" . || "$win_code" "$@"
+# }
+
 code() {
   local win_code="/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code"
+  if (( $# == 0 )); then
+      "$win_code" .
+    else
+      "$win_code" "$@"
+    fi
+  }
 
-  unset VSCODE_IPC_HOOK_CLI
-  [[ -n "$TMUX" ]] && tmux setenv -gu VSCODE_IPC_HOOK_CLI 2>/dev/null
-
-  [[ $# -eq 0 ]] && "$win_code" . || "$win_code" "$@"
-}
 
 #code () {
 #  local bin="$(ls -1dt $HOME/.vscode-server/cli/servers/*/server/bin/remote-cli/code $HOME/.vscode-server/bin/*/bin/remote-cli/code 2>/dev/null | head -n 1)"
