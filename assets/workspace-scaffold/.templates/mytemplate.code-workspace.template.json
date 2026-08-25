@@ -23,9 +23,6 @@
         "url": "./.schemas/markdownlint-config.schema.json"
       }
     ],
-    "yaml.schemas": {
-      "kubernetes": "*deployment*.yaml"
-    },
     "search.exclude": {
       "**/.terraform": true,
       "**/*.tfstate": true,

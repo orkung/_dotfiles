@@ -1,0 +1,17 @@
+# Development overrides for __SERVICE_NAME__.
+# See charts/__CHART_PATH__/values.yaml
+image:
+  tag: "development"
+
+env:
+  ASPNETCORE_ENVIRONMENT: development
+
+ingress:
+  className: nginx
+  host: __DNS_NAME__-dev.onspay.com
+
+# extraLabels.onspay.com/healthchecks intentionally NOT defaulted here --
+# opt in only after confirming the app implements /health (see
+# healthchecks-operator-chart-retrofit in the knowledge wiki). Labeling
+# before that produces a permanent false failure in the healthchecks-ui
+# dashboard.

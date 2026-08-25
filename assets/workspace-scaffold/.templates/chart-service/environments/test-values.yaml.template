@@ -1,0 +1,7 @@
+# Test overrides for __SERVICE_NAME__.
+# See charts/__CHART_PATH__/values.yaml
+image:
+  tag: "latest"
+
+env:
+  ASPNETCORE_ENVIRONMENT: Test

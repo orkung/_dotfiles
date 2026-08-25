@@ -1,0 +1,52 @@
+# Defaults for __SERVICE_NAME__ across all environments.
+# See environments/<env>/__SERVICE_NAME__/values.yaml
+replicaCount: 1
+
+image:
+  repository: nexus.onspay.com/docker-hosted/__IMAGE_NAME__
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+# Extra labels merged onto the Service only (not Deployment/Pod) --
+# e.g. onspay.com/healthchecks: "true" to opt into discovery by
+# healthchecks-operator (apps/development/healthchecks-operator.yaml).
+extraLabels: {}
+
+env:
+  ASPNETCORE_ENVIRONMENT: Production
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 2
+  failureThreshold: 2
+  successThreshold: 1
+
+livenessProbe:
+  httpGet:
+    path: /health/live
+    port: 8080
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  timeoutSeconds: 2
+  failureThreshold: 3
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 512Mi
+
+envFrom:
+  - secretRef:
+      name: onspay-common

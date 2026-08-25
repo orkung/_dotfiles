@@ -1,5 +1,4 @@
 ---
-exclude: ^inventory/group_vars/.*/vault\.ya?ml$
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -13,6 +12,7 @@ repos:
       - id: check-yaml
         args:
           - --allow-multiple-documents
+        exclude: ^charts/.*/templates/
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -22,9 +22,30 @@ repos:
 
   - repo: local
     hooks:
+      - id: shellcheck
+        name: ShellCheck
+        entry: .scripts/shellcheck.sh
+        language: system
+        types:
+          - shell
       - id: markdownlint
         name: Lint Markdown
         entry: .scripts/markdownlint.sh
         language: system
         types:
           - markdown
+      - id: yamllint
+        name: Lint YAML
+        entry: .scripts/yamllint.sh
+        language: system
+        types:
+          - yaml
+      - id: helm-lint
+        name: helm lint
+        entry: >-
+          bash -c 'for chart in $(find charts -mindepth 1 -name Chart.yaml
+          -exec dirname {} \; | sort -u); do helm lint "$chart" || exit 1;
+          done'
+        language: system
+        pass_filenames: false
+        files: ^charts/

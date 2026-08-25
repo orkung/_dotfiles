@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.workspace/schemas/yamllint-config.schema.json",
+  "title": "yamllint configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "extends": {
+      "type": "string"
+    },
+    "ignore": {
+      "type": "string"
+    },
+    "ignore-from-file": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "locale": {
+      "type": "string"
+    },
+    "yaml-files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/rule"
+      },
+      "properties": {
+        "braces": {
+          "$ref": "#/$defs/spacesRule"
+        },
+        "brackets": {
+          "$ref": "#/$defs/spacesRule"
+        },
+        "comments": {
+          "$ref": "#/$defs/commentsRule"
+        },
+        "indentation": {
+          "$ref": "#/$defs/indentationRule"
+        },
+        "line-length": {
+          "$ref": "#/$defs/lineLengthRule"
+        },
+        "truthy": {
+          "$ref": "#/$defs/truthyRule"
+        }
+      }
+    }
+  },
+  "required": [
+    "rules"
+  ],
+  "$defs": {
+    "toggle": {
+      "type": "string",
+      "enum": [
+        "enable",
+        "disable"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "error",
+        "warning"
+      ]
+    },
+    "rule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/toggle"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "spacesRule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/toggle"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min-spaces-inside": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max-spaces-inside": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min-spaces-inside-empty": {
+              "type": "integer",
+              "minimum": -1
+            },
+            "max-spaces-inside-empty": {
+              "type": "integer",
+              "minimum": -1
+            },
+            "level": {
+              "$ref": "#/$defs/severity"
+            }
+          }
+        }
+      ]
+    },
+    "commentsRule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/toggle"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "require-starting-space": {
+              "type": "boolean"
+            },
+            "min-spaces-from-content": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "ignore-shebangs": {
+              "type": "boolean"
+            },
+            "level": {
+              "$ref": "#/$defs/severity"
+            }
+          }
+        }
+      ]
+    },
+    "indentationRule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/toggle"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "spaces": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "const": "consistent"
+                }
+              ]
+            },
+            "indent-sequences": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "const": "consistent"
+                }
+              ]
+            },
+            "check-multi-line-strings": {
+              "type": "boolean"
+            },
+            "level": {
+              "$ref": "#/$defs/severity"
+            }
+          }
+        }
+      ]
+    },
+    "lineLengthRule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/toggle"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "max": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "allow-non-breakable-words": {
+              "type": "boolean"
+            },
+            "allow-non-breakable-inline-mappings": {
+              "type": "boolean"
+            },
+            "level": {
+              "$ref": "#/$defs/severity"
+            }
+          }
+        }
+      ]
+    },
+    "truthyRule": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/toggle"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "allowed-values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "check-keys": {
+              "type": "boolean"
+            },
+            "level": {
+              "$ref": "#/$defs/severity"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
