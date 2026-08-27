@@ -188,6 +188,8 @@ notes/
 .docs/
 docs/
 pre_commit_errors.txt
+*.p8
+*-firebase-adminsdk-*.json
 
 # argocd project seperation not deployed yet
 projects/
