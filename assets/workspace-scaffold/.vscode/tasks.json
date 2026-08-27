@@ -19,6 +19,12 @@
         "focus": true,
         "reveal": "always"
       },
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
       "problemMatcher": []
     },
     {
@@ -55,14 +61,11 @@
     },
     {
       "label": "Lint Markdown",
-      "type": "process",
-      "command": "${workspaceFolder}/.scripts/markdownlint.sh",
+      "type": "shell",
+      "command": "./scripts/markdownlint.sh",
       "args": [
-        "**/*.md"
+        "."
       ],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
       "problemMatcher": [],
       "group": {
         "kind": "test",
@@ -73,6 +76,21 @@
         "reveal": "always",
         "panel": "shared"
       }
+    },
+    {
+      "label": "Update tasks.md",
+      "type": "process",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/.scripts/update-tasks-md.sh"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
+      "problemMatcher": []
     }
   ]
 }
