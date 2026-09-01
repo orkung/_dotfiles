@@ -1,3 +1,7 @@
+# >>> caveman:native-root
+model_provider = "caveman"
+# <<< caveman:native-root
+
 service_tier = "priority"
 model = "gpt-5.6-luna"
 model_reasoning_effort = "medium"
@@ -119,6 +123,9 @@ trust_level = "trusted"
 [projects."/home/wacavitg/projects/knowledge-wiki"]
 trust_level = "trusted"
 
+[projects."/home/wacavitg/projects/work/devops/bitbucket/onspayv2"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.6-sol" = 3
 
@@ -131,3 +138,14 @@ source = "https://github.com/aws/agent-toolkit-for-aws.git"
 [memories]
 generate_memories = true
 use_memories = true
+
+# >>> caveman:native-tables
+[model_providers.caveman]
+name = "Caveman"
+base_url = "http://127.0.0.1:8787/chatgpt"
+wire_api = "responses"
+requires_openai_auth = true
+
+[mcp_servers.caveman]
+command = "/home/wacavitg/.caveman/bin/caveman-mcp"
+# <<< caveman:native-tables

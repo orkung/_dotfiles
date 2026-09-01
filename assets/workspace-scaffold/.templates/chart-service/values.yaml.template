@@ -17,6 +17,16 @@ service:
 # healthchecks-operator (apps/development/healthchecks-operator.yaml).
 extraLabels: {}
 
+# Off by default -- flip to true only once the app actually exposes
+# /metrics (e.g. prometheus-net in .NET). Must match the
+# kube-prometheus-stack Helm release name in
+# apps/development/kube-prometheus-stack.yaml -- its Prometheus only
+# selects ServiceMonitors carrying this exact release label.
+metrics:
+  enabled: false
+  port: 9100
+  prometheusRelease: kube-prometheus-stack-development
+
 env:
   ASPNETCORE_ENVIRONMENT: Production
 
