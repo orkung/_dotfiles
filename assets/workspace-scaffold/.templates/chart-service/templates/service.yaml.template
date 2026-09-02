@@ -1,3 +1,4 @@
+{{- if .Values.service }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -14,5 +15,12 @@ spec:
       targetPort: {{ .Values.service.targetPort | default 80 }}
       protocol: TCP
       name: http
+    {{- if .Values.metrics.enabled }}
+    - port: {{ .Values.metrics.port }}
+      targetPort: {{ .Values.metrics.port }}
+      protocol: TCP
+      name: metrics
+    {{- end }}
   selector:
     {{- include "__SERVICE_NAME__.selectorLabels" . | nindent 4 }}
+{{- end }}

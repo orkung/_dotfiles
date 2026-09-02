@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.targetPort | default 80 }}
+              containerPort: {{ if .Values.service }}{{ .Values.service.targetPort | default 80 }}{{ else }}80{{ end }}
               protocol: TCP
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}

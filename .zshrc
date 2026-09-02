@@ -1258,3 +1258,7 @@ export PAGER=ov
 export GIT_PAGER=ov
 export SYSTEMD_PAGER=ov
 export MANPAGER=ov
+
+typeset -U path PATH
+path=("${(@)path:#/mnt/c/WINDOWS/system32/config/systemprofile/AppData/Local/Microsoft/WindowsApps}")
+export PATH
