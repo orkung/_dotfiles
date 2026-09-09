@@ -1,4 +1,5 @@
 ---
+exclude: (^|/)wwwroot/lib/
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -12,7 +13,6 @@ repos:
       - id: check-yaml
         args:
           - --allow-multiple-documents
-        exclude: ^charts/.*/templates/
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -20,32 +20,25 @@ repos:
           - --fix=no
       - id: trailing-whitespace
 
-  - repo: local
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.37.1
     hooks:
-      - id: shellcheck
-        name: ShellCheck
-        entry: .scripts/shellcheck.sh
-        language: system
-        types:
-          - shell
-      - id: markdownlint
-        name: Lint Markdown
-        entry: .scripts/markdownlint.sh
-        language: system
-        types:
-          - markdown
       - id: yamllint
-        name: Lint YAML
-        entry: .scripts/yamllint.sh
-        language: system
-        types:
-          - yaml
-      - id: helm-lint
-        name: helm lint
-        entry: >-
-          bash -c 'for chart in $(find charts -mindepth 1 -name Chart.yaml
-          -exec dirname {} \; | sort -u); do helm lint "$chart" || exit 1;
-          done'
-        language: system
-        pass_filenames: false
-        files: ^charts/
+        args:
+          - >-
+            --config-data={"extends":"default","rules":{"comments":
+            {"min-spaces-from-content":1},"comments-indentation":"disable",
+            "document-start":"disable","indentation":{"spaces":2,
+            "indent-sequences":"consistent","check-multi-line-strings":false},
+            "line-length":"disable","new-line-at-end-of-file":"disable",
+            "trailing-spaces":"disable","truthy":"disable"}}
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.38.0
+    hooks:
+      - id: check-jsonschema
+        name: Validate bitbucket-pipelines.yml against Bitbucket's schema
+        files: ^bitbucket-pipelines\.yml$
+        args:
+          - --schemafile
+          - https://api.bitbucket.org/schemas/pipelines-configuration

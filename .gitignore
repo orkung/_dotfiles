@@ -190,6 +190,8 @@ docs/
 pre_commit_errors.txt
 *.p8
 *-firebase-adminsdk-*.json
+graphify-out/
+
 
 # argocd project seperation not deployed yet
 projects/
