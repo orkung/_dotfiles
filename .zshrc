@@ -1262,3 +1262,4 @@ export MANPAGER=ov
 typeset -U path PATH
 path=("${(@)path:#/mnt/c/WINDOWS/system32/config/systemprofile/AppData/Local/Microsoft/WindowsApps}")
 export PATH
+. $(pack completion --shell zsh)

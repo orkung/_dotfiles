@@ -239,4 +239,5 @@ artifacts/
 
 # default files
 .gitkeep
+*.pre-commit-config.yaml
 .pre-commit-config.yaml
