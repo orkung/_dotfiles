@@ -621,6 +621,7 @@ alias bat=batcat
 if [[ -t 0 && -z "$SSH_AUTH_SOCK" ]]; then
   eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_wacavitg
+ssh-add ~/.ssh/wg_ansible_ed25519
 #ssh-add ~/.ssh/id_ed25519_orkung
 # ssh-add ~/.ssh/kafein-ssh
 # ssh-add ~/.ssh/id_ed25519
@@ -1020,8 +1021,8 @@ compdef __start_kubectl k
 # alias kx="kubectl exec -it"
 # alias kgn="kubectl get nodes -o wide"
 # alias kgns="kubectl get ns"
-# alias kcl="kubectl config get-contexts"
-# alias kcc="kubectl config current-context"
+alias kcl="kubectl config get-contexts"
+alias kcc="kubectl config current-context"
 # alias kbgp="kubectl get pods -o wide -n kube-system"
 # alias kbgd="kubectl get deploy -o wide -n kube-system"
 # alias kbgsvc="kubectl get svc -o wide -n kube-system"
@@ -1057,7 +1058,7 @@ compdef __start_kubectl k
 # kdi() { kubectl describe ing -n "$1" "$2"; }
 # kcp() { kubectl config set-context --current --namespace="$1"; }
 # kpf() { kubectl port-forward -n "$1" "$2" "$3:$4"; }
-# kclp() { kubectl config get-contexts | grep -- "$1"; }
+kclp() { kubectl config get-contexts | grep -- "$1"; }
 # kdelp() { kubectl delete pod -n "$1" "$2"; }
 # kdr() { kubectl drain "$1" --ignore-daemonsets --delete-local-data; }
 # kdu() { kubectl uncordon "$1"; }
@@ -1317,3 +1318,14 @@ alias blockchain-2='ssh ahmet@192.168.201.23 -p 6353'
 alias kafka='ssh ahmet@192.168.201.25 -p 6353'
 alias questdb='ssh ahmet@192.168.201.26 -p 6353'
 alias Server-90.158.137.62='ssh ahmet@90.158.137.62 -p 6353'
+
+find-wiki() {
+  local target="${1:-.}"
+  local days="${2:-1}"
+
+  find "$target" -path "$target/.remember" -prune -o \
+    -type f -mtime -"$days" \
+    ! -path "$target/index.md" \
+    ! -path "$target/log.md" \
+    -print
+}
