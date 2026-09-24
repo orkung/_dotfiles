@@ -180,6 +180,9 @@ pnpm-debug.log*
 .yamllintignore
 bitbucket-pipelines_self_hosted_runner.yaml
 tasks.md
+.prettierignore
+.prettierrc.json
+
 
 
 # Miscellaneous
