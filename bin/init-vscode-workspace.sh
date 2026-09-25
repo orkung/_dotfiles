@@ -90,7 +90,7 @@ cp -R -n \
   "$repo_root/.templates" \
   "$repo_root/.docs" \
   "$repo_root/.prettierignore" \
-  "$repo_root/.prettierc.json" \
+  "$repo_root/.prettierrc.json" \
   "$target/"
 
 
