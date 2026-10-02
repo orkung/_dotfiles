@@ -162,13 +162,13 @@ export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export INTELLI_HOME="$HOME/.local/share/intelli-shell"
 typeset -U path PATH
 path=(
+  "$HOME/.local/bin"
   "$HOME/.rvm/gems/ruby-2.5.0@task-web/bin"
   /usr/local/bin
   "$HOME/bin"
   "$HOME/.rvm/gems/ruby-2.7.1/bin"
   "$HOME/.rvm/bin"
   "$HOME/.pyenv/bin"
-  "$HOME/.local/bin"
   "$HOME/.pyenv/versions/3.9.0/bin"
   "$HOME/.pyenv/versions/2.7.18/bin"
   "$HOME/.cargo/bin"
@@ -1323,9 +1323,10 @@ find-wiki() {
   local target="${1:-.}"
   local days="${2:-1}"
 
-  find "$target" -path "$target/.remember" -prune -o \
+find "$target" -type d -name .remember -prune -o \
     -type f -mtime -"$days" \
     ! -path "$target/index.md" \
     ! -path "$target/log.md" \
     -print
 }
+
