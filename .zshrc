@@ -536,8 +536,17 @@ fi
 #   [[ $# -eq 0 ]] && "$win_code" . || "$win_code" "$@"
 # }
 
+# Windows home as a WSL path, cached because cmd.exe adds ~180ms per shell
+_winhome_cache=~/.cache/winhome
+if [[ ! -s $_winhome_cache ]]; then
+  mkdir -p ${_winhome_cache:h}
+  wslpath "$(cmd.exe /c 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')" > $_winhome_cache
+fi
+export WINHOME=$(<$_winhome_cache)
+unset _winhome_cache
+
 code() {
-  local win_code="/mnt/c/Users/cavit.g/AppData/Local/Programs/Microsoft VS Code/bin/code"
+  local win_code="$WINHOME/AppData/Local/Programs/Microsoft VS Code/bin/code"
   if (( $# == 0 )); then
       "$win_code" .
     else
