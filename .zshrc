@@ -1323,10 +1323,11 @@ find-wiki() {
   local target="${1:-.}"
   local days="${2:-1}"
 
-find "$target" -type d -name .remember -prune -o \
+find "$target" -type d -iname '.remember' -prune -o \
     -type f -mtime -"$days" \
     ! -path "$target/index.md" \
     ! -path "$target/log.md" \
     -print
 }
 
+export RIPGREP_CONFIG_PATH=~/.ripgreprc

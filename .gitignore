@@ -246,3 +246,6 @@ artifacts/
 .gitkeep
 *.pre-commit-config.yaml
 .pre-commit-config.yaml
+# knowledge-wiki: confidential vendor proposal (pricing), keep local
+wiki/security/carene-ciso-as-a-service-proposal.md
+wiki/security/carene-ciso-as-a-service-teklifi-tr.md
