@@ -1196,7 +1196,7 @@ kclp() { kubectl config get-contexts | grep -- "$1"; }
 # Added by Antigravity CLI installer
 export PATH="/home/wacavitg/.local/bin:$PATH"
 
-alias pbcopy='clip.exe'
+alias pbcopy='wclip'
 
 # Paste from Windows clipboard (and strip Windows carriage returns)
 alias pbpaste='powershell.exe -Command "Get-Clipboard" | sed "s/\r$//"'
