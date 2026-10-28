@@ -1334,9 +1334,11 @@ alias pp-lb='ssh orkun@90.158.137.60 -p 6353'
 alias pp-lbl='ssh orkun@192.168.202.10 -p 6353'
 alias test-mkk='ssh orkun@192.168.201.20 -p 6353'
 alias keycloak='ssh orkun@172.16.10.3 -p 6353'
-alias vpn='ssh orkun@172.16.10.2 -p 6353'
+alias vpn='ssh ahmet@172.16.10.2 -p 6353'
 alias test-runner='ssh orkun@192.168.201.12 -p 6353'
-alias prod-lb='ssh orkun@10.10.99.11 -p 6353'
+#alias prod-lb='ssh orkun@10.10.99.11 -p 6353'
+alias mail='ssh -p6353 ahmet@90.158.137.36'
+
 
 find-wiki() {
   local target="${1:-.}"
