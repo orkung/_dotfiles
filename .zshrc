@@ -89,18 +89,28 @@ plugins=(git aws docker autojump fzf-zsh-plugin zsh-completions zsh-history-subs
 source "$ZSH/oh-my-zsh.sh"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# nvm (lazy): default node on PATH now; nvm.sh is sourced only on first
+# `nvm` call or when entering a directory tree containing .nvmrc.
+export NVM_DIR="$HOME/.config/nvm"
+_nvm_bin=("$NVM_DIR"/versions/node/v${$(<"$NVM_DIR/alias/default" 2>/dev/null)#v}*/bin(N[-1]))
+(( $#_nvm_bin )) || _nvm_bin=("$NVM_DIR"/versions/node/v*/bin(Nn[-1]))
+(( $#_nvm_bin )) && path=("$_nvm_bin[1]" $path)
+unset _nvm_bin
+
+_nvm_load() {
+  unset -f nvm _nvm_load
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+nvm() { _nvm_load; nvm "$@"; }
 
 load-nvmrc() {
-  local nvmrc_path node_version
-  nvmrc_path="$(nvm_find_nvmrc 2>/dev/null)"
-
-  if [[ -n "$nvmrc_path" ]]; then
-    node_version="$(<"$nvmrc_path")"
-    nvm use --silent "$node_version" >/dev/null
-  fi
+  local dir=$PWD
+  while [[ -n $dir && ! -f $dir/.nvmrc ]]; do dir=${dir%/*}; done
+  [[ -f $dir/.nvmrc ]] || return 0
+  (( $+functions[_nvm_load] )) && _nvm_load
+  nvm use --silent "$(<"$dir/.nvmrc")" >/dev/null
 }
 
 add-zsh-hook chpwd load-nvmrc
@@ -299,7 +309,7 @@ zstyle ':omz:plugins:kubectx' async-prompt no
 
 #export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 setopt NULL_GLOB
-autoload -Uz compinit && compinit
+# compinit already run by oh-my-zsh; repeating it rebuilds the dump each start.
 #compdef k9s
 compdef _k9s k9s
 
@@ -651,7 +661,6 @@ fi
 
 # Add to ~/.zshrc
 autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
 
 # Add to ~/.zshrc
@@ -859,15 +868,12 @@ apply_patch() {
 _kubectl_completion_cache="$HOME/.zsh_kubectl_completion"
 _kubectl_version_cache="$HOME/.zsh_kubectl_completion.version"
 
-# Version-based invalidation: regenerate only when `kubectl version --client`
-# differs from what's recorded, so we pay one fast version check per shell
-# start instead of the expensive full completion generation.
-_kubectl_current_version="$(kubectl version --client 2>/dev/null)"
-if [[ ! -s "$_kubectl_completion_cache" || "$_kubectl_current_version" != "$(cat "$_kubectl_version_cache" 2>/dev/null)" ]]; then
+# Regenerate only when the kubectl binary is newer than the cache (a file
+# mtime test, no process spawned at shell start).
+if [[ ! -s "$_kubectl_completion_cache" || ${commands[kubectl]:A} -nt "$_kubectl_completion_cache" ]]; then
   kubectl completion zsh > "$_kubectl_completion_cache" 2>/dev/null
-  print -r -- "$_kubectl_current_version" > "$_kubectl_version_cache"
 fi
-unset _kubectl_current_version
+unset _kubectl_version_cache
 source "$_kubectl_completion_cache"
 alias k=kubectl
 compdef __start_kubectl k
@@ -1207,9 +1213,7 @@ export LIBGL_ALWAYS_SOFTWARE=1
 export WEBKIT_DISABLE_COMPOSITING_MODE=1
 export WEBKIT_DISABLE_DMABUF_RENDERER=1
 #eval "$(atuin init zsh)"
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nvm is lazy-loaded near the top of this file (after oh-my-zsh).
 
 # DeepL and Translate Shell Turkish translation helper
 tentr() {
