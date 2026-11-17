@@ -1340,9 +1340,12 @@ alias test-mkk='ssh orkun@192.168.201.20 -p 6353'
 alias keycloak='ssh orkun@172.16.10.3 -p 6353'
 alias vpn='ssh ahmet@172.16.10.2 -p 6353'
 alias test-runner='ssh orkun@192.168.201.12 -p 6353'
+alias test-tradingview='ssh orkun@192.168.201.19 -p 6353'
 #alias prod-lb='ssh orkun@10.10.99.11 -p 6353'
 alias router='ssh orkun@10.10.99.254 -p 6353'
 alias mail='ssh -p6353 ahmet@90.158.137.36'
+alias test-db='ssh -p 6353 ahmet@192.168.201.18'
+
 
 
 find-wiki() {
