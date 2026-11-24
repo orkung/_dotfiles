@@ -1343,8 +1343,10 @@ alias test-runner='ssh orkun@192.168.201.12 -p 6353'
 alias test-tradingview='ssh orkun@192.168.201.19 -p 6353'
 #alias prod-lb='ssh orkun@10.10.99.11 -p 6353'
 alias router='ssh orkun@10.10.99.254 -p 6353'
-alias mail='ssh -p6353 ahmet@90.158.137.36'
+alias mail='ssh -p6353 ahmet@10.10.99.40'
 alias test-db='ssh -p 6353 ahmet@192.168.201.18'
+alias pam='ssh ahmet@10.10.99.45'
+
 
 
 
@@ -1360,3 +1362,4 @@ find "$target" -type d -iname '.remember' -prune -o \
 }
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+eval "$(psychic zsh)"

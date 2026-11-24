@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# One tmux session group per VS Code workspace, one numbered client
+# session per terminal: ansible (group) -> ansible-1, ansible-2, ...
+set -euo pipefail
+
+name=$(basename "$PWD")
+name=${name//[.:]/_}   # tmux forbids '.' and ':' in session names
+
+# Base session holds the shared windows; created once per workspace.
+tmux has-session -t "=$name" 2>/dev/null ||
+  tmux new-session -d -s "$name" -c "$PWD"
+
+tmux set-environment -g WSL_INTEROP "${WSL_INTEROP:-}"
+
+# Lowest free number: ansible-1, ansible-2, ...
+n=1
+while tmux has-session -t "=$name-$n" 2>/dev/null; do n=$((n + 1)); done
+
+# destroy-unattached: closing the VS Code terminal removes its client
+# session; the windows live on in the base session.
+exec tmux new-session -s "$name-$n" -t "$name" \; \
+  set-option destroy-unattached on

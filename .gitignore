@@ -78,6 +78,7 @@ Desktop.ini
 !.env.sample
 *.pem
 *.key
+client_keys/
 *.crt
 *.csr
 *.p12
@@ -109,6 +110,8 @@ backups/
 *.err
 *.pid
 *.retry
+*.conf
+
 
 # Archives and bundles
 *.tar
